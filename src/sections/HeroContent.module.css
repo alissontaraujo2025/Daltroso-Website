@@ -1,0 +1,249 @@
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+  padding: 48px 56px;
+  color: #ffffff;
+}
+
+/* Top bar */
+
+.topBar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.logo {
+  font-family: var(--font-headline, ui-serif, Georgia, "Times New Roman", serif);
+  font-size: 0.95vw;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+.logoSub {
+  display: block;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.55em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  opacity: 0.85;
+  margin-top: 0.35em;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  background: #f2ddba;
+  border-radius: 999px;
+  padding: 0.6vw 0.3vw 0.6vw 1.3vw;
+  text-decoration: none;
+}
+
+.ctaLabel {
+  font-family: var(--font-headline, ui-serif, Georgia, "Times New Roman", serif);
+  font-size: 1.1vw;
+  font-weight: 400;
+  color: #16233b;
+  white-space: nowrap;
+  margin-right: 0.9vw;
+}
+
+.ctaIconBadge {
+  width: 2.1vw;
+  height: 2.1vw;
+  min-width: 30px;
+  min-height: 30px;
+  border-radius: 50%;
+  background: #16233b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ctaIcon {
+  width: 55%;
+  height: 55%;
+  color: #ffffff;
+}
+
+/* Main */
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  max-width: 54%;
+}
+
+.headline {
+  font-family: var(--font-headline, ui-serif, Georgia, "Times New Roman", serif);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  opacity: calc(1 - var(--p-headline, 0));
+  transform: translateY(calc(var(--p-headline, 0) * -48px));
+}
+
+.eyebrow {
+  font-size: 2.5vw;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 0.15em;
+}
+
+.big {
+  font-size: 7.7vw;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.95;
+  color: #ffffff;
+}
+
+.bigWarm {
+  color: #f0d6a8;
+}
+
+.support {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 1.55vw;
+  line-height: 1.5;
+  color: #ffffff;
+  max-width: 34vw;
+  margin-top: 1.5vw;
+  opacity: calc(1 - var(--p-subtext, 0));
+  transform: translateY(calc(var(--p-subtext, 0) * -14px));
+}
+
+/* Nav */
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6vw;
+  width: 100%;
+  min-width: 0;
+  opacity: calc(1 - var(--p-nav, 0) * 0.65);
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 1.6vw;
+}
+
+.navSeparator {
+  color: #ffffff;
+  opacity: 0.45;
+  font-size: 1.15vw;
+  font-weight: 300;
+}
+
+.navLink {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 1.35vw;
+  color: #f5efe4;
+  text-decoration: none;
+}
+
+.navLink:hover {
+  opacity: 0.8;
+}
+
+/* Mobile (composition adapted, not a scaled-down desktop) */
+
+@media (max-width: 767px) {
+  .overlay {
+    padding: 20px 20px calc(env(safe-area-inset-bottom, 0px) + 28px);
+  }
+
+  .topBar {
+    align-items: center;
+    gap: 16px;
+  }
+
+  .logo {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    line-height: 1.5;
+    white-space: nowrap;
+  }
+
+  .logoSub {
+    font-size: 7px;
+    letter-spacing: 0.06em;
+    margin-top: 0.3em;
+    white-space: nowrap;
+  }
+
+  .cta {
+    padding: 9px 9px 9px 14px;
+  }
+
+  .ctaLabel {
+    font-size: 11.5px;
+    margin-right: 8px;
+  }
+
+  .ctaIconBadge {
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    min-height: 26px;
+  }
+
+  .main {
+    max-width: min(335px, 100%);
+    padding-top: 26px;
+    justify-content: flex-start;
+  }
+
+  .eyebrow {
+    font-size: clamp(15px, 4.7vw, 17px);
+    margin-bottom: 0.2em;
+  }
+
+  .big {
+    font-size: clamp(32px, 11vw, 47px);
+  }
+
+  .support {
+    font-size: 14.5px;
+    line-height: 1.45;
+    max-width: 240px;
+    margin-top: 14px;
+  }
+
+  .nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 8px;
+    gap: 12px;
+  }
+
+  .navItem {
+    gap: 12px;
+  }
+
+  .navSeparator {
+    font-size: 12px;
+  }
+
+  .navLink {
+    font-size: 13.5px;
+    display: inline-block;
+    padding: 14px 8px;
+    margin: -14px -8px;
+  }
+}

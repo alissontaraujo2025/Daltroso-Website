@@ -1,0 +1,191 @@
+.scene {
+  position: relative;
+  min-height: 70vh;
+  background: #0c1826;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.bgImage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url("/videos/hero-daltroso-mobile-poster.png");
+  background-size: cover;
+  background-position: center 40%;
+  filter: grayscale(0.6) brightness(0.38);
+}
+
+@media (min-width: 768px) {
+  .bgImage {
+    background-image: url("/videos/hero-daltroso-desktop-poster.jpg");
+    background-position: center 30%;
+  }
+}
+
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(9, 16, 26, 0.62);
+}
+
+.bridge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40vh;
+  pointer-events: none;
+  background: radial-gradient(
+      120% 100% at 50% 0%,
+      rgba(232, 179, 109, 0.18) 0%,
+      rgba(232, 179, 109, 0.07) 34%,
+      rgba(12, 24, 38, 0) 66%
+    ),
+    linear-gradient(to bottom, rgba(58, 39, 23, 0.22) 0%, rgba(12, 24, 38, 0) 100%);
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 720px;
+  padding: 14vh 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.headline {
+  font-family: var(--font-headline, ui-serif, Georgia, "Times New Roman", serif);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 3.6vw, 3.2rem);
+  line-height: 1.18;
+  color: #ffffff;
+  max-width: 16ch;
+  margin: 0 0 24px;
+}
+
+.support {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 52ch;
+  margin: 0 0 16px;
+}
+
+.smallLine {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: #e8b36d;
+  margin: 0 0 64px;
+}
+
+.channels {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.channelsLabel {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 28px;
+}
+
+.channelsRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.channel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  padding: 8px;
+}
+
+.channelIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(232, 179, 109, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  transition: background 200ms ease, border-color 200ms ease;
+}
+
+.channel:hover .channelIcon,
+.channel:focus-visible .channelIcon {
+  background: rgba(232, 179, 109, 0.22);
+  border-color: rgba(232, 179, 109, 0.5);
+}
+
+.channelIconSvg {
+  width: 22px;
+  height: 22px;
+  color: #e8b36d;
+}
+
+.channelName {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+@media (max-width: 767px) {
+  .inner {
+    padding: 10vh 24px 8vh;
+  }
+
+  .headline {
+    font-size: 1.9rem;
+    max-width: 100%;
+  }
+
+  .support {
+    font-size: 0.98rem;
+  }
+
+  .smallLine {
+    margin-bottom: 48px;
+  }
+
+  .channelsRow {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    gap: 28px 40px;
+  }
+
+  .channelIcon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .channelIconSvg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .channelName {
+    font-size: 0.78rem;
+  }
+}

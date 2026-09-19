@@ -1,0 +1,43 @@
+.heroPin {
+  position: relative;
+  height: 180vh;
+}
+
+.hero {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #1a140f;
+}
+
+.hero :global(.hero-video-background) {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 calc(80% - var(--p-light, 0) * 35%),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 calc(80% - var(--p-light, 0) * 35%),
+    transparent 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroPin {
+    height: auto;
+  }
+
+  .hero {
+    position: relative;
+  }
+}
