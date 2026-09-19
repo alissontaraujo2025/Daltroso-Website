@@ -58,11 +58,24 @@ export function VideoBackground({
     const videoEl = videoRef.current;
     if (!videoEl) return;
 
+    videoEl.muted = true;
+
     if (reducedMotion || !inView) {
       videoEl.pause();
-    } else {
-      videoEl.play().catch(() => {});
+      return;
     }
+
+    const attemptPlay = () => {
+      videoEl.play().catch(() => {});
+    };
+
+    attemptPlay();
+    videoEl.addEventListener("canplay", attemptPlay);
+    videoEl.addEventListener("loadeddata", attemptPlay);
+    return () => {
+      videoEl.removeEventListener("canplay", attemptPlay);
+      videoEl.removeEventListener("loadeddata", attemptPlay);
+    };
   }, [reducedMotion, inView, isDesktop]);
 
   if (isDesktop === null) return null;
