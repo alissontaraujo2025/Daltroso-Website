@@ -38,10 +38,10 @@ export function ContactSection() {
 
         <p className={styles.support}>
           O atendimento parte da compreensão do contexto, das particularidades
-          e dos caminhos jurídicos possíveis para cada caso.
+          e dos caminhos jurídicos possíveis para cada&nbsp;caso.
         </p>
 
-        <p className={styles.smallLine}>Atendimento presencial e online.</p>
+        <p className={styles.smallLine}>Atendimento presencial e&nbsp;online.</p>
 
         <div className={styles.channels}>
           <span className={styles.channelsLabel}>Canais de atendimento</span>

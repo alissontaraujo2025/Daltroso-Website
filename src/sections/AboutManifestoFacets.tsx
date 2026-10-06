@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { noWidow } from "@/lib/typography";
 import { IconDevice, IconPeople, IconSearch } from "@/components/icons/FacetIcons";
 import styles from "./AboutManifesto.module.css";
 
@@ -61,7 +62,7 @@ export function AboutManifestoFacets() {
               <Icon className={styles.facetIconSvg} />
             </span>
             <h3 className={styles.facetTitle}>{facet.title}</h3>
-            <p className={styles.facetText}>{facet.text}</p>
+            <p className={styles.facetText}>{noWidow(facet.text)}</p>
           </div>
         );
       })}

@@ -1,5 +1,6 @@
 "use client";
 
+import { noWidow } from "@/lib/typography";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { TeamMember } from "@/data/team";
@@ -200,7 +201,7 @@ export function TeamCarousel({ members }: { members: TeamMember[] }) {
                       <span className={styles.badge}>{member.credential}</span>
                     )}
                   </div>
-                  <p className={styles.bio}>{member.bio}</p>
+                  <p className={styles.bio}>{noWidow(member.bio)}</p>
                 </div>
 
                 <button

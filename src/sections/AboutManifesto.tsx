@@ -18,14 +18,14 @@ export function AboutManifesto() {
 
       <div className={styles.inner}>
         <h2 className={styles.headline}>
-          Somos uma advocacia pensada para o{" "}
+          Somos uma advocacia pensada para&nbsp;o{" "}
           <span className="accent">mundo como ele é hoje.</span>
         </h2>
 
         <p className={styles.support}>
           Cada caso recebe leitura própria. A mesma atenção para o que
           acontece dentro do processo e para o que continua acontecendo
-          depois dele, na vida das pessoas.
+          depois dele, na vida das&nbsp;pessoas.
         </p>
 
         <AboutManifestoFacets />

@@ -1,0 +1,159 @@
+"use client";
+
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import {
+  IconArrow,
+  IconDigital,
+  IconDocument,
+  IconHouse,
+  IconInsignia,
+  IconPlus,
+  IconShield,
+} from "@/components/icons/PracticeIcons";
+import { featuredArea, practiceAreas, type PracticeAreaIcon } from "@/data/practiceAreas";
+import { noWidow } from "@/lib/typography";
+import styles from "./PracticeAreasSection.module.css";
+
+const WHATSAPP_PHONE = "555592025742";
+
+const ICONS: Record<PracticeAreaIcon, typeof IconShield> = {
+  digital: IconDigital,
+  shield: IconShield,
+  document: IconDocument,
+  house: IconHouse,
+  insignia: IconInsignia,
+};
+
+function whatsappHref(subject?: string) {
+  const text = subject
+    ? `Olá! Gostaria de falar sobre ${subject}.`
+    : "Olá! Gostaria de falar sobre o meu caso.";
+  return `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(text)}`;
+}
+
+function accentStyle(accent: string, index: number): CSSProperties {
+  return { ["--card-accent" as string]: accent, ["--card-index" as string]: index };
+}
+
+export function PracticeAreasSection() {
+  const gridRef = useRef<HTMLDivElement>(null);
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    const el = gridRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setRevealed(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const FeaturedIcon = ICONS[featuredArea.icon];
+
+  return (
+    <section className={styles.scene} id="atuacao" aria-labelledby="atuacao-title">
+      <div className={styles.bridge} aria-hidden="true" />
+      <div className={styles.glow} aria-hidden="true" />
+
+      <div className={styles.inner}>
+        <header className={styles.header}>
+          <p className={styles.eyebrow}>Áreas de atuação</p>
+          <h2 id="atuacao-title" className={styles.title}>
+            Onde o escritório <span className="accent">pode ajudar.</span>
+          </h2>
+          <p className={styles.support}>
+            {noWidow(
+              "Atuamos nas áreas criminal, civil, imobiliária e militar, com atenção especial aos crimes que acontecem na internet."
+            )}
+          </p>
+        </header>
+
+        <div
+          ref={gridRef}
+          className={`${styles.grid} ${revealed ? styles.gridRevealed : ""}`}
+        >
+          <a
+            className={`${styles.card} ${styles.featured}`}
+            href={whatsappHref("crimes digitais")}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={accentStyle(featuredArea.accent, 0)}
+          >
+            <span className={styles.icon}>
+              <FeaturedIcon className={styles.iconSvg} />
+            </span>
+            <div className={styles.body}>
+              <span className={styles.badge}>Destaque</span>
+              <h3 className={`${styles.cardTitle} ${styles.featuredTitle}`}>
+                {featuredArea.title}
+              </h3>
+              <span className={styles.cardText}>{noWidow(featuredArea.text)}</span>
+              <span className={styles.tags}>
+                {featuredArea.tags.map((tag) => (
+                  <span className={styles.tag} key={tag}>
+                    {tag}
+                  </span>
+                ))}
+              </span>
+            </div>
+            <IconArrow className={styles.arrow} />
+            <span className="sr-only"> (abre o WhatsApp em nova aba)</span>
+          </a>
+
+          {practiceAreas.map((area, index) => {
+            const Icon = ICONS[area.icon];
+            return (
+              <a
+                className={styles.card}
+                key={area.title}
+                href={whatsappHref(area.title)}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={accentStyle(area.accent, index + 1)}
+              >
+                <span className={styles.icon}>
+                  <Icon className={styles.iconSvg} />
+                </span>
+                <div className={styles.body}>
+                  <h3 className={styles.cardTitle}>{area.title}</h3>
+                  <span className={styles.cardText}>{noWidow(area.text)}</span>
+                </div>
+                <IconArrow className={styles.arrow} />
+                <span className="sr-only"> (abre o WhatsApp em nova aba)</span>
+              </a>
+            );
+          })}
+
+          <a
+            className={`${styles.card} ${styles.more}`}
+            href={whatsappHref()}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={accentStyle("#ffffff", practiceAreas.length + 1)}
+          >
+            <span className={styles.icon}>
+              <IconPlus className={styles.iconSvg} />
+            </span>
+            <div className={styles.body}>
+              <h3 className={styles.cardTitle}>Não encontrou o seu caso?</h3>
+              <span className={styles.cardText}>
+                {noWidow("Conte o que aconteceu e a equipe orienta você.")}
+              </span>
+            </div>
+            <IconArrow className={styles.arrow} />
+            <span className="sr-only"> (abre o WhatsApp em nova aba)</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
