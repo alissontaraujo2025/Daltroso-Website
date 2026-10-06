@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { VideoPoster } from "./VideoPoster";
 
 const DESKTOP_BREAKPOINT = "(min-width: 768px)";
+const GESTURE_EVENTS = ["pointerdown", "keydown", "touchstart", "scroll"] as const;
 
 type VideoBackgroundProps = {
   desktopSrc: string;
@@ -22,25 +23,15 @@ export function VideoBackground({
 }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isDesktop, setIsDesktop] = useState<boolean | null>(null);
-  const [reducedMotion, setReducedMotion] = useState(false);
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
     const viewportQuery = window.matchMedia(DESKTOP_BREAKPOINT);
-    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-
     const updateVariant = () => setIsDesktop(viewportQuery.matches);
-    const updateMotion = () => setReducedMotion(motionQuery.matches);
 
     updateVariant();
-    updateMotion();
-
     viewportQuery.addEventListener("change", updateVariant);
-    motionQuery.addEventListener("change", updateMotion);
-    return () => {
-      viewportQuery.removeEventListener("change", updateVariant);
-      motionQuery.removeEventListener("change", updateMotion);
-    };
+    return () => viewportQuery.removeEventListener("change", updateVariant);
   }, []);
 
   useEffect(() => {
@@ -62,13 +53,22 @@ export function VideoBackground({
 
     videoEl.muted = true;
 
-    if (reducedMotion || !inView) {
+    // The ambient loop is slow and cut-free, so it plays even with
+    // prefers-reduced-motion; scroll-driven motion is disabled elsewhere.
+    if (!inView) {
       videoEl.pause();
       return;
     }
 
+    // If the browser blocks autoplay (e.g. power-saving modes), retry on the
+    // first user gesture instead of leaving the video frozen on frame one.
+    const resumeOnGesture = () => attemptPlay();
     const attemptPlay = () => {
-      videoEl.play().catch(() => {});
+      videoEl.play().catch(() => {
+        GESTURE_EVENTS.forEach((type) =>
+          window.addEventListener(type, resumeOnGesture, { once: true, passive: true })
+        );
+      });
     };
 
     attemptPlay();
@@ -77,8 +77,9 @@ export function VideoBackground({
     return () => {
       videoEl.removeEventListener("canplay", attemptPlay);
       videoEl.removeEventListener("loadeddata", attemptPlay);
+      GESTURE_EVENTS.forEach((type) => window.removeEventListener(type, resumeOnGesture));
     };
-  }, [reducedMotion, inView, isDesktop]);
+  }, [inView, isDesktop]);
 
   const posterImage = (
     <VideoPoster className={className} desktopSrc={desktopPoster} mobileSrc={mobilePoster} />
@@ -99,8 +100,8 @@ export function VideoBackground({
         src={src}
         poster={poster}
         preload="none"
-        autoPlay={!reducedMotion}
-        loop={!reducedMotion}
+        autoPlay
+        loop
         muted
         playsInline
         controls={false}

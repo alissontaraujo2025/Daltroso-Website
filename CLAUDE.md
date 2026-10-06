@@ -92,7 +92,7 @@ Trabalhar uma cena ou componente por vez.
 - evitar dependências desnecessárias
 - priorizar performance
 - respeitar acessibilidade
-- respeitar `prefers-reduced-motion`
+- respeitar `prefers-reduced-motion` (desliga pinning e animações de scroll; os loops de vídeo ambiente continuam tocando, por decisão do cliente)
 - vídeo nunca deve bloquear carregamento principal
 - prever fallback estático para vídeo
 - mobile não pode depender de hover
