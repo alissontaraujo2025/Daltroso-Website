@@ -173,3 +173,81 @@ p {
     transform: scaleX(0);
   }
 }
+
+/* ---------- Botão de atendimento (hero e contato) ----------
+   Brilho que atravessa o botão + pulso de luz em volta, para chamar o clique. */
+.cta-animated {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
+}
+
+.cta-animated::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.65) 48%,
+    rgba(255, 255, 255, 0.65) 52%,
+    transparent 70%
+  );
+  transform: translateX(-130%);
+}
+
+.cta-animated [data-cta-badge] {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cta-animated {
+    animation: cta-pulse 2.8s ease-out infinite;
+  }
+
+  .cta-animated::after {
+    animation: cta-shine 5s ease-in-out 1.2s infinite;
+  }
+}
+
+@media (hover: hover) {
+  .cta-animated:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 36px -14px rgba(242, 221, 186, 0.75);
+    animation-play-state: paused;
+  }
+
+  .cta-animated:hover [data-cta-badge] {
+    transform: scale(1.08);
+  }
+}
+
+.cta-animated:focus-visible {
+  outline: 2px solid #f2ddba;
+  outline-offset: 4px;
+}
+
+@keyframes cta-shine {
+  0% {
+    transform: translateX(-130%);
+  }
+  28%,
+  100% {
+    transform: translateX(130%);
+  }
+}
+
+@keyframes cta-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(242, 221, 186, 0.55);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 16px rgba(242, 221, 186, 0);
+  }
+}

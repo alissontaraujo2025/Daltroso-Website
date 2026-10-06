@@ -2,6 +2,10 @@ import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { IconFacebook, IconInstagram, IconYouTube } from "@/components/icons/SocialIcons";
 import styles from "./ContactSection.module.css";
 
+const WHATSAPP_CTA_HREF = `https://api.whatsapp.com/send?phone=555592025742&text=${encodeURIComponent(
+  "Olá! Gostaria de falar sobre o meu caso."
+)}`;
+
 const CHANNELS = [
   {
     name: "WhatsApp",
@@ -54,9 +58,28 @@ export function ContactSection() {
         </p>
 
         <div
+          className={styles.ctaWrap}
+          data-reveal="up"
+          style={{ ["--reveal-delay" as string]: "420ms" }}
+        >
+          <a
+            className={`${styles.cta} cta-animated`}
+            href={WHATSAPP_CTA_HREF}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Atendimento online pelo WhatsApp (abre em nova aba)"
+          >
+            <span className={styles.ctaLabel}>atendimento online</span>
+            <span className={styles.ctaIconBadge} data-cta-badge>
+              <WhatsAppIcon className={styles.ctaIcon} />
+            </span>
+          </a>
+        </div>
+
+        <div
           className={styles.channels}
           data-reveal="up"
-          style={{ ["--reveal-delay" as string]: "440ms" }}
+          style={{ ["--reveal-delay" as string]: "560ms" }}
         >
           <span className={styles.channelsLabel}>Canais de atendimento</span>
 

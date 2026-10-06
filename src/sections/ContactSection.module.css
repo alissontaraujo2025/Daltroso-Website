@@ -1,6 +1,6 @@
 .scene {
   position: relative;
-  min-height: 70vh;
+  min-height: 100vh;
   background: #0c1826;
   display: flex;
   align-items: center;
@@ -53,8 +53,8 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 720px;
-  padding: 14vh 24px;
+  max-width: 1280px;
+  padding: 16vh 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,28 +64,30 @@
 .headline {
   font-family: var(--font-headline, ui-serif, Georgia, "Times New Roman", serif);
   font-weight: 400;
-  font-size: clamp(2.2rem, 3.6vw, 3.2rem);
-  line-height: 1.18;
+  /* Fechamento do site: título em escala de cartaz, ocupando a largura da tela */
+  font-size: clamp(3rem, 7.4vw, 8rem);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
   color: #ffffff;
-  max-width: 16ch;
-  margin: 0 0 24px;
+  max-width: 100%;
+  margin: 0 0 36px;
 }
 
 .support {
   font-family: var(--font-sans), sans-serif;
-  font-size: 1.1rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.75);
+  font-size: clamp(1.15rem, 1.45vw, 1.45rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.82);
   max-width: 52ch;
-  margin: 0 0 16px;
+  margin: 0 0 18px;
 }
 
 .smallLine {
   font-family: var(--font-sans), sans-serif;
-  font-size: 0.95rem;
+  font-size: clamp(1.05rem, 1.2vw, 1.2rem);
   letter-spacing: 0.02em;
   color: #e8b36d;
-  margin: 0 0 64px;
+  margin: 0 0 44px;
 }
 
 .channels {
@@ -97,7 +99,7 @@
 
 .channelsLabel {
   font-family: var(--font-sans), sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   color: rgba(255, 255, 255, 0.6);
@@ -147,7 +149,7 @@
 
 .channelName {
   font-family: var(--font-sans), sans-serif;
-  font-size: 0.92rem;
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.78);
 }
 
@@ -157,12 +159,12 @@
   }
 
   .headline {
-    font-size: 1.9rem;
+    font-size: clamp(2.5rem, 11.5vw, 3.4rem);
     max-width: 100%;
   }
 
   .support {
-    font-size: 0.98rem;
+    font-size: 1.05rem;
   }
 
   .smallLine {
@@ -216,4 +218,67 @@
   outline: 2px solid #e8b36d;
   outline-offset: 4px;
   border-radius: 12px;
+}
+
+/* ---------- CTA principal (mesmo botão do topo, em escala maior) ---------- */
+
+.ctaWrap {
+  margin: 0 0 72px;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  padding: 14px 14px 14px 36px;
+  border-radius: 999px;
+  background: #f2ddba;
+  text-decoration: none;
+}
+
+.ctaLabel {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-headline, ui-serif, Georgia, "Times New Roman", serif);
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  color: #16233b;
+  white-space: nowrap;
+}
+
+.ctaIconBadge {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(52px, 4.4vw, 64px);
+  height: clamp(52px, 4.4vw, 64px);
+  border-radius: 50%;
+  background: #16233b;
+}
+
+.ctaIcon {
+  width: 52%;
+  height: 52%;
+  color: #fff;
+}
+
+@media (max-width: 767px) {
+  .ctaWrap {
+    margin-bottom: 52px;
+  }
+
+  .cta {
+    gap: 14px;
+    padding: 10px 10px 10px 24px;
+  }
+
+  .ctaLabel {
+    font-size: 1.25rem;
+  }
+
+  .ctaIconBadge {
+    width: 46px;
+    height: 46px;
+  }
 }

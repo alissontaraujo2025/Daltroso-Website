@@ -20,14 +20,14 @@ export function HeroContent() {
         </p>
 
         <a
-          className={styles.cta}
+          className={`${styles.cta} cta-animated`}
           href={WHATSAPP_HREF}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Atendimento online pelo WhatsApp (abre em nova aba)"
         >
           <span className={styles.ctaLabel}>atendimento online</span>
-          <span className={styles.ctaIconBadge}>
+          <span className={styles.ctaIconBadge} data-cta-badge>
             <WhatsAppIcon className={styles.ctaIcon} />
           </span>
         </a>
