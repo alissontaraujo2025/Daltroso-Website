@@ -1,17 +1,18 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { VideoPoster } from "./VideoPoster";
 
 const DESKTOP_BREAKPOINT = "(min-width: 768px)";
 
 const SOURCES = {
   desktop: {
     video: "/videos/hero-daltroso-desktop.mp4",
-    poster: "/videos/hero-daltroso-desktop-poster.jpg",
+    poster: "/videos/hero-daltroso-desktop-poster.webp",
   },
   mobile: {
     video: "/videos/hero-daltroso-mobile.mp4",
-    poster: "/videos/hero-daltroso-mobile-poster.png",
+    poster: "/videos/hero-daltroso-mobile-poster.webp",
   },
 } as const;
 
@@ -75,23 +76,35 @@ export function HeroVideoBackground() {
     };
   }, [reducedMotion, inView, variant]);
 
-  if (!variant) return null;
+  const posterImage = (
+    <VideoPoster
+      className="hero-video-background"
+      desktopSrc={SOURCES.desktop.poster}
+      mobileSrc={SOURCES.mobile.poster}
+      priority
+    />
+  );
+
+  if (!variant) return posterImage;
 
   const { video, poster } = SOURCES[variant];
 
   return (
-    <video
-      key={video}
-      ref={videoRef}
-      className="hero-video-background"
-      src={video}
-      poster={poster}
-      preload="auto"
-      autoPlay={!reducedMotion}
-      loop={!reducedMotion}
-      muted
-      playsInline
-      controls={false}
-    />
+    <>
+      {posterImage}
+      <video
+        key={video}
+        ref={videoRef}
+        className="hero-video-background"
+        src={video}
+        poster={poster}
+        preload="auto"
+        autoPlay={!reducedMotion}
+        loop={!reducedMotion}
+        muted
+        playsInline
+        controls={false}
+      />
+    </>
   );
 }

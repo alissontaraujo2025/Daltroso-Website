@@ -10,8 +10,8 @@ export function AboutManifesto() {
         className={styles.video}
         desktopSrc="/videos/scene-02-daltroso-desktop.mp4"
         mobileSrc="/videos/scene-02-daltroso-mobile.mp4"
-        desktopPoster="/videos/scene-02-daltroso-desktop-poster.png"
-        mobilePoster="/videos/scene-02-daltroso-mobile-poster.png"
+        desktopPoster="/videos/scene-02-daltroso-desktop-poster.webp"
+        mobilePoster="/videos/scene-02-daltroso-mobile-poster.webp"
       />
       <SceneDigitalLines />
       <div className={styles.bridge} aria-hidden="true" />

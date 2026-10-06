@@ -18,18 +18,22 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  mask-image: linear-gradient(
-    to bottom,
-    #000 0%,
-    #000 calc(80% - var(--p-light, 0) * 35%),
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    #000 0%,
-    #000 calc(80% - var(--p-light, 0) * 35%),
-    transparent 100%
-  );
+}
+
+/* Bottom fade over the video. Scaling an overlay (compositor-only) instead of
+   animating a mask on the video keeps playback smooth while scrolling.
+   20% band scaled up to 2.75x = fade starting at 80% → 45% of the height. */
+.videoFade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 20%;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(26, 20, 15, 0) 0%, #1a140f 100%);
+  transform-origin: bottom;
+  transform: scaleY(calc(1 + var(--p-light, 0) * 1.75));
+  will-change: transform;
 }
 
 @media (prefers-reduced-motion: reduce) {

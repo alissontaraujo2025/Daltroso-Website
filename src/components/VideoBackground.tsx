@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { VideoPoster } from "./VideoPoster";
 
 const DESKTOP_BREAKPOINT = "(min-width: 768px)";
 
@@ -48,7 +49,8 @@ export function VideoBackground({
 
     const observer = new IntersectionObserver(
       ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0, rootMargin: "20% 0px" }
+      // Start buffering about one screen ahead so playback is ready on arrival.
+      { threshold: 0, rootMargin: "100% 0px" }
     );
     observer.observe(videoEl);
     return () => observer.disconnect();
@@ -78,24 +80,31 @@ export function VideoBackground({
     };
   }, [reducedMotion, inView, isDesktop]);
 
-  if (isDesktop === null) return null;
+  const posterImage = (
+    <VideoPoster className={className} desktopSrc={desktopPoster} mobileSrc={mobilePoster} />
+  );
+
+  if (isDesktop === null) return posterImage;
 
   const src = isDesktop ? desktopSrc : mobileSrc;
   const poster = isDesktop ? desktopPoster : mobilePoster;
 
   return (
-    <video
-      key={src}
-      ref={videoRef}
-      className={className}
-      src={src}
-      poster={poster}
-      preload="none"
-      autoPlay={!reducedMotion}
-      loop={!reducedMotion}
-      muted
-      playsInline
-      controls={false}
-    />
+    <>
+      {posterImage}
+      <video
+        key={src}
+        ref={videoRef}
+        className={className}
+        src={src}
+        poster={poster}
+        preload="none"
+        autoPlay={!reducedMotion}
+        loop={!reducedMotion}
+        muted
+        playsInline
+        controls={false}
+      />
+    </>
   );
 }

@@ -190,7 +190,7 @@
 
 .facetText {
   font-family: var(--font-sans), sans-serif;
-  font-size: 0.92rem;
+  font-size: 1rem;
   line-height: 1.55;
   color: rgba(255, 255, 255, 0.78);
   margin: 0;

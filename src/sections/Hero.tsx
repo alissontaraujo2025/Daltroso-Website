@@ -51,6 +51,7 @@ export function Hero() {
     <div ref={pinRef} className={styles.heroPin}>
       <section className={styles.hero}>
         <HeroVideoBackground />
+        <div className={styles.videoFade} aria-hidden="true" />
         <HeroContent />
       </section>
     </div>
