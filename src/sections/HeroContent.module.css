@@ -251,6 +251,36 @@
 
 /* Celulares bem estreitos (até 374px): menu compacto para caber numa linha */
 @media (max-width: 374px) {
+  .topBar {
+    gap: 10px;
+  }
+
+  .logo {
+    font-size: 10px;
+    letter-spacing: 0.05em;
+  }
+
+  .logoSub {
+    font-size: 6px;
+    letter-spacing: 0.03em;
+  }
+
+  .cta {
+    padding: 7px 7px 7px 11px;
+  }
+
+  .ctaLabel {
+    font-size: 10.5px;
+    margin-right: 6px;
+  }
+
+  .ctaIconBadge {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+  }
+
   .nav,
   .navItem {
     gap: 6px;

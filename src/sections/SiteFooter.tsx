@@ -2,8 +2,9 @@ import styles from "./SiteFooter.module.css";
 
 const LINKS = [
   { label: "Quem somos", href: "#quem-somos" },
-  { label: "Equipe", href: "#equipe" },
   { label: "Áreas de atuação", href: "#atuacao" },
+  { label: "Como trabalhamos", href: "#metodo" },
+  { label: "Equipe", href: "#equipe" },
   { label: "Atendimento", href: "#atendimento" },
 ];
 

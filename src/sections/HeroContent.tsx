@@ -5,8 +5,8 @@ const WHATSAPP_HREF = "https://api.whatsapp.com/send?phone=555592025742";
 
 const NAV_LINKS = [
   { label: "quem somos", href: "#quem-somos" },
-  { label: "equipe", href: "#equipe" },
   { label: "atuação", href: "#atuacao" },
+  { label: "equipe", href: "#equipe" },
   { label: "atendimento", href: "#atendimento" },
 ];
 

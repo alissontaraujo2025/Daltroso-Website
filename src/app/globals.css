@@ -251,3 +251,30 @@ p {
     box-shadow: 0 0 0 16px rgba(242, 221, 186, 0);
   }
 }
+
+/* Link de atalho para teclado: só aparece ao receber foco */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 80;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #f2ddba;
+  color: #16233b;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transform: translateY(-160%);
+  transition: transform 0.25s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Foco visível consistente em links e botões */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #e8b36d;
+  outline-offset: 3px;
+}

@@ -162,7 +162,7 @@ export function TeamCarousel({ members }: { members: TeamMember[] }) {
             const isOpen = open === index;
             const panelId = `equipe-bio-${index}`;
             return (
-              <article
+              <div
                 key={member.name}
                 role="listitem"
                 className={styles.card}
@@ -217,7 +217,7 @@ export function TeamCarousel({ members }: { members: TeamMember[] }) {
                 >
                   <span aria-hidden="true" />
                 </button>
-              </article>
+              </div>
             );
           })}
         </div>
