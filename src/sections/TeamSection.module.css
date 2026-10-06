@@ -570,3 +570,38 @@
     opacity: 1;
   }
 }
+
+/* ---------- Fundo com foto: parede de madeira com a luz da janela (pôster do hero) ---------- */
+
+.bgPhoto {
+  position: absolute;
+  inset: -3%;
+  z-index: -3;
+  background: url("/videos/hero-daltroso-desktop-poster.webp") 22% 30% / cover no-repeat;
+  filter: blur(3px) saturate(0.75) brightness(0.62);
+}
+
+/* Véus: azul nas bordas (emendas limpas com as cenas vizinhas) e mais aberto no meio,
+   escurecendo atrás dos cards para as fotos da equipe continuarem em primeiro plano */
+.bgVeil {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(70% 45% at 50% 62%, rgba(12, 24, 38, 0.55), transparent 80%),
+    linear-gradient(
+      180deg,
+      #0c1826 0%,
+      rgba(12, 24, 38, 0.62) 18%,
+      rgba(12, 24, 38, 0.48) 45%,
+      rgba(12, 24, 38, 0.82) 80%,
+      #0c1826 100%
+    );
+}
+
+@media (max-width: 767px) {
+  .bgPhoto {
+    background-image: url("/videos/hero-daltroso-mobile-poster.webp");
+    background-position: 30% 30%;
+  }
+}

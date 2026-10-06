@@ -5,6 +5,8 @@ import styles from "./TeamSection.module.css";
 export function TeamSection() {
   return (
     <section className={styles.scene} id="equipe" aria-labelledby="equipe-title">
+      <div className={styles.bgPhoto} aria-hidden="true" />
+      <div className={styles.bgVeil} aria-hidden="true" />
       <div className={styles.bridge} aria-hidden="true" />
       <div className={styles.glow} aria-hidden="true" />
       <div className={styles.beams} aria-hidden="true" />

@@ -59,6 +59,9 @@
   -webkit-text-stroke: 1px rgba(240, 214, 168, 0.16);
   pointer-events: none;
   user-select: none;
+  /* Dissolve na base, sem ser cortado seco pela borda da seção */
+  -webkit-mask-image: linear-gradient(to bottom, #000 35%, transparent 92%);
+  mask-image: linear-gradient(to bottom, #000 35%, transparent 92%);
 }
 
 @media (prefers-reduced-motion: no-preference) {
