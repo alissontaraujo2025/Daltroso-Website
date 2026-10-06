@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Serif_Display, Inter } from "next/font/google";
+import { DM_Mono, DM_Serif_Display, Inter, Inter_Tight } from "next/font/google";
 import { RevealObserver } from "@/components/RevealObserver";
 import "./globals.css";
 
@@ -14,6 +14,24 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
+});
+
+// Cena "Como trabalhamos" (referência: design system VOID/03)
+const interTight = Inter_Tight({
+  subsets: ["latin"],
+  weight: ["800", "900"],
+  variable: "--font-display",
+  display: "swap",
+  // Só aparece mais abaixo na página: não disputa o carregamento do hero
+  preload: false,
+});
+
+const dmMono = DM_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
+  display: "swap",
+  preload: false,
 });
 
 const TITLE = "Daltroso Advocacia e Inteligência Jurídica";
@@ -43,7 +61,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={`${dmSerifDisplay.variable} ${inter.variable}`}>
+    <html
+      lang="pt-BR"
+      className={`${dmSerifDisplay.variable} ${inter.variable} ${interTight.variable} ${dmMono.variable}`}
+    >
       <body>
         <a href="#quem-somos" className="skip-link">
           Pular para o conteúdo
