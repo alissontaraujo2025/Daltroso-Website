@@ -32,7 +32,9 @@ export function ContactSection() {
       <div className={styles.bgOverlay} aria-hidden="true" />
       <div className={styles.bridge} aria-hidden="true" />
       <div className={styles.inner}>
-        <h2 className={styles.headline}>Cada situação pede uma leitura própria.</h2>
+        <h2 className={styles.headline}>
+          Cada situação pede uma <span className="accent">leitura própria.</span>
+        </h2>
 
         <p className={styles.support}>
           O atendimento parte da compreensão do contexto, das particularidades

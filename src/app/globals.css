@@ -13,3 +13,8 @@ body {
   min-height: 100vh;
   font-family: var(--font-sans), system-ui, sans-serif;
 }
+
+/* Destaque de palavras-chave nos títulos (mesmo tom quente do "JURÍDICA." do hero) */
+.accent {
+  color: #f0d6a8;
+}

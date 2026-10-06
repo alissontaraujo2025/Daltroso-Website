@@ -16,7 +16,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Daltroso Advocacia e Consultoria Jurídica",
+  title: "Daltroso Advocacia e Inteligência Jurídica",
   description: "Mais que consultoria. Inteligência jurídica.",
 };
 

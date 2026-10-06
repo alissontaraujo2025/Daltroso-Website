@@ -6,7 +6,7 @@ const WHATSAPP_HREF = "https://api.whatsapp.com/send?phone=555592025742";
 // Cível, família e digital voltam ao menu quando a Cena 03 (áreas de atuação) existir.
 const NAV_LINKS = [
   { label: "quem somos", href: "#quem-somos" },
-  { label: "criminal", href: "#equipe" },
+  { label: "equipe", href: "#equipe" },
   { label: "atendimento", href: "#atendimento" },
 ];
 
@@ -15,8 +15,8 @@ export function HeroContent() {
     <div className={styles.overlay}>
       <div className={styles.topBar}>
         <p className={styles.logo}>
-          Bianca Daltroso
-          <span className={styles.logoSub}>Advocacia e Consultoria Jurídica</span>
+          Daltroso
+          <span className={styles.logoSub}>Advocacia e Inteligência Jurídica</span>
         </p>
 
         <a
