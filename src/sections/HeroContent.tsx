@@ -3,10 +3,10 @@ import styles from "./HeroContent.module.css";
 
 const WHATSAPP_HREF = "https://api.whatsapp.com/send?phone=555592025742";
 
-// Cível, família e digital voltam ao menu quando a Cena 03 (áreas de atuação) existir.
 const NAV_LINKS = [
   { label: "quem somos", href: "#quem-somos" },
   { label: "equipe", href: "#equipe" },
+  { label: "atuação", href: "#atuacao" },
   { label: "atendimento", href: "#atendimento" },
 ];
 

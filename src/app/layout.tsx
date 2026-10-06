@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Serif_Display, Inter } from "next/font/google";
+import { RevealObserver } from "@/components/RevealObserver";
 import "./globals.css";
 
 const dmSerifDisplay = DM_Serif_Display({
@@ -27,7 +28,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={`${dmSerifDisplay.variable} ${inter.variable}`}>
-      <body>{children}</body>
+      <body>
+        <div className="scroll-progress" aria-hidden="true" />
+        {children}
+        <RevealObserver />
+      </body>
     </html>
   );
 }

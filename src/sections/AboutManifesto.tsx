@@ -15,14 +15,19 @@ export function AboutManifesto() {
       />
       <SceneDigitalLines />
       <div className={styles.bridge} aria-hidden="true" />
+      <div className={styles.exitFade} aria-hidden="true" />
 
       <div className={styles.inner}>
-        <h2 className={styles.headline}>
+        <h2 className={styles.headline} data-reveal="mask">
           Somos uma advocacia pensada para&nbsp;o{" "}
           <span className="accent">mundo como ele é hoje.</span>
         </h2>
 
-        <p className={styles.support}>
+        <p
+          className={styles.support}
+          data-reveal="up"
+          style={{ ["--reveal-delay" as string]: "200ms" }}
+        >
           Cada caso recebe leitura própria. A mesma atenção para o que
           acontece dentro do processo e para o que continua acontecendo
           depois dele, na vida das&nbsp;pessoas.

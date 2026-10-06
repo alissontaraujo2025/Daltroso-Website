@@ -32,18 +32,32 @@ export function ContactSection() {
       <div className={styles.bgOverlay} aria-hidden="true" />
       <div className={styles.bridge} aria-hidden="true" />
       <div className={styles.inner}>
-        <h2 className={styles.headline}>
+        <h2 className={styles.headline} data-reveal="mask">
           Cada situação pede uma <span className="accent">leitura própria.</span>
         </h2>
 
-        <p className={styles.support}>
+        <p
+          className={styles.support}
+          data-reveal="up"
+          style={{ ["--reveal-delay" as string]: "200ms" }}
+        >
           O atendimento parte da compreensão do contexto, das particularidades
           e dos caminhos jurídicos possíveis para cada&nbsp;caso.
         </p>
 
-        <p className={styles.smallLine}>Atendimento presencial e&nbsp;online.</p>
+        <p
+          className={styles.smallLine}
+          data-reveal="up"
+          style={{ ["--reveal-delay" as string]: "320ms" }}
+        >
+          Atendimento presencial e&nbsp;online.
+        </p>
 
-        <div className={styles.channels}>
+        <div
+          className={styles.channels}
+          data-reveal="up"
+          style={{ ["--reveal-delay" as string]: "440ms" }}
+        >
           <span className={styles.channelsLabel}>Canais de atendimento</span>
 
           <div className={styles.channelsRow}>

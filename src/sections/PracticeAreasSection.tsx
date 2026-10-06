@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type PointerEvent,
+} from "react";
 import {
   IconArrow,
   IconDigital,
@@ -57,20 +63,37 @@ export function PracticeAreasSection() {
     return () => observer.disconnect();
   }, []);
 
+  // Luz que acompanha o cursor dentro do card (só faz efeito com mouse; ver CSS)
+  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== "mouse") return;
+    const card = (event.target as HTMLElement).closest<HTMLElement>("a");
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+    card.style.setProperty("--my", `${event.clientY - rect.top}px`);
+  };
+
   const FeaturedIcon = ICONS[featuredArea.icon];
 
   return (
     <section className={styles.scene} id="atuacao" aria-labelledby="atuacao-title">
       <div className={styles.bridge} aria-hidden="true" />
       <div className={styles.glow} aria-hidden="true" />
+      <div className={styles.dots} aria-hidden="true" />
 
       <div className={styles.inner}>
         <header className={styles.header}>
-          <p className={styles.eyebrow}>Áreas de atuação</p>
-          <h2 id="atuacao-title" className={styles.title}>
+          <p className={`${styles.eyebrow} eyebrow-line`} data-reveal="up">
+            Áreas de atuação
+          </p>
+          <h2 id="atuacao-title" className={styles.title} data-reveal="mask">
             Onde o escritório <span className="accent">pode ajudar.</span>
           </h2>
-          <p className={styles.support}>
+          <p
+            className={styles.support}
+            data-reveal="up"
+            style={{ ["--reveal-delay" as string]: "200ms" }}
+          >
             {noWidow(
               "Atuamos nas áreas criminal, civil, imobiliária e militar, com atenção especial aos crimes que acontecem na internet."
             )}
@@ -80,6 +103,7 @@ export function PracticeAreasSection() {
         <div
           ref={gridRef}
           className={`${styles.grid} ${revealed ? styles.gridRevealed : ""}`}
+          onPointerMove={handlePointerMove}
         >
           <a
             className={`${styles.card} ${styles.featured}`}

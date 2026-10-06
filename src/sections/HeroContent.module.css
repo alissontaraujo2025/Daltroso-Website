@@ -225,15 +225,16 @@
     margin-top: 14px;
   }
 
+  /* Quatro itens numa linha só: sem quebra e sem separador solto */
   .nav {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
-    row-gap: 8px;
-    gap: 12px;
+    gap: 9px;
   }
 
   .navItem {
-    gap: 12px;
+    gap: 9px;
+    white-space: nowrap;
   }
 
   .navSeparator {
@@ -241,9 +242,21 @@
   }
 
   .navLink {
-    font-size: 13.5px;
+    font-size: 13px;
     display: inline-block;
     padding: 14px 8px;
     margin: -14px -8px;
+  }
+}
+
+/* Celulares bem estreitos (até 374px): menu compacto para caber numa linha */
+@media (max-width: 374px) {
+  .nav,
+  .navItem {
+    gap: 6px;
+  }
+
+  .navLink {
+    font-size: 11.5px;
   }
 }
