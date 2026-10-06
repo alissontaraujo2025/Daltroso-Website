@@ -1,3 +1,10 @@
+/* Duas escalas de título para o site todo:
+   cartaz (abertura e fechamento) e seção (cenas do meio) */
+:root {
+  --title-poster: clamp(3rem, 7.4vw, 8rem);
+  --title-section: clamp(2.2rem, 4.2vw, 3.6rem);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

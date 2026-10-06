@@ -19,7 +19,7 @@ const inter = Inter({
 // Cena "Como trabalhamos" (referência: design system VOID/03)
 const interTight = Inter_Tight({
   subsets: ["latin"],
-  weight: ["800", "900"],
+  weight: "800",
   variable: "--font-display",
   display: "swap",
   // Só aparece mais abaixo na página: não disputa o carregamento do hero

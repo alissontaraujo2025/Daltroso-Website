@@ -60,7 +60,7 @@
   margin: 0;
   font-family: var(--font-headline, ui-serif, Georgia, serif);
   font-weight: 400;
-  font-size: clamp(2.2rem, 4.2vw, 3.6rem);
+  font-size: var(--title-section);
   line-height: 1.12;
   letter-spacing: -0.01em;
   color: #fff;

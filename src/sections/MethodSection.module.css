@@ -1,7 +1,7 @@
 /* Cena 04 — Como trabalhamos.
-   Linguagem do design system VOID/03 (índice com tipografia black, rótulos em mono,
-   linha que se preenche com a cor de destaque, prévia de foto seguindo o cursor),
-   adaptada às cores, à luz e às fotos da Daltroso. */
+   Cabeçalho e cores no sistema do site. Do VOID/03 entra só o comportamento do índice:
+   palavras em Inter Tight, números e rótulos em mono, linha que se preenche de dourado
+   e prévia de foto seguindo o cursor. */
 .scene {
   --ink: #0c1826;
   --paper: #f3efe5;
@@ -12,7 +12,7 @@
 
   position: relative;
   padding: 14vh 0 14vh;
-  background: #0a121c;
+  background: #0c1826;
   overflow: hidden;
   isolation: isolate;
 }
@@ -44,20 +44,6 @@
     linear-gradient(90deg, rgba(10, 18, 28, 0.85) 0%, rgba(10, 18, 28, 0.35) 70%);
 }
 
-/* Grade fina de "papel milimetrado", como no VOID/03 */
-.grid {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(243, 239, 229, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(243, 239, 229, 0.05) 1px, transparent 1px);
-  background-size: 88px 88px;
-  -webkit-mask-image: radial-gradient(80% 70% at 50% 50%, #000 30%, transparent 85%);
-  mask-image: radial-gradient(80% 70% at 50% 50%, #000 30%, transparent 85%);
-}
-
 /* Número gigante vazado: troca com a etapa em destaque */
 .bigNumber {
   position: absolute;
@@ -65,7 +51,7 @@
   bottom: -6vh;
   z-index: -1;
   font-family: var(--font-display), sans-serif;
-  font-weight: 900;
+  font-weight: 800;
   font-size: clamp(14rem, 34vw, 34rem);
   line-height: 0.8;
   letter-spacing: -0.07em;
@@ -91,51 +77,38 @@
 /* ---------- Cabeçalho ---------- */
 
 .inner {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
 .header {
-  max-width: 980px;
+  max-width: 760px;
 }
 
-.kicker {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 0 0 22px;
-  font-family: var(--font-mono), ui-monospace, monospace;
+/* Cabeçalho no sistema do site (fio dourado + DM Serif), como as outras cenas */
+.eyebrow {
+  margin: 0 0 18px;
   font-size: 0.78rem;
-  letter-spacing: 0.14em;
+  font-weight: 500;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(243, 239, 229, 0.75);
-}
-
-.kicker span {
-  padding: 3px 7px;
-  background: var(--accent);
-  color: var(--ink);
+  color: var(--accent);
 }
 
 .title {
   margin: 0;
-  font-family: var(--font-display), sans-serif;
-  font-weight: 900;
-  font-size: clamp(3rem, 7.4vw, 7.6rem);
-  line-height: 0.9;
-  letter-spacing: -0.055em;
-  color: var(--paper);
-  word-spacing: 0.08em;
-}
-
-.titleAccent {
-  color: var(--cream);
+  font-family: var(--font-headline, ui-serif, Georgia, serif);
+  font-weight: 400;
+  font-size: var(--title-section);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: #fff;
 }
 
 .lead {
   max-width: 50ch;
-  margin: 28px 0 0;
+  margin: 20px 0 0;
   font-size: clamp(1.1rem, 1.35vw, 1.3rem);
   line-height: 1.6;
   color: rgba(243, 239, 229, 0.78);
@@ -187,12 +160,11 @@
 .rowWord {
   margin: 0;
   font-family: var(--font-display), sans-serif;
-  font-weight: 900;
+  font-weight: 800;
   font-size: clamp(2.8rem, 5.8vw, 5.6rem);
   line-height: 0.95;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.045em;
   color: var(--paper);
-  word-spacing: 0.08em;
   transition: color 0.3s ease;
 }
 
@@ -315,10 +287,6 @@
 
   .inner {
     padding: 0 20px;
-  }
-
-  .title {
-    font-size: clamp(2.7rem, 13vw, 3.6rem);
   }
 
   .lead {

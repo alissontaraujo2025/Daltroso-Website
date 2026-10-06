@@ -65,7 +65,7 @@
   font-family: var(--font-headline, ui-serif, Georgia, "Times New Roman", serif);
   font-weight: 400;
   /* Fechamento do site: título em escala de cartaz, ocupando a largura da tela */
-  font-size: clamp(3rem, 7.4vw, 8rem);
+  font-size: var(--title-poster);
   line-height: 1.02;
   letter-spacing: -0.015em;
   color: #ffffff;

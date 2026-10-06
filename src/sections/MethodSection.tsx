@@ -88,7 +88,6 @@ export function MethodSection() {
     <section className={styles.scene} id="metodo" aria-labelledby="metodo-title">
       <div className={styles.photo} aria-hidden="true" />
       <div className={styles.veil} aria-hidden="true" />
-      <div className={styles.grid} aria-hidden="true" />
 
       {/* Número gigante vazado ao fundo: acompanha a etapa em destaque */}
       <span className={styles.bigNumber} aria-hidden="true" key={current}>
@@ -97,11 +96,11 @@ export function MethodSection() {
 
       <div className={styles.inner}>
         <header className={styles.header}>
-          <p className={styles.kicker} data-reveal="up">
-            <span>04</span> Como trabalhamos
+          <p className={`${styles.eyebrow} eyebrow-line`} data-reveal="up">
+            Como trabalhamos
           </p>
           <h2 id="metodo-title" className={styles.title} data-reveal="mask">
-            Do primeiro contato <span className={styles.titleAccent}>à defesa.</span>
+            Do primeiro contato <span className="accent">à defesa do seu caso.</span>
           </h2>
           <p
             className={styles.lead}

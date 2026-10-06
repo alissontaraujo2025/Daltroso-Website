@@ -7,7 +7,7 @@ export type PracticeArea = {
   title: string;
   text: string;
   icon: PracticeAreaIcon;
-  /** Cor de destaque do card (ícone, borda e hover). */
+  /** Cor de destaque do card (ícone, borda e hover). Dourado da marca; ciano só no destaque digital. */
   accent: string;
 };
 
@@ -30,18 +30,18 @@ export const practiceAreas: PracticeArea[] = [
     title: "Direito Civil",
     text: "Conflitos do dia a dia, contratos e situações que precisam de solução na Justiça.",
     icon: "document",
-    accent: "#8fb1e3",
+    accent: "#e8b36d",
   },
   {
     title: "Direito Imobiliário",
     text: "Compra e venda, locação, regularização de documentos e conflitos entre as partes.",
     icon: "house",
-    accent: "#8cc7a8",
+    accent: "#e8b36d",
   },
   {
     title: "Direito Militar",
     text: "Atendimento a militares em processos e questões ligadas à carreira.",
     icon: "insignia",
-    accent: "#d99a86",
+    accent: "#e8b36d",
   },
 ];

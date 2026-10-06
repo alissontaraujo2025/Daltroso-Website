@@ -67,7 +67,7 @@
 .headline {
   font-family: var(--font-headline, ui-serif, Georgia, "Times New Roman", serif);
   font-weight: 400;
-  font-size: clamp(2.2rem, 4.2vw, 3.6rem);
+  font-size: var(--title-section);
   line-height: 1.15;
   color: #ffffff;
   max-width: 18ch;
