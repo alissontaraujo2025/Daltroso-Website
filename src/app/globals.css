@@ -73,13 +73,21 @@ body::after {
     transition:
       opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
       transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
-      clip-path 1100ms cubic-bezier(0.22, 1, 0.36, 1);
+      clip-path 1100ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter 900ms cubic-bezier(0.22, 1, 0.36, 1);
     transition-delay: var(--reveal-delay, 0ms);
   }
 
   .reveal-ready [data-reveal="up"]:not([data-revealed]) {
     opacity: 0;
     transform: translateY(24px);
+  }
+
+  /* Desfoque que entra em foco, com fade e deslocamento curto */
+  .reveal-ready [data-reveal="blur"]:not([data-revealed]) {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(8px);
   }
 
   /* Máscara de baixo para cima: o título "nasce" da linha de base */

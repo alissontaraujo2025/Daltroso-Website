@@ -126,7 +126,7 @@
 .item {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 0.4em;
   width: 100%;
   /* Compensa o deslocamento da área ativa: a linha termina na borda do painel */
   padding: 0.2em 12px 0.2em 0;
@@ -135,7 +135,7 @@
   font-family: var(--font-sans), sans-serif;
   font-weight: 500;
   /* Limitado pela altura para as 6 áreas caberem na cena fixa */
-  font-size: min(var(--title-section), 5vh);
+  font-size: min(var(--title-section), 4.6vh);
   line-height: 1.1;
   letter-spacing: -0.025em;
   text-align: left;
@@ -149,11 +149,25 @@
 
 .itemLabel {
   flex: 0 1 auto;
+  white-space: nowrap;
+}
+
+.itemIcon {
+  flex: 0 0 auto;
+  width: 0.62em;
+  height: 0.62em;
+  margin-right: -0.1em;
+  color: #fff;
+  transition: color 0.5s var(--ease);
+}
+
+.item[aria-current="true"] .itemIcon {
+  color: var(--warm);
 }
 
 /* Linha de conexão até o painel */
 .link {
-  flex: 1 0 40px;
+  flex: 1 0 16px;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--line));
   transform: scaleX(0);
@@ -183,14 +197,63 @@
 
 .panel {
   display: grid;
-  align-content: center;
+  align-items: center;
   min-height: 340px;
   padding-left: 48px;
   border-left: 1px solid var(--line);
 }
 
+/* Entrada e saída ocupam a mesma célula: uma some enquanto a outra entra */
+.panelContent {
+  grid-area: 1 / 1;
+  display: grid;
+}
+
+.panelLeaving {
+  display: none;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .panelLeaving {
+    display: grid;
+    animation: panel-out 0.45s var(--ease) forwards;
+  }
+}
+
+@keyframes panel-out {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+    filter: blur(8px);
+  }
+}
+
+.panelHead {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.panelIcon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--warm) 40%, transparent);
+  background: color-mix(in srgb, var(--warm) 8%, transparent);
+  color: var(--warm);
+}
+
+.panelIconSvg {
+  width: 24px;
+  height: 24px;
+}
+
 .index {
-  margin: 0 0 14px;
+  margin: 0;
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -207,22 +270,24 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .panelContent {
-    animation: panel-in 0.7s var(--ease) both;
+  .panelContent:not(.panelLeaving) {
+    animation: panel-in 0.7s var(--ease) 0.08s both;
   }
 }
 
-/* Reveal por máscara + deslocamento curto */
+/* Entra em foco: blur + fade + máscara + deslocamento curto */
 @keyframes panel-in {
   from {
     opacity: 0;
     transform: translateY(14px);
     clip-path: inset(0 0 40% 0);
+    filter: blur(8px);
   }
   to {
     opacity: 1;
     transform: none;
     clip-path: inset(0 0 0 0);
+    filter: blur(0);
   }
 }
 
@@ -336,7 +401,40 @@
   outline-offset: 4px;
 }
 
+/* Ícone da área: aceso quando aberta */
+.accIconBox {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.55);
+  transition:
+    color 0.4s var(--ease),
+    border-color 0.4s var(--ease),
+    background-color 0.4s var(--ease);
+}
+
+.accIconSvg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.5s var(--ease);
+}
+
+.accItem[open] .accIconBox {
+  border-color: color-mix(in srgb, var(--warm) 45%, transparent);
+  background-color: color-mix(in srgb, var(--warm) 10%, transparent);
+  color: var(--warm);
+}
+
+.accItem[open] .accIconSvg {
+  transform: scale(1.06);
+}
+
 .accTitle {
+  flex: 1;
   margin: 0;
   font-family: var(--font-sans), sans-serif;
   font-weight: 500;
@@ -380,16 +478,43 @@
 
 .accBody {
   display: grid;
-  padding: 0 0 26px;
+  /* Alinha o texto com o título, depois do ícone */
+  padding: 0 0 26px 58px;
 }
 
 .accBody .cta {
   margin-top: 22px;
 }
 
+/* Abrir e fechar com altura, fade e blur (navegadores com ::details-content).
+   Nos demais, o conteúdo só entra com a animação de foco, sem saída. */
 @media (prefers-reduced-motion: no-preference) {
-  .accItem[open] .accBody {
-    animation: panel-in 0.5s var(--ease) both;
+  .accordion {
+    interpolate-size: allow-keywords;
+  }
+
+  .accItem::details-content {
+    block-size: 0;
+    overflow: clip;
+    opacity: 0;
+    filter: blur(8px);
+    transition:
+      block-size 0.55s var(--ease),
+      opacity 0.4s ease,
+      filter 0.5s var(--ease),
+      content-visibility 0.55s allow-discrete;
+  }
+
+  .accItem[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  @supports not selector(::details-content) {
+    .accItem[open] .accBody {
+      animation: panel-in 0.5s var(--ease) both;
+    }
   }
 }
 

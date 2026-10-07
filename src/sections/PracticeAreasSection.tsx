@@ -1,15 +1,41 @@
 "use client";
 
-import { useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { OutlineWord } from "@/components/OutlineWord";
-import { IconArrow } from "@/components/icons/PracticeIcons";
-import { practiceAreas, type PracticeArea } from "@/data/practiceAreas";
+import {
+  IconArrow,
+  IconChat,
+  IconDigital,
+  IconDocument,
+  IconHouse,
+  IconInsignia,
+  IconShield,
+} from "@/components/icons/PracticeIcons";
+import { practiceAreas, type PracticeArea, type PracticeAreaIcon } from "@/data/practiceAreas";
 import { whatsappHref } from "@/lib/contact";
 import { useScrollProgress } from "@/lib/useScrollProgress";
 import { noWidow } from "@/lib/typography";
 import styles from "./PracticeAreasSection.module.css";
 
 const COUNT = practiceAreas.length;
+
+const ICONS: Record<PracticeAreaIcon, typeof IconShield> = {
+  digital: IconDigital,
+  shield: IconShield,
+  document: IconDocument,
+  house: IconHouse,
+  insignia: IconInsignia,
+  chat: IconChat,
+};
+
+function AreaIcon({ area, className }: { area: PracticeArea; className: string }) {
+  const Icon = ICONS[area.icon];
+  return <Icon className={className} />;
+}
+
+function stagger(index: number): CSSProperties {
+  return { ["--reveal-delay" as string]: `${120 + index * 80}ms` };
+}
 
 function areaMessage(subject?: string) {
   return subject
@@ -76,7 +102,17 @@ export function PracticeAreasSection() {
     window.scrollTo({ top: pinTop + ((index + 0.5) / COUNT) * scrollRange, behavior: "smooth" });
   };
 
+  // Área que acabou de sair: fica numa camada por cima, saindo com fade e blur
+  const lastRef = useRef(active);
+  const [leaving, setLeaving] = useState<number | null>(null);
+  useEffect(() => {
+    if (lastRef.current === active) return;
+    setLeaving(lastRef.current);
+    lastRef.current = active;
+  }, [active]);
+
   const area = practiceAreas[active];
+  const leavingArea = leaving === null ? null : practiceAreas[leaving];
 
   return (
     <div
@@ -110,7 +146,7 @@ export function PracticeAreasSection() {
           <div className={styles.hub}>
             <ol className={styles.list}>
               {practiceAreas.map((item, index) => (
-                <li key={item.id}>
+                <li key={item.id} data-reveal="blur" style={stagger(index)}>
                   <button
                     type="button"
                     className={styles.item}
@@ -118,6 +154,7 @@ export function PracticeAreasSection() {
                     aria-controls="atuacao-painel"
                     onClick={() => selectArea(index)}
                   >
+                    <AreaIcon area={item} className={styles.itemIcon} />
                     <span className={styles.itemLabel}>{item.title}</span>
                     <span className={styles.link} aria-hidden="true" />
                   </button>
@@ -126,10 +163,32 @@ export function PracticeAreasSection() {
             </ol>
 
             <div id="atuacao-painel" className={styles.panel}>
+              {leavingArea && (
+                <div
+                  key={`saida-${leavingArea.id}`}
+                  className={`${styles.panelContent} ${styles.panelLeaving}`}
+                  aria-hidden="true"
+                  inert
+                  onAnimationEnd={() => setLeaving(null)}
+                >
+                  <div className={styles.panelHead}>
+                    <span className={styles.panelIcon}>
+                      <AreaIcon area={leavingArea} className={styles.panelIconSvg} />
+                    </span>
+                  </div>
+                  <p className={styles.panelTitle}>{leavingArea.title}</p>
+                  <AreaDetails area={leavingArea} />
+                </div>
+              )}
               <div key={area.id} className={styles.panelContent}>
-                <p className={styles.index} aria-hidden="true">
-                  {String(active + 1).padStart(2, "0")} / {String(COUNT).padStart(2, "0")}
-                </p>
+                <div className={styles.panelHead} aria-hidden="true">
+                  <span className={styles.panelIcon}>
+                    <AreaIcon area={area} className={styles.panelIconSvg} />
+                  </span>
+                  <p className={styles.index}>
+                    {String(active + 1).padStart(2, "0")} / {String(COUNT).padStart(2, "0")}
+                  </p>
+                </div>
                 <h3 className={styles.panelTitle}>{area.title}</h3>
                 <AreaDetails area={area} />
               </div>
@@ -144,8 +203,13 @@ export function PracticeAreasSection() {
                 className={styles.accItem}
                 name="atuacao-areas"
                 open={index === 0}
+                data-reveal="blur"
+                style={stagger(index)}
               >
                 <summary className={styles.accSummary}>
+                  <span className={styles.accIconBox} aria-hidden="true">
+                    <AreaIcon area={item} className={styles.accIconSvg} />
+                  </span>
                   <h3 className={styles.accTitle}>{item.title}</h3>
                   <span className={styles.accIcon} aria-hidden="true" />
                 </summary>
