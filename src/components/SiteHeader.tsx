@@ -23,9 +23,16 @@ export function SiteHeader() {
     const hero = document.querySelector<HTMLElement>("[data-hero-pin]");
     if (!hero) return;
 
-    const observer = new IntersectionObserver(([entry]) => {
-      setVisible(!entry.isIntersecting && entry.boundingClientRect.top < 0);
-    });
+    // A faixa do topo (altura do cabeçalho + 1px) não conta: num salto por âncora para
+    // "Quem somos", a sobra do hero fica sob o cabeçalho e ele precisa continuar visível.
+    const headerH =
+      parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 64;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setVisible(!entry.isIntersecting && entry.boundingClientRect.top < 0);
+      },
+      { rootMargin: `-${headerH + 1}px 0px 0px 0px` }
+    );
 
     observer.observe(hero);
     return () => observer.disconnect();

@@ -178,36 +178,36 @@
   }
 }
 
-/* ---------- Movimento reduzido: imagem dividida ao meio, frase inteira ---------- */
+/* ---------- Versão estática: imagem dividida ao meio, frase inteira ----------
+   Vale até o JS ligar a animação (data-animated): cobre movimento reduzido
+   (o hook não roda) e JS desligado ou com falha. */
 
-@media (prefers-reduced-motion: reduce) {
-  .pin {
-    height: auto;
-  }
+.pin:not([data-animated]) {
+  height: auto;
+}
 
-  .scene {
-    position: relative;
-  }
+.pin:not([data-animated]) .scene {
+  position: relative;
+}
 
-  .stage {
-    transform: none;
-    --v-sweep: 0.5;
-    --v-settle: 1;
-  }
+.pin:not([data-animated]) .stage {
+  transform: none;
+  --v-sweep: 0.5;
+  --v-settle: 1;
+}
 
-  .sweep {
-    opacity: 1;
-  }
+.pin:not([data-animated]) .sweep {
+  opacity: 1;
+}
 
-  .text {
-    display: flex;
-    flex-direction: column;
-  }
+.pin:not([data-animated]) .text {
+  display: flex;
+  flex-direction: column;
+}
 
-  .phraseA,
-  .phraseB {
-    align-self: start;
-    opacity: 1;
-    transform: none;
-  }
+.pin:not([data-animated]) .phraseA,
+.pin:not([data-animated]) .phraseB {
+  align-self: start;
+  opacity: 1;
+  transform: none;
 }

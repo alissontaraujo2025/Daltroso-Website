@@ -17,6 +17,8 @@ export function ViradaScene() {
   const pinRef = useRef<HTMLDivElement>(null);
 
   useScrollProgress(pinRef, (progress, el) => {
+    // Liga a versão animada (sem isso, o CSS mostra a cena estática)
+    el.dataset.animated = "";
     el.style.setProperty("--v-intro", String(remap(progress, 0, 0.15)));
     el.style.setProperty("--v-sweep", String(remap(progress, 0.15, 0.7)));
     el.style.setProperty("--v-a-out", String(remap(progress, 0.45, 0.6)));
