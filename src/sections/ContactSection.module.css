@@ -239,8 +239,9 @@
 .ctaLabel {
   position: relative;
   z-index: 2;
-  font-family: var(--font-headline, ui-serif, Georgia, "Times New Roman", serif);
-  font-size: clamp(1.4rem, 2vw, 2rem);
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.15rem, 1.6vw, 1.6rem);
   color: #16233b;
   white-space: nowrap;
 }
@@ -274,7 +275,7 @@
   }
 
   .ctaLabel {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
   }
 
   .ctaIconBadge {

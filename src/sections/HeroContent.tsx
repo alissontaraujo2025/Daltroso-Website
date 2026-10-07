@@ -35,17 +35,13 @@ export function HeroContent() {
 
       <div className={styles.main}>
         <h1 className={styles.headline}>
-          <span className={styles.eyebrow}>MAIS QUE CONSULTORIA.</span>
-          <span className={styles.big}>INTELIGÊNCIA</span>
-          <span className={`${styles.big} ${styles.bigWarm}`}>JURÍDICA.</span>
+          <span className={styles.eyebrow}>Mais que consultoria.</span>
+          <span className={styles.big}>Inteligência</span>
+          <span className={`${styles.big} ${styles.bigWarm}`}>jurídica.</span>
         </h1>
 
         <p className={styles.support}>
-          Garantir que seus direitos sejam
-          <br />
-          respeitados, na vida real e no
-          <br />
-          mundo digital.
+          Garantir que seus direitos sejam respeitados, na vida real e no mundo digital.
         </p>
       </div>
 

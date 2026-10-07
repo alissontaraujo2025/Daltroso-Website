@@ -18,24 +18,25 @@
   gap: 16px;
 }
 
+/* Wordmark como na logo da cliente: Bebas espaçada + linha de apoio pequena */
 .logo {
-  font-family: var(--font-headline, ui-serif, Georgia, "Times New Roman", serif);
-  font-size: 0.95vw;
+  font-family: var(--font-poster), sans-serif;
+  font-size: clamp(18px, 1.5vw, 26px);
   font-weight: 400;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  line-height: 1.6;
+  letter-spacing: 0.32em;
+  line-height: 1;
   color: #ffffff;
 }
 
 .logoSub {
   display: block;
   font-family: var(--font-sans), sans-serif;
-  font-size: 0.55em;
+  font-size: clamp(8px, 0.62vw, 11px);
   font-weight: 500;
-  letter-spacing: 0.14em;
-  opacity: 0.85;
-  margin-top: 0.35em;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-top: 0.7em;
 }
 
 .cta {
@@ -48,9 +49,9 @@
 }
 
 .ctaLabel {
-  font-family: var(--font-headline, ui-serif, Georgia, "Times New Roman", serif);
-  font-size: 1.1vw;
-  font-weight: 400;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 1.05vw;
+  font-weight: 500;
   color: #16233b;
   white-space: nowrap;
   margin-right: 0.9vw;
@@ -96,17 +97,18 @@
 .eyebrow {
   font-size: 2.5vw;
   font-weight: 400;
-  letter-spacing: 0.01em;
   color: #ffffff;
   line-height: 1.2;
-  margin-bottom: 0.15em;
+  margin-bottom: 0.1em;
 }
 
 .big {
-  font-size: 7.7vw;
+  font-family: var(--font-poster), sans-serif;
+  font-size: var(--title-bebas);
   font-weight: 400;
-  letter-spacing: 0;
-  line-height: 0.95;
+  letter-spacing: 0.005em;
+  line-height: 0.86;
+  text-transform: uppercase;
   color: #ffffff;
 }
 
@@ -116,11 +118,12 @@
 
 .support {
   font-family: var(--font-sans), sans-serif;
-  font-size: 1.55vw;
+  font-size: clamp(1rem, 1.45vw, 1.4rem);
   line-height: 1.5;
   color: #ffffff;
-  max-width: 34vw;
-  margin-top: 1.5vw;
+  max-width: 30ch;
+  text-wrap: balance;
+  margin-top: 1.6vw;
   opacity: calc(1 - var(--p-subtext, 0));
   transform: translateY(calc(var(--p-subtext, 0) * -14px));
 }
@@ -174,16 +177,14 @@
   }
 
   .logo {
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    line-height: 1.5;
+    font-size: 16px;
+    letter-spacing: 0.26em;
     white-space: nowrap;
   }
 
   .logoSub {
     font-size: 7px;
-    letter-spacing: 0.06em;
-    margin-top: 0.3em;
+    letter-spacing: 0.12em;
     white-space: nowrap;
   }
 
@@ -192,7 +193,7 @@
   }
 
   .ctaLabel {
-    font-size: 11.5px;
+    font-size: 12px;
     margin-right: 8px;
   }
 
@@ -210,18 +211,18 @@
   }
 
   .eyebrow {
-    font-size: clamp(15px, 4.7vw, 17px);
-    margin-bottom: 0.2em;
+    font-size: clamp(17px, 5.2vw, 20px);
+    margin-bottom: 0.15em;
   }
 
   .big {
-    font-size: clamp(32px, 11vw, 47px);
+    font-size: clamp(52px, 17vw, 76px);
   }
 
   .support {
-    font-size: 14.5px;
+    font-size: 15px;
     line-height: 1.45;
-    max-width: 240px;
+    max-width: 28ch;
     margin-top: 14px;
   }
 
@@ -256,13 +257,13 @@
   }
 
   .logo {
-    font-size: 10px;
-    letter-spacing: 0.05em;
+    font-size: 14px;
+    letter-spacing: 0.2em;
   }
 
   .logoSub {
     font-size: 6px;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.08em;
   }
 
   .cta {
@@ -270,7 +271,7 @@
   }
 
   .ctaLabel {
-    font-size: 10.5px;
+    font-size: 11px;
     margin-right: 6px;
   }
 
