@@ -270,3 +270,104 @@
     font-size: 1.25rem;
   }
 }
+
+/* ---------- Hover dos cards: mesmo comportamento dos cards de Áreas ----------
+   Luz que segue o cursor, borda que acende em dourado com brilho percorrendo o contorno. */
+
+@property --facet-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.facet {
+  position: relative;
+  isolation: isolate;
+}
+
+.facet::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    260px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(232, 179, 109, 0.16),
+    transparent 70%
+  );
+  transition: opacity 0.4s ease;
+}
+
+.facet::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--facet-angle),
+    transparent 0deg,
+    transparent 200deg,
+    rgba(232, 179, 109, 0.6) 280deg,
+    #e8b36d 330deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.facetIcon,
+.facetTitle {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.facetIconSvg {
+  transition: color 0.3s ease;
+}
+
+@media (hover: hover) {
+  .facet:hover {
+    border-color: rgba(232, 179, 109, 0.34);
+  }
+
+  .facet:hover::before,
+  .facet:hover::after {
+    opacity: 1;
+  }
+
+  .facet:hover .facetIcon {
+    background-color: #e8b36d;
+  }
+
+  .facet:hover .facetIconSvg {
+    color: #0c1826;
+  }
+
+  .facet:hover .facetTitle {
+    color: #f0d6a8;
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .facet:hover::after {
+    animation: facet-border-run 3.2s linear infinite;
+  }
+}
+
+@keyframes facet-border-run {
+  to {
+    --facet-angle: 360deg;
+  }
+}

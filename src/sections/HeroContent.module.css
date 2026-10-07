@@ -83,6 +83,8 @@
   align-items: flex-start;
   justify-content: center;
   max-width: 66%;
+  /* Respiro entre o bloco principal e o menu inferior */
+  padding-bottom: clamp(24px, 5vh, 64px);
 }
 
 .headline {
@@ -120,7 +122,7 @@
 
 .support {
   font-family: var(--font-sans), sans-serif;
-  font-size: clamp(1.25rem, 2.3vw, 2.4rem);
+  font-size: clamp(1.25rem, min(2.3vw, 3.6vh), 2.4rem);
   font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1.35;
@@ -128,7 +130,7 @@
   text-shadow: 0 1px 18px rgba(12, 24, 38, 0.55);
   max-width: 31ch;
   text-wrap: balance;
-  margin-top: 2vw;
+  margin-top: clamp(16px, 3.5vh, 40px);
   opacity: calc(1 - var(--p-subtext, 0));
   transform: translateY(calc(var(--p-subtext, 0) * -14px));
 }

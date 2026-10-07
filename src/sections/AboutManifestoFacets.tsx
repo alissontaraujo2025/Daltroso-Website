@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { noWidow } from "@/lib/typography";
 import { IconDevice, IconPeople, IconSearch } from "@/components/icons/FacetIcons";
 import styles from "./AboutManifesto.module.css";
@@ -45,9 +45,20 @@ export function AboutManifestoFacets() {
     return () => observer.disconnect();
   }, []);
 
+  // Luz que acompanha o cursor dentro do card (só com mouse; ver CSS)
+  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== "mouse") return;
+    const card = (event.target as HTMLElement).closest<HTMLElement>("[data-facet]");
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+    card.style.setProperty("--my", `${event.clientY - rect.top}px`);
+  };
+
   return (
     <div
       ref={containerRef}
+      onPointerMove={handlePointerMove}
       className={`${styles.facets} ${revealed ? styles.facetsRevealed : ""}`}
     >
       {FACETS.map((facet, index) => {
@@ -55,6 +66,7 @@ export function AboutManifestoFacets() {
         return (
           <div
             className={styles.facet}
+            data-facet
             key={facet.title}
             style={{ ["--facet-index" as string]: index }}
           >

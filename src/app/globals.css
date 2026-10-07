@@ -2,9 +2,9 @@
    Escalas: pôster em Bebas, cartaz (fechamento) e seção (cenas do meio).
    A Bebas é condensada: precisa de muito corpo para ter presença. */
 :root {
-  --title-bebas: clamp(4rem, 14.5vw, 16rem);
+  --title-bebas: clamp(4rem, min(14.5vw, 25vh), 16rem);
   --title-poster: clamp(3rem, 7.4vw, 8rem);
-  --title-section: clamp(2.2rem, 4.2vw, 3.6rem);
+  --title-section: clamp(2.4rem, 4.6vw, 5rem);
 }
 
 * {
