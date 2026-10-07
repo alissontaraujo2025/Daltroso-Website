@@ -117,3 +117,23 @@ Quando alterar arquivos, informar somente:
 - o que foi alterado
 - onde foi alterado
 - qual é o próximo passo
+
+## Estado atual (atualizado em 2026-10-07)
+
+Publicado em produção: https://daltroso-site-experimental-reviewed.vercel.app (deploy via `vercel deploy --prod`).
+Spec das mudanças: `docs/superpowers/specs/2026-10-07-modernizacao-virada-design.md`.
+
+### Decisões de design já aprovadas
+- Paleta da cliente mantida (azul profundo + dourado). Modernidade vem de cenas, animação, integração e tipografia; nada futurista.
+- Só 2 fontes: **Bebas Neue** = pôster (título do hero, cena A Virada, verbos do Método, logo); **Host Grotesk** = todo o resto (títulos 500, texto 400). Não usar Inter nem serifa.
+- Escala tipográfica única em `src/app/globals.css`: `--title-bebas`, `--title-poster`, `--title-section`, `--title-card`, `--text-lead`, `--text-body`. Novos textos devem usar esses tokens.
+- Destaque dourado (`.accent`) em uma palavra-chave por título.
+- Palavras gigantes vazadas (`src/components/OutlineWord.tsx`): DEFESA (Áreas), JUSTIÇA (Equipe), DIREITOS (Contato), DALTROSO (rodapé); número "01" no Método.
+- Cena "A Virada" (`src/sections/ViradaScene.tsx`) entre Quem somos e Áreas: linha de luz revela a mesma sala ao anoitecer (imagens em `public/images/virada-*.webp`).
+- Cabeçalho fixo após o hero (`src/components/SiteHeader.tsx`); link do WhatsApp centralizado em `src/lib/contact.ts`.
+
+### Próximos passos
+1. Validar com a cliente: subtexto do hero e a frase "A equipe retorna com os próximos passos" (marcada como PLACEHOLDER em `ContactSection.tsx`).
+2. F3: Áreas de atuação como "Hub" (uma área por vez, cena sticky).
+3. F4: tratamento de cor único nas fotos da Equipe (foto do Rodrigo tem fundo de evento).
+4. Ajustes menores: brilho do CTA do cabeçalho roda com ele oculto; na Virada mobile a 2ª frase entra cedo; ~6,8 MB de PNGs brutos em `scenes/scene-02-transition/assets/` (avaliar Git LFS).
