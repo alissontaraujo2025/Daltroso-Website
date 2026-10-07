@@ -92,11 +92,11 @@
 
 .title {
   margin: 0;
-  font-family: var(--font-headline, ui-serif, Georgia, serif);
-  font-weight: 400;
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 500;
   font-size: var(--title-section);
   line-height: 1.12;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.025em;
   color: #fff;
 }
 

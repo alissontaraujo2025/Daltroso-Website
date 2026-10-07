@@ -1,8 +1,8 @@
-/* Três escalas de título para o site todo:
-   pôster em Bebas (hero e Virada), cartaz em serifa (fechamento) e seção (cenas do meio).
-   A Bebas é condensada: precisa de corpo maior para ter o mesmo peso visual da serifa. */
+/* Duas famílias: Bebas = pôster (hero, Virada, verbos do método); Host Grotesk = todo o resto.
+   Escalas: pôster em Bebas, cartaz (fechamento) e seção (cenas do meio).
+   A Bebas é condensada: precisa de muito corpo para ter presença. */
 :root {
-  --title-bebas: clamp(4rem, 10.5vw, 11.5rem);
+  --title-bebas: clamp(4rem, 14.5vw, 16rem);
   --title-poster: clamp(3rem, 7.4vw, 8rem);
   --title-section: clamp(2.2rem, 4.2vw, 3.6rem);
 }

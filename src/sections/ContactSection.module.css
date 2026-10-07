@@ -62,12 +62,12 @@
 }
 
 .headline {
-  font-family: var(--font-headline, ui-serif, Georgia, "Times New Roman", serif);
-  font-weight: 400;
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 500;
   /* Fechamento do site: título em escala de cartaz, ocupando a largura da tela */
   font-size: var(--title-poster);
   line-height: 1.02;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.025em;
   color: #ffffff;
   max-width: 100%;
   margin: 0 0 36px;

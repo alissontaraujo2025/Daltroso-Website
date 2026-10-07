@@ -1,17 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Bebas_Neue, DM_Serif_Display, Host_Grotesk } from "next/font/google";
+import { Bebas_Neue, Host_Grotesk } from "next/font/google";
 import { RevealObserver } from "@/components/RevealObserver";
 import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
 
-const dmSerifDisplay = DM_Serif_Display({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-headline",
-  display: "swap",
-});
-
-// Texto corrido, interface e botões
+// Duas famílias no site todo: Bebas = pôster, Host Grotesk = todo o resto
+// (títulos em 500, texto em 400)
 const hostGrotesk = Host_Grotesk({
   subsets: ["latin"],
   weight: ["400", "500"],
@@ -56,7 +50,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${dmSerifDisplay.variable} ${hostGrotesk.variable} ${bebasNeue.variable}`}
+      className={`${hostGrotesk.variable} ${bebasNeue.variable}`}
     >
       <body>
         <a href="#quem-somos" className="skip-link">

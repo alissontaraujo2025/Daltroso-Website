@@ -6,3 +6,6 @@ output/
 tsconfig.tsbuildinfo
 
 .vercel
+
+# Configuração pessoal do Claude Code
+.claude/settings.local.json
