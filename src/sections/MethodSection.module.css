@@ -1,6 +1,6 @@
 /* Cena 04 — Como trabalhamos.
    Cabeçalho e cores no sistema do site. Do VOID/03 entra só o comportamento do índice:
-   palavras em Inter Tight, números e rótulos em mono, linha que se preenche de dourado
+   verbos em Bebas (fonte da logo), linha que se preenche de dourado
    e prévia de foto seguindo o cursor. */
 .scene {
   --ink: #0c1826;
@@ -50,11 +50,11 @@
   right: -1.5vw;
   bottom: -6vh;
   z-index: -1;
-  font-family: var(--font-display), sans-serif;
-  font-weight: 800;
+  font-family: var(--font-poster), sans-serif;
+  font-weight: 400;
   font-size: clamp(14rem, 34vw, 34rem);
   line-height: 0.8;
-  letter-spacing: -0.07em;
+  letter-spacing: 0;
   color: transparent;
   -webkit-text-stroke: 1px rgba(240, 214, 168, 0.16);
   pointer-events: none;
@@ -153,20 +153,20 @@
 }
 
 .rowNumber {
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
   color: rgba(243, 239, 229, 0.6);
   transition: color 0.3s ease;
 }
 
 .rowWord {
   margin: 0;
-  font-family: var(--font-display), sans-serif;
-  font-weight: 800;
-  font-size: clamp(2.8rem, 5.8vw, 5.6rem);
-  line-height: 0.95;
-  letter-spacing: -0.045em;
+  font-family: var(--font-poster), sans-serif;
+  font-weight: 400;
+  font-size: clamp(3.4rem, 7.2vw, 7rem);
+  line-height: 0.9;
+  letter-spacing: 0.005em;
   color: var(--paper);
   transition: color 0.3s ease;
 }
@@ -178,10 +178,9 @@
 }
 
 .rowTag {
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
   color: var(--accent);
   transition: color 0.3s ease;
 }
@@ -321,7 +320,7 @@
 
   .rowWord {
     grid-area: word;
-    font-size: clamp(2.3rem, 11vw, 3rem);
+    font-size: clamp(2.8rem, 13vw, 3.6rem);
   }
 
   .rowBody {
