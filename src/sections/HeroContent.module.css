@@ -120,10 +120,13 @@
 
 .support {
   font-family: var(--font-sans), sans-serif;
-  font-size: clamp(1.15rem, 1.9vw, 1.9rem);
-  line-height: 1.5;
+  font-size: clamp(1.25rem, 2.3vw, 2.4rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
   color: #ffffff;
-  max-width: 34ch;
+  text-shadow: 0 1px 18px rgba(12, 24, 38, 0.55);
+  max-width: 31ch;
   text-wrap: balance;
   margin-top: 2vw;
   opacity: calc(1 - var(--p-subtext, 0));
@@ -222,9 +225,9 @@
   }
 
   .support {
-    font-size: 15px;
+    font-size: 17px;
     line-height: 1.45;
-    max-width: 28ch;
+    max-width: 24ch;
     margin-top: 14px;
   }
 

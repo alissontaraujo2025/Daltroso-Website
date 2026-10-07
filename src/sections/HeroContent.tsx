@@ -41,7 +41,8 @@ export function HeroContent() {
 
         {/* PLACEHOLDER: linha de apoio do hero, a validar na etapa de copy (F5). */}
         <p className={styles.support}>
-          Defesa criminal, cível e digital, com cada etapa explicada.
+          Golpe virtual, processo criminal ou conflito na Justiça: a equipe explica o que dá
+          para fazer e cuida do seu caso.
         </p>
       </div>
 
