@@ -36,7 +36,7 @@ export function ContactSection() {
       <OutlineWord word="Direitos" placement="top-left" />
       <div className={styles.inner}>
         <h2 className={styles.headline} data-reveal="mask">
-          Cada situação pede uma <span className="accent">leitura própria.</span>
+          Conte o que <span className="accent">aconteceu.</span>
         </h2>
 
         <p
@@ -44,8 +44,9 @@ export function ContactSection() {
           data-reveal="up"
           style={{ ["--reveal-delay" as string]: "200ms" }}
         >
-          O atendimento parte da compreensão do contexto, das particularidades
-          e dos caminhos jurídicos possíveis para cada&nbsp;caso.
+          {/* PLACEHOLDER: confirmar com a cliente a promessa de retorno. */}
+          Mande uma mensagem pelo WhatsApp com um resumo da situação. A&nbsp;equipe
+          retorna com os próximos&nbsp;passos.
         </p>
 
         <p

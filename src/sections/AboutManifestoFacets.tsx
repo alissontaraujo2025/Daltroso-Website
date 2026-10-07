@@ -8,18 +8,18 @@ import styles from "./AboutManifesto.module.css";
 const FACETS = [
   {
     icon: IconSearch,
-    title: "Leitura estratégica",
-    text: "Cada processo analisado além do óbvio, com visão de conjunto.",
+    title: "Análise completa",
+    text: "Documentos, prazos e provas avaliados antes de qualquer decisão.",
   },
   {
     icon: IconPeople,
-    title: "Presença real",
-    text: "Acompanhamento próximo, sem distância entre você e quem cuida do seu caso.",
+    title: "Contato direto",
+    text: "Você fala com quem cuida do seu caso e sabe em que pé ele está.",
   },
   {
     icon: IconDevice,
-    title: "Continuidade digital",
-    text: "A mesma atenção jurídica onde sua vida também acontece: online.",
+    title: "Atuação no digital",
+    text: "Golpes, contas invadidas e exposição na internet também são casos para a Justiça.",
   },
 ];
 

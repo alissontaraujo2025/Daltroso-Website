@@ -18,7 +18,7 @@ export function AboutManifesto() {
 
       <div className={styles.inner}>
         <h2 className={styles.headline} data-reveal="up">
-          Somos uma advocacia pensada para&nbsp;o mundo como ele é <span className="accent">hoje.</span>
+          Uma advocacia preparada para os problemas de hoje, <span className="accent">dentro e fora da&nbsp;internet.</span>
         </h2>
 
         <p
@@ -26,9 +26,8 @@ export function AboutManifesto() {
           data-reveal="up"
           style={{ ["--reveal-delay" as string]: "200ms" }}
         >
-          Cada caso recebe leitura própria. A mesma atenção para o que
-          acontece dentro do processo e para o que continua acontecendo
-          depois dele, na vida das&nbsp;pessoas.
+          Cada caso é analisado por inteiro: o que acontece no processo e o que
+          ele muda na vida de quem nos&nbsp;procura.
         </p>
 
         <AboutManifestoFacets />

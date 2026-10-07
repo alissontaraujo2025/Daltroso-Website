@@ -105,7 +105,7 @@ export function MethodSection() {
             style={{ ["--reveal-delay" as string]: "200ms" }}
           >
             {noWidow(
-              "Quatro etapas para você entender o que está acontecendo e saber o que esperar de cada fase do seu caso."
+              "Como funciona do primeiro contato até a defesa, para você saber o que esperar em cada fase."
             )}
           </p>
         </header>
