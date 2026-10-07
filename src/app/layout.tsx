@@ -23,7 +23,7 @@ const bebasNeue = Bebas_Neue({
 
 const TITLE = "Daltroso Advocacia e Inteligência Jurídica";
 const DESCRIPTION =
-  "Mais que consultoria. Inteligência jurídica. Atuação nas áreas criminal, civil, imobiliária e militar, com atenção especial aos crimes digitais. Atendimento presencial e online.";
+  "Escritório de advocacia com atuação criminal, civil, imobiliária e militar e atenção especial a golpes e crimes na internet. Atendimento presencial em Cruz Alta (RS) e região, em Porto Alegre e região metropolitana, e online.";
 
 export const metadata: Metadata = {
   title: TITLE,

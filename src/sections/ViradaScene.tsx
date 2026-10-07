@@ -4,8 +4,8 @@ import { useRef } from "react";
 import { remap, useScrollProgress } from "@/lib/useScrollProgress";
 import styles from "./ViradaScene.module.css";
 
-const PHRASE_A = "Garantir que seus direitos sejam respeitados, na vida real";
-const PHRASE_B = "e no mundo digital.";
+const PHRASE_A = "Seus direitos valem na vida real.";
+const PHRASE_B = "E no mundo digital também.";
 
 /**
  * Cena 03 — A Virada.

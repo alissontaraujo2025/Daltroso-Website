@@ -13,28 +13,28 @@ const STEPS = [
   {
     word: "Ouvir",
     tag: "Escuta / Contexto",
-    text: "Antes de qualquer orientação, entendemos o que aconteceu e o que é importante para você.",
+    text: "Primeiro, uma reunião para escutar: o que aconteceu, o que você já tentou e o que mais preocupa você.",
     image: HERO,
     focus: "77% 72%",
   },
   {
     word: "Analisar",
     tag: "Documentos / Prazos / Provas",
-    text: "Lemos com cuidado tudo o que envolve o caso para mapear os caminhos jurídicos possíveis.",
+    text: "Documentos, prazos e provas. Daí saem os caminhos possíveis, com o que cada um exige.",
     image: DESK,
     focus: "70% 92%",
   },
   {
     word: "Estruturar",
     tag: "Estratégia / Riscos",
-    text: "Você recebe uma orientação clara: o que pode ser feito, os riscos e os próximos passos.",
+    text: "Você recebe um plano: o que fazer, quais são os riscos e quais são os próximos passos.",
     image: DESK,
     focus: "6% 76%",
   },
   {
-    word: "Defender",
+    word: "Atuar",
     tag: "Atuação / Acompanhamento",
-    text: "Com a estratégia definida, o escritório atua no caso e mantém você informado em cada etapa.",
+    text: "Colocamos o plano em prática e avisamos você sempre que algo muda.",
     image: HERO,
     focus: "88% 18%",
   },
@@ -97,7 +97,7 @@ export function MethodSection() {
       <div className={styles.inner}>
         <header className={styles.header}>
           <h2 id="metodo-title" className={styles.title} data-reveal="up">
-            Do primeiro contato <span className="accent">à defesa</span> do seu&nbsp;caso.
+            Como <span className="accent">trabalhamos.</span>
           </h2>
           <p
             className={styles.lead}
@@ -105,7 +105,7 @@ export function MethodSection() {
             style={{ ["--reveal-delay" as string]: "200ms" }}
           >
             {noWidow(
-              "Como funciona do primeiro contato até a defesa, para você saber o que esperar em cada fase."
+              "Quatro passos, do primeiro contato até o fim do processo. Você sabe o que esperar em cada um."
             )}
           </p>
         </header>

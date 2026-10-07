@@ -44,7 +44,7 @@ function areaMessage(subject?: string) {
 }
 
 function ctaLabel(area: PracticeArea) {
-  return area.subject ? `Falar sobre ${area.subject}` : "Contar o meu caso";
+  return area.subject ? `Falar sobre ${area.subject}` : "Explicar minha situação";
 }
 
 function AreaDetails({ area }: { area: PracticeArea }) {
@@ -129,7 +129,7 @@ export function PracticeAreasSection() {
         <div className={styles.inner}>
           <header className={styles.header}>
             <h2 id="atuacao-title" className={styles.title} data-reveal="up">
-              Onde o escritório pode <span className="accent">ajudar.</span>
+              Onde podemos <span className="accent">ajudar.</span>
             </h2>
             <p
               className={styles.support}
@@ -137,7 +137,7 @@ export function PracticeAreasSection() {
               style={{ ["--reveal-delay" as string]: "200ms" }}
             >
               {noWidow(
-                "Atuamos nas áreas criminal, civil, imobiliária e militar, com atenção especial aos crimes que acontecem na internet."
+                "Escolha uma área para ver como funciona. Em crimes na internet, atendemos do golpe do Pix ao deepfake."
               )}
             </p>
           </header>

@@ -36,7 +36,7 @@ export function ContactSection() {
       <OutlineWord word="Direitos" placement="top-left" />
       <div className={styles.inner}>
         <h2 className={styles.headline} data-reveal="mask">
-          Conte o que aconteceu. <span className="accent">Analisamos o seu&nbsp;caso.</span>
+          Explique a situação. <span className="accent">Dizemos o que pode ser&nbsp;feito.</span>
         </h2>
 
         <p
@@ -44,9 +44,8 @@ export function ContactSection() {
           data-reveal="up"
           style={{ ["--reveal-delay" as string]: "200ms" }}
         >
-          {/* PLACEHOLDER: confirmar com a cliente a promessa de retorno. */}
-          Mande uma mensagem pelo WhatsApp com um resumo da situação. A&nbsp;equipe
-          retorna com os próximos&nbsp;passos.
+          Mande pelo WhatsApp um resumo: o que aconteceu, quando e se já existe
+          processo. Respondemos rápido e marcamos uma reunião para analisar a&nbsp;situação.
         </p>
 
         <p
@@ -54,7 +53,8 @@ export function ContactSection() {
           data-reveal="up"
           style={{ ["--reveal-delay" as string]: "320ms" }}
         >
-          Atendimento presencial e&nbsp;online.
+          Presencial em Cruz Alta e região e em Porto Alegre e região metropolitana.
+          Também&nbsp;online.
         </p>
 
         <div

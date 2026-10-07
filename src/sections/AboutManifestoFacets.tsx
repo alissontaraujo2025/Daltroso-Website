@@ -8,18 +8,18 @@ import styles from "./AboutManifesto.module.css";
 const FACETS = [
   {
     icon: IconSearch,
-    title: "Análise completa",
+    title: "Análise antes de agir",
     text: "Documentos, prazos e provas avaliados antes de qualquer decisão.",
   },
   {
     icon: IconPeople,
     title: "Contato direto",
-    text: "Você fala com quem cuida do seu caso e sabe em que pé ele está.",
+    text: "Você fala direto com a equipe que conduz o processo e sabe em que pé ele está.",
   },
   {
     icon: IconDevice,
-    title: "Atuação no digital",
-    text: "Golpes, contas invadidas e exposição na internet também são casos para a Justiça.",
+    title: "Golpes e crimes na internet",
+    text: "Golpe, conta invadida, deepfake e exposição têm resposta na Justiça. Muita gente não sabe disso.",
   },
 ];
 
