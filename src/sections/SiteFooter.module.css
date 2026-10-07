@@ -118,11 +118,42 @@
   transform: translateY(-3px);
 }
 
+/* Área de atendimento e dados do escritório */
+.details {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 32px;
+  max-width: 1200px;
+  margin: 40px auto 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.details p {
+  margin: 0;
+}
+
+.detailsLink {
+  color: #f2ddba;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-color: rgba(242, 221, 186, 0.4);
+  text-underline-offset: 3px;
+}
+
+.detailsLink:hover,
+.detailsLink:focus-visible {
+  text-decoration-color: #f2ddba;
+}
+
 .copy {
   position: relative;
   z-index: 1;
   max-width: 1200px;
-  margin: 40px auto 0;
+  margin: 16px auto 0;
   font-size: 0.78rem;
   color: rgba(255, 255, 255, 0.6);
 }

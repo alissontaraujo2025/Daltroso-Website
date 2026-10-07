@@ -1,7 +1,9 @@
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { OutlineWord } from "@/components/OutlineWord";
 import { IconFacebook, IconInstagram, IconYouTube } from "@/components/icons/SocialIcons";
+import { office } from "@/data/office";
 import { whatsappHref } from "@/lib/contact";
+import { noWidow } from "@/lib/typography";
 import { RevealTitle } from "@/components/RevealTitle";
 import styles from "./ContactSection.module.css";
 
@@ -54,8 +56,7 @@ export function ContactSection() {
           data-reveal="up"
           style={{ ["--reveal-delay" as string]: "320ms" }}
         >
-          Presencial em Cruz Alta e região e em Porto Alegre e região metropolitana.
-          Também&nbsp;online.
+          {noWidow(office.serviceArea)}
         </p>
 
         <div
@@ -75,6 +76,13 @@ export function ContactSection() {
               <WhatsAppIcon className={styles.ctaIcon} />
             </span>
           </a>
+
+          <p className={styles.oncall}>
+            Situação urgente na área criminal? Ligue para o plantão:{" "}
+            <a href={office.oncall.href} className={styles.oncallLink}>
+              {office.oncall.display}
+            </a>
+          </p>
         </div>
 
         <div

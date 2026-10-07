@@ -221,6 +221,30 @@
   margin: 0 0 72px;
 }
 
+/* Plantão: telefone para urgências criminais, logo abaixo do WhatsApp */
+.oncall {
+  margin: 24px 0 0;
+  font-family: var(--font-sans), sans-serif;
+  font-size: var(--text-body);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.oncallLink {
+  display: inline-block;
+  font-weight: 500;
+  color: #f2ddba;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-color: rgba(242, 221, 186, 0.4);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.25s ease;
+}
+
+.oncallLink:hover,
+.oncallLink:focus-visible {
+  text-decoration-color: #f2ddba;
+}
+
 .cta {
   display: inline-flex;
   align-items: center;

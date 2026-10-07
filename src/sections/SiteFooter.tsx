@@ -1,4 +1,5 @@
 import { OutlineWord } from "@/components/OutlineWord";
+import { office } from "@/data/office";
 import styles from "./SiteFooter.module.css";
 
 const LINKS = [
@@ -38,6 +39,20 @@ export function SiteFooter() {
             <path d="M12 19V5M6 11l6-6 6 6" />
           </svg>
         </a>
+      </div>
+
+      <div className={styles.details}>
+        <p>{office.address}</p>
+        <p>{office.hours}</p>
+        <p>
+          Plantão:{" "}
+          <a href={office.oncall.href} className={styles.detailsLink}>
+            {office.oncall.display}
+          </a>
+        </p>
+        {/* Só aparece quando a cliente confirmar (ver data/office.ts) */}
+        {office.oabRegistration && <p>{office.oabRegistration}</p>}
+        <p>{office.serviceArea}</p>
       </div>
 
       <p className={styles.copy}>
