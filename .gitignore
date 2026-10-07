@@ -9,3 +9,11 @@ tsconfig.tsbuildinfo
 
 # Configuração pessoal do Claude Code
 .claude/settings.local.json
+
+# Imagens brutas das cenas (as versões otimizadas ficam em public/)
+scenes/**/assets/*.png
+scenes/**/assets/*.jpg
+scenes/**/assets/*.jpeg
+
+# Capturas do Playwright
+.playwright-mcp/

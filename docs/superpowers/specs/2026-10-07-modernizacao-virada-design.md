@@ -14,7 +14,7 @@ A modernidade vem de quatro frentes: **cenas, animação, integração entre se�
 - **Paleta da cliente intocada:** azul profundo `#0C1826`, dourado claro `#F0D6A8`, âmbar `#E8B36D` e creme do CTA `#F2DDBA`. A estratégia de marca sugeria ciano, prata e coral, e **foi rejeitada**.
 - **Nada futurista:** sem HUD, neon, holograma, código flutuante ou cyberpunk.
 - **Nome oficial:** Daltroso Advocacia e Inteligência Jurídica.
-- Continuam valendo todas as regras do `CLAUDE.md`: `prefers-reduced-motion` desliga o pinning e as animações de scroll; vídeo nunca bloqueia o carregamento; fallback estático; mobile sem depender de hover; não inventar conteúdo.
+- Continuam valendo todas as regras do `CLAUDE.md`. **Atualização 2026-10-07:** por decisão da cliente, as animações rodam sempre, mesmo com `prefers-reduced-motion` (os itens de movimento reduzido abaixo ficam sem efeito). Demais regras: vídeo nunca bloqueia o carregamento; fallback estático; mobile sem depender de hover; não inventar conteúdo.
 
 ## 2. Narrativa: a ordem das cenas
 
@@ -136,7 +136,7 @@ Cena sticky que substitui a grade de cards e cumpre o brief da cena 03: uma áre
 - **Desktop:** à esquerda, a lista de áreas em DM Serif grande, com a área ativa em branco e as outras em cerca de 30% de opacidade, avançando pelo scroll. À direita, um painel fixo com o texto, as tags e o CTA "falar sobre [área]" (WhatsApp com mensagem pré-preenchida, como hoje). Linhas de conexão em dourado claro ligam a área ativa ao painel.
 - **Ordem:** Crimes digitais, Direito Criminal, Direito Civil, Direito Imobiliário, Direito Militar, e por fim "Não encontrou o seu caso?". O destaque de Crimes digitais vem da posição; o selo "Destaque" sai.
 - **Mobile:** sanfona (`<details>`/`<summary>` ou equivalente acessível), uma área aberta por vez, sem pinning.
-- **Reduced motion:** a lista com todos os painéis visíveis, sem pinning.
+- ~~**Reduced motion:** a lista com todos os painéis visíveis, sem pinning.~~ (sem efeito desde 2026-10-07)
 - **Dados:** continuam em `src/data/practiceAreas.ts`, com a copy ainda marcada como PLACEHOLDER.
 
 ## 8. Método e Equipe
@@ -177,7 +177,7 @@ O projeto não tem testes automatizados. Cada fase é verificada assim:
 
 - `npm run build` sem erros.
 - Capturas no Playwright em 1440×900 e 390×844, em cada cena afetada, comparando antes e depois.
-- Emulação de `prefers-reduced-motion: reduce`: sem pinning, conteúdo todo visível.
+- Emulação de `prefers-reduced-motion: reduce`: animações e pinning continuam rodando (decisão de 2026-10-07).
 - Navegação por teclado: foco visível, skip link e cabeçalho fixo acessível.
 - Hero: a imagem da Virada não aparece nas requisições iniciais (aba Network, só depois do scroll).
 - Console sem erros.

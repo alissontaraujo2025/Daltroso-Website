@@ -17,6 +17,9 @@
   border-bottom: 1px solid rgba(240, 214, 168, 0.14);
   transform: translateY(-100%);
   opacity: 0;
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s ease;
 }
 
 .visible {
@@ -24,11 +27,9 @@
   opacity: 1;
 }
 
-
-.header {
-  transition:
-    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.4s ease;
+/* O brilho do botão espera o cabeçalho aparecer (e repete a cada volta dele) */
+.header:not(.visible) :global(.cta-animated)::after {
+  animation: none;
 }
 
 .logo {

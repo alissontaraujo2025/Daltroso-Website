@@ -216,15 +216,11 @@ p {
     transparent 70%
   );
   transform: translateX(-130%);
+  animation: cta-shine 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.9s 1 both;
 }
 
 .cta-animated [data-cta-badge] {
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-
-.cta-animated::after {
-  animation: cta-shine 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.9s 1 both;
 }
 
 /* Dentro de um bloco com reveal: espera o bloco aparecer para brilhar */

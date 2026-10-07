@@ -239,7 +239,8 @@
   transform: translate(var(--ox, 36px), -50%) scale(1) rotate(-4deg);
 }
 
-@media not ((hover: hover) and (pointer: fine)) {
+/* Só em telas grandes com mouse */
+@media not ((hover: hover) and (pointer: fine)), (max-width: 1024px) {
   .preview {
     display: none;
   }

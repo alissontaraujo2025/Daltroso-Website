@@ -134,6 +134,6 @@ Spec das mudanças: `docs/superpowers/specs/2026-10-07-modernizacao-virada-desig
 
 ### Próximos passos
 1. ~~Copy~~ revisada e validada em 2026-10-07 (sem "caso" visível; voz "nós" + "você"). Atendimento: Cruz Alta e região; Marcelo também em POA e região metropolitana. Contato não é só com a Bianca (também secretária e Rodrigo).
-2. ~~F3: Áreas como Hub~~ feito (`PracticeAreasSection.tsx`), com foco contínuo por rolagem. Publicado em 2026-10-07 (commit 3ed4549, junto da rolagem suave Lenis no desktop; push ao GitHub pendente). Tags só existem em Crimes digitais: pedir as das outras áreas à cliente.
-3. F4: ~~cor da Equipe~~ feito (duotone + revelação por linha de luz). Falta: verbos do Método em Bebas, tags em Host Grotesk.
-4. Ajustes menores: brilho do CTA do cabeçalho roda com ele oculto; na Virada mobile a 2ª frase entra cedo; ~6,8 MB de PNGs brutos em `scenes/scene-02-transition/assets/` (avaliar Git LFS).
+2. ~~F3: Áreas como Hub~~ feito (`PracticeAreasSection.tsx`), com foco contínuo por rolagem. Publicado em 2026-10-07 (commit 3ed4549, junto da rolagem suave Lenis no desktop; enviado ao GitHub). Tags só existem em Crimes digitais: pedir as das outras áreas à cliente.
+3. ~~F4~~ feito: duotone e linha de luz na Equipe; verbos do Método em Bebas, tags em Host Grotesk, prévia flutuante só em telas ≥ 1025px com mouse. O "01" vazado do Método fica (decisão posterior à spec).
+4. ~~Ajustes menores~~ feitos: brilho do CTA do cabeçalho só dispara quando ele aparece; Virada mobile troca a frase quando a linha atravessa o texto; imagens brutas de `scenes/*/assets/` fora do git (ficam só no disco) e `.vercelignore` deixa material de trabalho fora da publicação.

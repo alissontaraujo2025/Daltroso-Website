@@ -7,6 +7,12 @@ import styles from "./ViradaScene.module.css";
 const PHRASE_A = "Seus direitos valem na vida real.";
 const PHRASE_B = "E no mundo digital também.";
 
+// Trechos do progresso em que a frase A sai e a B entra
+const PHRASE_TIMING = {
+  desktop: { aOut: [0.45, 0.6], bIn: [0.55, 0.72] },
+  mobile: { aOut: [0.56, 0.64], bIn: [0.63, 0.76] },
+} as const;
+
 /**
  * Cena 03 — A Virada.
  * A mesa de "Quem somos" é varrida por uma linha de luz: atrás dela,
@@ -19,10 +25,13 @@ export function ViradaScene() {
   useScrollProgress(pinRef, (progress, el) => {
     // Liga a versão animada (sem isso, o CSS mostra a cena estática)
     el.dataset.animated = "";
+    // No celular a linha desce até a frase, que fica no pé da tela (78–90% da
+    // altura): a troca espera a linha atravessar o texto
+    const { aOut, bIn } = window.innerWidth <= 767 ? PHRASE_TIMING.mobile : PHRASE_TIMING.desktop;
     el.style.setProperty("--v-intro", String(remap(progress, 0, 0.15)));
     el.style.setProperty("--v-sweep", String(remap(progress, 0.15, 0.7)));
-    el.style.setProperty("--v-a-out", String(remap(progress, 0.45, 0.6)));
-    el.style.setProperty("--v-b-in", String(remap(progress, 0.55, 0.72)));
+    el.style.setProperty("--v-a-out", String(remap(progress, aOut[0], aOut[1])));
+    el.style.setProperty("--v-b-in", String(remap(progress, bIn[0], bIn[1])));
     el.style.setProperty("--v-settle", String(remap(progress, 0.7, 1)));
   });
 
