@@ -39,6 +39,12 @@ body {
   }
 }
 
+/* Com a rolagem suave (Lenis) ativa, ela controla o movimento: o smooth nativo
+   brigaria com ela a cada quadro */
+html.lenis {
+  scroll-behavior: auto;
+}
+
 /* Saltos por âncora param abaixo do cabeçalho fixo */
 :root {
   --header-h: 64px;

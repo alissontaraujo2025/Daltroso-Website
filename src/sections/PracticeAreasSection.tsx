@@ -13,6 +13,7 @@ import {
 } from "@/components/icons/PracticeIcons";
 import { practiceAreas, type PracticeArea, type PracticeAreaIcon } from "@/data/practiceAreas";
 import { whatsappHref } from "@/lib/contact";
+import { scrollToY } from "@/lib/smoothScroll";
 import { useScrollProgress } from "@/lib/useScrollProgress";
 import { noWidow } from "@/lib/typography";
 import { RevealTitle } from "@/components/RevealTitle";
@@ -90,6 +91,14 @@ export function PracticeAreasSection() {
     el.dataset.animated = "";
     const index = Math.min(Math.floor(progress * COUNT), COUNT - 1);
     setActive((current) => (current === index ? current : index));
+
+    // Foco contínuo: cada área acende conforme a rolagem se aproxima dela
+    // (1 no centro do seu trecho, 0 a uma área de distância)
+    const position = Math.min(Math.max(progress * COUNT - 0.5, 0), COUNT - 1);
+    el.querySelectorAll<HTMLElement>("[data-hub-item]").forEach((item, i) => {
+      const focus = Math.max(0, 1 - Math.abs(position - i));
+      item.style.setProperty("--focus", focus.toFixed(3));
+    });
   });
 
   // No modo sticky, o clique rola até o trecho da área; fora dele, só troca o painel
@@ -100,7 +109,7 @@ export function PracticeAreasSection() {
     const scrollRange = pin.offsetHeight - window.innerHeight;
     if (scrollRange < window.innerHeight * 0.5) return;
     const pinTop = pin.getBoundingClientRect().top + window.scrollY;
-    window.scrollTo({ top: pinTop + ((index + 0.5) / COUNT) * scrollRange, behavior: "smooth" });
+    scrollToY(pinTop + ((index + 0.5) / COUNT) * scrollRange);
   };
 
   // Área que acabou de sair: fica numa camada por cima, saindo com fade e blur
@@ -151,6 +160,7 @@ export function PracticeAreasSection() {
                   <button
                     type="button"
                     className={styles.item}
+                    data-hub-item
                     aria-current={index === active ? "true" : undefined}
                     aria-controls="atuacao-painel"
                     onClick={() => selectArea(index)}

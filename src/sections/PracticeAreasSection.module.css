@@ -41,6 +41,13 @@
   .pin[data-animated] .inner {
     width: 100%;
   }
+
+  /* Foco contínuo: a rolagem acende cada área aos poucos (--focus vem do JS);
+     sem transição na opacidade, que já acompanha o scroll quadro a quadro */
+  .pin[data-animated] .item {
+    opacity: calc(0.3 + 0.7 * var(--focus, 0));
+    transition: transform 0.6s var(--ease);
+  }
 }
 
 /* ---------- Fundo ---------- */

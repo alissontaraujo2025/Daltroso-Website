@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, Host_Grotesk } from "next/font/google";
 import { RevealObserver } from "@/components/RevealObserver";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { SiteHeader } from "@/components/SiteHeader";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 
 // Duas famílias no site todo: Bebas = pôster, Host Grotesk = todo o resto
@@ -59,6 +61,7 @@ export default function RootLayout({
         <SiteHeader />
         {children}
         <RevealObserver />
+        <SmoothScroll />
       </body>
     </html>
   );
