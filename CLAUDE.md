@@ -121,20 +121,30 @@ Quando alterar arquivos, informar somente:
 ## Estado atual (atualizado em 2026-10-07)
 
 Publicado em produção: https://daltroso-site-experimental-reviewed.vercel.app (deploy via `vercel deploy --prod`).
-Spec das mudanças: `docs/superpowers/specs/2026-10-07-modernizacao-virada-design.md`.
+Produção, GitHub (`origin/main`) e local estão sincronizados no commit `5b963b5`.
+Spec das mudanças: `docs/superpowers/specs/2026-10-07-modernizacao-virada-design.md` (fases F1 a F5 concluídas).
 
 ### Decisões de design já aprovadas
 - Paleta da cliente mantida (azul profundo + dourado). Modernidade vem de cenas, animação, integração e tipografia; nada futurista.
 - Só 2 fontes: **Bebas Neue** = pôster (título do hero, cena A Virada, verbos do Método, logo); **Host Grotesk** = todo o resto (títulos 500, texto 400). Não usar Inter nem serifa.
 - Escala tipográfica única em `src/app/globals.css`: `--title-bebas`, `--title-poster`, `--title-section`, `--title-card`, `--text-lead`, `--text-body`. Novos textos devem usar esses tokens.
 - Destaque dourado (`.accent`) em uma palavra-chave por título.
-- Palavras gigantes vazadas (`src/components/OutlineWord.tsx`): DEFESA (Áreas), JUSTIÇA (Equipe), DIREITOS (Contato), DALTROSO (rodapé); número "01" no Método.
-- Cena "A Virada" (`src/sections/ViradaScene.tsx`) entre Quem somos e Áreas: linha de luz revela a mesma sala ao anoitecer (imagens em `public/images/virada-*.webp`).
-- Cabeçalho fixo após o hero (`src/components/SiteHeader.tsx`); link do WhatsApp centralizado em `src/lib/contact.ts`.
+- Palavras gigantes vazadas (`src/components/OutlineWord.tsx`): DEFESA (Áreas), JUSTIÇA (Equipe), DIREITOS (Contato), DALTROSO (rodapé); número "01" no Método (fica, decisão posterior à spec).
+- Animações sempre ligadas, mesmo com `prefers-reduced-motion` (ver Regra de código).
+- Rolagem suave com Lenis só no desktop com mouse (`src/components/SmoothScroll.tsx`); rolagens programáticas usam `scrollToY` de `src/lib/smoothScroll.ts`, nunca `window.scrollTo` direto (a Lenis desfaz).
+- Cena "A Virada" (`src/sections/ViradaScene.tsx`) entre Quem somos e Áreas: linha de luz revela a mesma sala ao anoitecer. No celular a troca de frase tem tempo próprio (`PHRASE_TIMING`).
+- Áreas como Hub (`PracticeAreasSection.tsx`): sticky no desktop com foco contínuo por rolagem (`--focus`); sanfona no celular.
+- Equipe: duotone e revelação por linha de luz. Método: prévia flutuante só em telas ≥ 1025px com mouse.
+- Cabeçalho fixo após o hero (`src/components/SiteHeader.tsx`); o brilho do CTA só dispara quando ele aparece.
+- Contato centralizado: WhatsApp em `src/lib/contact.ts`; endereço, horário, plantão e área de atendimento em `src/data/office.ts` (fonte: perfil no Google). Plantão (55) 99202-5742 destacado para urgências criminais no Contato e no rodapé. OAB só nos cards da Equipe (sem registro da sociedade).
+- Copy validada (sem "caso" visível; voz "nós" + "você"). Contato não é só com a Bianca (também secretária e Rodrigo).
 
-### Próximos passos
-1. ~~Copy~~ revisada e validada em 2026-10-07 (sem "caso" visível; voz "nós" + "você"). Atendimento: Cruz Alta e região; Marcelo também em POA e região metropolitana. Contato não é só com a Bianca (também secretária e Rodrigo).
-2. ~~F3: Áreas como Hub~~ feito (`PracticeAreasSection.tsx`), com foco contínuo por rolagem. Publicado em 2026-10-07 (commit 3ed4549, junto da rolagem suave Lenis no desktop; enviado ao GitHub). Tags só existem em Crimes digitais: pedir as das outras áreas à cliente.
-3. ~~F4~~ feito: duotone e linha de luz na Equipe; verbos do Método em Bebas, tags em Host Grotesk, prévia flutuante só em telas ≥ 1025px com mouse. O "01" vazado do Método fica (decisão posterior à spec).
-4. ~~Ajustes menores~~ feitos: brilho do CTA do cabeçalho só dispara quando ele aparece; Virada mobile troca a frase quando a linha atravessa o texto; imagens brutas de `scenes/*/assets/` fora do git (ficam só no disco) e `.vercelignore` deixa material de trabalho fora da publicação.
-5. F5 (copy) feita. Dados em `src/data/office.ts` (fonte: perfil no Google, confirmado em 2026-10-07): endereço, horário, plantão (55) 99202-5742 (urgências criminais; destacado no Contato e no rodapé). No Google o nome ainda é "Advocacia e Consultoria Jurídica": o usuário vai ajustar. OAB fica só nos cards da Equipe (sem registro da sociedade).
+### Fluxo de trabalho
+- Commit e deploy só quando o usuário pedir. O `git push` é bloqueado para o Claude: o usuário roda `!git push origin main` (sem espaço antes do `!`).
+- Imagens brutas de `scenes/*/assets/` ficam fora do git (só no disco); `.vercelignore` deixa material de trabalho fora da publicação.
+- Verificação antes de publicar: `npx tsc --noEmit`, `npm run build`, teste no Playwright em 1440×900 e 390×844. O projeto não tem ESLint configurado.
+
+### Pendências
+1. Pedir à cliente as tags das áreas além de Crimes digitais (`src/data/practiceAreas.ts`).
+2. Usuário vai trocar o nome no Google para "Advocacia e Inteligência Jurídica" (hoje "Consultoria").
+3. Opcional: dois PNGs de pôster sem uso em `public/videos/scene-02-daltroso-*-poster.png` (~4 MB).
