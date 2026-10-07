@@ -134,6 +134,6 @@ Spec das mudanças: `docs/superpowers/specs/2026-10-07-modernizacao-virada-desig
 
 ### Próximos passos
 1. Validar com a cliente: subtexto do hero e a frase "A equipe retorna com os próximos passos" (marcada como PLACEHOLDER em `ContactSection.tsx`).
-2. F3: Áreas de atuação como "Hub" (uma área por vez, cena sticky).
+2. ~~F3: Áreas como Hub~~ feito (`PracticeAreasSection.tsx`, commit 9cd332b; local, ainda não publicado). Tags só existem em Crimes digitais: pedir as das outras áreas à cliente.
 3. F4: tratamento de cor único nas fotos da Equipe (foto do Rodrigo tem fundo de evento).
 4. Ajustes menores: brilho do CTA do cabeçalho roda com ele oculto; na Virada mobile a 2ª frase entra cedo; ~6,8 MB de PNGs brutos em `scenes/scene-02-transition/assets/` (avaliar Git LFS).
