@@ -48,7 +48,7 @@ export function Hero() {
   }, []);
 
   return (
-    <div ref={pinRef} className={styles.heroPin}>
+    <div ref={pinRef} className={styles.heroPin} data-hero-pin>
       <section className={styles.hero}>
         <HeroVideoBackground />
         <div className={styles.videoFade} aria-hidden="true" />

@@ -1,7 +1,6 @@
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { whatsappHref } from "@/lib/contact";
 import styles from "./HeroContent.module.css";
-
-const WHATSAPP_HREF = "https://api.whatsapp.com/send?phone=555592025742";
 
 const NAV_LINKS = [
   { label: "quem somos", href: "#quem-somos" },
@@ -21,7 +20,7 @@ export function HeroContent() {
 
         <a
           className={`${styles.cta} cta-animated`}
-          href={WHATSAPP_HREF}
+          href={whatsappHref()}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Atendimento online pelo WhatsApp (abre em nova aba)"

@@ -1,0 +1,149 @@
+/* Cabeçalho fixo: faixa fina em azul profundo translúcido, com fio dourado na base */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 65;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  height: var(--header-h, 64px);
+  padding: 0 32px;
+  background: rgba(12, 24, 38, 0.86);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(240, 214, 168, 0.14);
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .header {
+    transition:
+      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.4s ease;
+  }
+}
+
+.logo {
+  font-family: var(--font-poster), sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.32em;
+  line-height: 1;
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  gap: 28px;
+}
+
+.link {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.95rem;
+  color: rgba(245, 239, 228, 0.82);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+@media (hover: hover) {
+  .link:hover {
+    color: #f0d6a8;
+  }
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 6px 6px 16px;
+  border-radius: 999px;
+  background: #f2ddba;
+  text-decoration: none;
+}
+
+.ctaLabel {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #16233b;
+  white-space: nowrap;
+}
+
+.ctaIconBadge {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #16233b;
+}
+
+.ctaIcon {
+  width: 55%;
+  height: 55%;
+  color: #ffffff;
+}
+
+/* Celular: só logo e botão; o menu completo continua no rodapé */
+@media (max-width: 767px) {
+  .header {
+    --header-h: 56px;
+    padding: 0 16px;
+  }
+
+  .logo {
+    font-size: 18px;
+    letter-spacing: 0.26em;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .ctaLabel {
+    font-size: 0.8rem;
+  }
+
+  .ctaIconBadge {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* Celulares bem estreitos: logo e botão menores para caber lado a lado */
+@media (max-width: 374px) {
+  .header {
+    gap: 12px;
+    padding: 0 12px;
+  }
+
+  .logo {
+    font-size: 16px;
+    letter-spacing: 0.2em;
+  }
+
+  .cta {
+    gap: 8px;
+    padding-left: 12px;
+  }
+
+  .ctaLabel {
+    font-size: 0.75rem;
+  }
+}

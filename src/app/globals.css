@@ -36,6 +36,21 @@ body {
   }
 }
 
+/* Saltos por âncora param abaixo do cabeçalho fixo */
+:root {
+  --header-h: 64px;
+}
+
+section[id] {
+  scroll-margin-top: var(--header-h);
+}
+
+@media (max-width: 767px) {
+  :root {
+    --header-h: 56px;
+  }
+}
+
 /* Grão de filme sobre o site todo: textura fotográfica, imagem estática (sem custo de animação) */
 body::after {
   content: "";

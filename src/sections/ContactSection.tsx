@@ -1,15 +1,12 @@
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { IconFacebook, IconInstagram, IconYouTube } from "@/components/icons/SocialIcons";
+import { whatsappHref } from "@/lib/contact";
 import styles from "./ContactSection.module.css";
-
-const WHATSAPP_CTA_HREF = `https://api.whatsapp.com/send?phone=555592025742&text=${encodeURIComponent(
-  "Olá! Gostaria de falar sobre o meu caso."
-)}`;
 
 const CHANNELS = [
   {
     name: "WhatsApp",
-    href: "https://api.whatsapp.com/send?phone=555592025742",
+    href: whatsappHref(),
     Icon: WhatsAppIcon,
   },
   {
@@ -64,7 +61,7 @@ export function ContactSection() {
         >
           <a
             className={`${styles.cta} cta-animated`}
-            href={WHATSAPP_CTA_HREF}
+            href={whatsappHref("Olá! Gostaria de falar sobre o meu caso.")}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Atendimento online pelo WhatsApp (abre em nova aba)"

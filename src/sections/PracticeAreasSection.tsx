@@ -17,10 +17,9 @@ import {
   IconShield,
 } from "@/components/icons/PracticeIcons";
 import { featuredArea, practiceAreas, type PracticeAreaIcon } from "@/data/practiceAreas";
+import { whatsappHref } from "@/lib/contact";
 import { noWidow } from "@/lib/typography";
 import styles from "./PracticeAreasSection.module.css";
-
-const WHATSAPP_PHONE = "555592025742";
 
 const ICONS: Record<PracticeAreaIcon, typeof IconShield> = {
   digital: IconDigital,
@@ -30,11 +29,10 @@ const ICONS: Record<PracticeAreaIcon, typeof IconShield> = {
   insignia: IconInsignia,
 };
 
-function whatsappHref(subject?: string) {
-  const text = subject
+function areaMessage(subject?: string) {
+  return subject
     ? `Olá! Gostaria de falar sobre ${subject}.`
     : "Olá! Gostaria de falar sobre o meu caso.";
-  return `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(text)}`;
 }
 
 function accentStyle(accent: string, index: number): CSSProperties {
@@ -104,7 +102,7 @@ export function PracticeAreasSection() {
         >
           <a
             className={`${styles.card} ${styles.featured}`}
-            href={whatsappHref("crimes digitais")}
+            href={whatsappHref(areaMessage("crimes digitais"))}
             target="_blank"
             rel="noopener noreferrer"
             style={accentStyle(featuredArea.accent, 0)}
@@ -136,7 +134,7 @@ export function PracticeAreasSection() {
               <a
                 className={styles.card}
                 key={area.title}
-                href={whatsappHref(area.title)}
+                href={whatsappHref(areaMessage(area.title))}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={accentStyle(area.accent, index + 1)}
@@ -156,7 +154,7 @@ export function PracticeAreasSection() {
 
           <a
             className={`${styles.card} ${styles.more}`}
-            href={whatsappHref()}
+            href={whatsappHref(areaMessage())}
             target="_blank"
             rel="noopener noreferrer"
             style={accentStyle("#ffffff", practiceAreas.length + 1)}

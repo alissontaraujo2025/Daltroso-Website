@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, DM_Serif_Display, Host_Grotesk } from "next/font/google";
 import { RevealObserver } from "@/components/RevealObserver";
+import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
 
 const dmSerifDisplay = DM_Serif_Display({
@@ -61,6 +62,7 @@ export default function RootLayout({
         <a href="#quem-somos" className="skip-link">
           Pular para o conteúdo
         </a>
+        <SiteHeader />
         {children}
         <RevealObserver />
       </body>
