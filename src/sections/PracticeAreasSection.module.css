@@ -1,11 +1,20 @@
-/* Cena 03 — Áreas de atuação. Cards inspirados no "trail-card" do design system Asimov. */
-.scene {
+/* Cena 04 — Áreas de atuação como "Hub".
+   Desktop com movimento: cena sticky, uma área por trecho de scroll (ver useScrollProgress).
+   Mobile: sanfona. Movimento reduzido: sem pinning, troca pelo clique. */
+
+.pin {
   --navy: #0c1826;
   --warm: #e8b36d;
+  --line: rgba(240, 214, 168, 0.55);
   --border: rgba(255, 255, 255, 0.09);
   --text-secondary: rgba(255, 255, 255, 0.66);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
+  position: relative;
+  background: var(--navy);
+}
+
+.scene {
   position: relative;
   padding: 12vh 0 14vh;
   background: var(--navy);
@@ -13,7 +22,30 @@
   isolation: isolate;
 }
 
-/* Linha editorial que separa a equipe desta cena */
+/* ---------- Pinning (só desktop, só com movimento) ---------- */
+
+@media (min-width: 1025px) and (prefers-reduced-motion: no-preference) {
+  .pin[data-animated] {
+    height: calc(100vh + var(--count) * 55vh);
+  }
+
+  .pin[data-animated] .scene {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    padding: var(--header-h) 0 0;
+  }
+
+  .pin[data-animated] .inner {
+    width: 100%;
+  }
+}
+
+/* ---------- Fundo ---------- */
+
+/* Linha editorial que separa a cena anterior desta */
 .bridge {
   position: absolute;
   top: 0;
@@ -25,16 +57,29 @@
   pointer-events: none;
 }
 
-/* Luz fria à esquerda (digital) e quente à direita (continuidade com a equipe) */
+/* Luz fria à esquerda (lista) e quente à direita (painel) */
 .glow {
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(40% 50% at 12% 62%, rgba(108, 201, 214, 0.08), transparent 70%),
-    radial-gradient(40% 40% at 90% 45%, rgba(232, 179, 109, 0.07), transparent 70%);
+    radial-gradient(40% 50% at 12% 62%, rgba(150, 180, 220, 0.07), transparent 70%),
+    radial-gradient(40% 40% at 82% 55%, rgba(232, 179, 109, 0.07), transparent 70%);
 }
+
+.dots {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.11) 1px, transparent 1.3px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(70% 55% at 50% 58%, #000 0%, transparent 80%);
+  mask-image: radial-gradient(70% 55% at 50% 58%, #000 0%, transparent 80%);
+}
+
+/* ---------- Cabeçalho ---------- */
 
 .inner {
   max-width: 1200px;
@@ -45,7 +90,6 @@
 .header {
   max-width: 720px;
 }
-
 
 .title {
   margin: 0;
@@ -64,163 +108,142 @@
   color: var(--text-secondary);
 }
 
-/* ---------- Grid ---------- */
+/* ---------- Hub (desktop) ---------- */
 
-.grid {
+.hub {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: center;
   margin-top: 6vh;
 }
 
-.card {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  gap: 18px;
-  padding: 24px 26px;
-  border-radius: 18px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.02);
-  color: inherit;
-  text-decoration: none;
-  transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease,
-    box-shadow 0.4s ease;
-}
-
-.icon {
-  display: flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
-  border: 1px solid color-mix(in srgb, var(--card-accent) 28%, transparent);
-  background: color-mix(in srgb, var(--card-accent) 6%, transparent);
-  color: var(--card-accent);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.iconSvg {
-  width: 24px;
-  height: 24px;
-}
-
-.body {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-width: 0;
-}
-
-.cardTitle {
+.list {
   margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  /* Compensa o deslocamento da área ativa: a linha termina na borda do painel */
+  padding: 0.2em 12px 0.2em 0;
+  border: 0;
+  background: none;
   font-family: var(--font-sans), sans-serif;
-  font-size: 1.125rem;
   font-weight: 500;
-  line-height: 1.25;
+  /* Limitado pela altura para as 6 áreas caberem na cena fixa */
+  font-size: min(var(--title-section), 5vh);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  text-align: left;
   color: #fff;
-  transition: color 0.3s ease;
+  cursor: pointer;
+  opacity: 0.3;
+  transition:
+    opacity 0.5s var(--ease),
+    transform 0.6s var(--ease);
 }
 
-.cardText {
-  font-size: 0.875rem;
-  line-height: 1.5;
-  color: var(--text-secondary);
-  text-wrap: pretty;
+.itemLabel {
+  flex: 0 1 auto;
 }
 
-.arrow {
-  flex: 0 0 auto;
-  align-self: center;
-  width: 18px;
-  height: 18px;
-  margin-left: auto;
-  color: rgba(255, 255, 255, 0.3);
-  transition: color 0.3s ease, transform 0.3s ease;
+/* Linha de conexão até o painel */
+.link {
+  flex: 1 0 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.7s var(--ease);
 }
 
-.card:focus-visible {
-  outline: 2px solid var(--card-accent);
-  outline-offset: 3px;
+.item[aria-current="true"] {
+  opacity: 1;
+  transform: translateX(12px);
+}
+
+.item[aria-current="true"] .link {
+  transform: scaleX(1);
+}
+
+.item:focus-visible {
+  outline: 2px solid var(--warm);
+  outline-offset: 4px;
 }
 
 @media (hover: hover) {
-  .card:hover {
-    border-color: color-mix(in srgb, var(--card-accent) 34%, transparent);
-    background-color: color-mix(in srgb, var(--card-accent) 6%, rgba(255, 255, 255, 0.02));
-  }
-
-  .card:hover .icon {
-    background-color: var(--card-accent);
-    color: var(--navy);
-  }
-
-  .card:hover .cardTitle {
-    color: var(--card-accent);
-  }
-
-  .card:hover .arrow {
-    color: var(--card-accent);
-    transform: translateX(3px);
+  .item:not([aria-current="true"]):hover {
+    opacity: 0.6;
   }
 }
 
-/* ---------- Destaque: crimes digitais ---------- */
-
-.featured {
-  grid-column: 1 / -1;
-  padding: 34px 36px;
-  border-color: color-mix(in srgb, var(--card-accent) 30%, transparent);
-  background-image: radial-gradient(
-    60% 120% at 0% 0%,
-    color-mix(in srgb, var(--card-accent) 12%, transparent),
-    transparent 70%
-  );
+.panel {
+  display: grid;
+  align-content: center;
+  min-height: 340px;
+  padding-left: 48px;
+  border-left: 1px solid var(--line);
 }
 
-.featured .icon {
-  width: 64px;
-  height: 64px;
-  border-radius: 18px;
+.index {
+  margin: 0 0 14px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--warm);
 }
 
-.featured .iconSvg {
-  width: 28px;
-  height: 28px;
-}
-
-.featuredTitle {
+.panelTitle {
+  margin: 0 0 14px;
   font-family: var(--font-sans), sans-serif;
-  font-size: clamp(1.6rem, 2.4vw, 2rem);
   font-weight: 500;
-  letter-spacing: -0.025em;
+  font-size: var(--title-card);
+  line-height: 1.25;
+  color: #fff;
 }
 
-.featured .cardText {
-  max-width: 640px;
-  font-size: 1rem;
+@media (prefers-reduced-motion: no-preference) {
+  .panelContent {
+    animation: panel-in 0.7s var(--ease) both;
+  }
 }
 
-.badge {
-  align-self: flex-start;
-  margin-bottom: 8px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--card-accent) 40%, transparent);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--card-accent);
+/* Reveal por máscara + deslocamento curto */
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    clip-path: inset(0 0 40% 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* ---------- Conteúdo da área (painel e sanfona) ---------- */
+
+.text {
+  max-width: 46ch;
+  margin: 0;
+  font-size: var(--text-body);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  text-wrap: pretty;
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 14px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
 }
 
 .tag {
@@ -232,68 +255,143 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
-/* ---------- Outras situações ---------- */
-
-.more {
-  grid-column: 1 / -1;
+.cta {
+  display: inline-flex;
   align-items: center;
-  border-style: dashed;
-  border-color: rgba(255, 255, 255, 0.16);
-  background: transparent;
+  gap: 10px;
+  justify-self: start;
+  margin-top: 28px;
+  padding: 13px 22px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--warm) 55%, transparent);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
-.more .icon {
-  border-color: rgba(255, 255, 255, 0.18);
-  background: transparent;
-  color: var(--text-secondary);
+.ctaArrow {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s var(--ease);
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--warm);
+  outline-offset: 3px;
 }
 
 @media (hover: hover) {
-  .more:hover {
-    border-color: rgba(255, 255, 255, 0.3);
-    background-color: rgba(255, 255, 255, 0.03);
+  .cta:hover {
+    background-color: var(--warm);
+    color: var(--navy);
   }
 
-  .more:hover .icon {
-    background-color: transparent;
-    color: #fff;
-  }
-
-  .more:hover .cardTitle,
-  .more:hover .arrow {
-    color: #fff;
+  .cta:hover .ctaArrow {
+    transform: translateX(3px);
   }
 }
 
-/* ---------- Entrada (desligada com prefers-reduced-motion) ---------- */
+/* ---------- Sanfona (mobile e tablet) ---------- */
 
-/* Animação (e não transição) para a cascata não atrasar o hover depois */
+.accordion {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .hub {
+    display: none;
+  }
+
+  .accordion {
+    display: block;
+    margin-top: 5vh;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+.accItem {
+  border-top: 1px solid var(--border);
+}
+
+.accSummary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 0;
+  list-style: none;
+  cursor: pointer;
+}
+
+.accSummary::-webkit-details-marker {
+  display: none;
+}
+
+.accSummary:focus-visible {
+  outline: 2px solid var(--warm);
+  outline-offset: 4px;
+}
+
+.accTitle {
+  margin: 0;
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 500;
+  font-size: var(--title-card);
+  line-height: 1.25;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.3s ease;
+}
+
+.accItem[open] .accTitle {
+  color: #fff;
+}
+
+/* Sinal de + que vira − */
+.accIcon {
+  position: relative;
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+}
+
+.accIcon::before,
+.accIcon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--warm);
+  transition: transform 0.3s var(--ease);
+}
+
+.accIcon::after {
+  transform: rotate(90deg);
+}
+
+.accItem[open] .accIcon::after {
+  transform: rotate(0deg);
+}
+
+.accBody {
+  display: grid;
+  padding: 0 0 26px;
+}
+
+.accBody .cta {
+  margin-top: 22px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
-  .card {
-    opacity: 0;
-  }
-
-  .gridRevealed .card {
-    opacity: 1;
-    animation: card-in 700ms var(--ease) backwards;
-    animation-delay: calc(var(--card-index) * 90ms);
+  .accItem[open] .accBody {
+    animation: panel-in 0.5s var(--ease) both;
   }
 }
-
-@keyframes card-in {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) and (hover: hover) {
-  .card:hover {
-    transform: translateY(-3px);
-  }
-}
-
-/* ---------- Mobile ---------- */
 
 @media (max-width: 767px) {
   .scene {
@@ -302,191 +400,5 @@
 
   .inner {
     padding: 0 20px;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .card {
-    gap: 14px;
-    padding: 20px;
-  }
-
-  .icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
-  }
-
-  .iconSvg {
-    width: 22px;
-    height: 22px;
-  }
-
-  .featured {
-    flex-direction: column;
-    padding: 26px 22px;
-  }
-
-  .featured .arrow {
-    display: none;
-  }
-
-  .arrow {
-    width: 16px;
-    height: 16px;
-  }
-}
-
-/* ---------- Textura: malha de pontos que se dissolve nas bordas ---------- */
-
-.dots {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.11) 1px, transparent 1.3px);
-  background-size: 26px 26px;
-  -webkit-mask-image: radial-gradient(70% 55% at 50% 58%, #000 0%, transparent 80%);
-  mask-image: radial-gradient(70% 55% at 50% 58%, #000 0%, transparent 80%);
-}
-
-/* ---------- Luz que segue o cursor (só com mouse) ---------- */
-
-.card {
-  isolation: isolate;
-}
-
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  pointer-events: none;
-  opacity: 0;
-  background: radial-gradient(
-    260px circle at var(--mx, 50%) var(--my, 50%),
-    color-mix(in srgb, var(--card-accent) 14%, transparent),
-    transparent 70%
-  );
-  transition: opacity 0.4s ease;
-}
-
-@media (hover: hover) {
-  .card:hover::before {
-    opacity: 1;
-  }
-}
-
-/* Ícone do destaque "respira" devagar, chamando atenção sem piscar */
-@media (prefers-reduced-motion: no-preference) {
-  .featured .icon {
-    animation: featured-pulse 3.6s ease-in-out infinite;
-  }
-}
-
-@keyframes featured-pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 color-mix(in srgb, var(--card-accent) 0%, transparent);
-  }
-  50% {
-    box-shadow: 0 0 0 8px color-mix(in srgb, var(--card-accent) 10%, transparent);
-  }
-}
-
-/* ---------- Hover no padrão Asimov, refinado ----------
-   Borda de luz que corre em volta do card na cor da área + brilho colorido. */
-
-@property --border-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-.card::after {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1px;
-  pointer-events: none;
-  background: conic-gradient(
-    from var(--border-angle),
-    transparent 0deg,
-    transparent 200deg,
-    color-mix(in srgb, var(--card-accent) 60%, transparent) 280deg,
-    var(--card-accent) 330deg,
-    transparent 360deg
-  );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.iconSvg {
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@media (hover: hover) {
-  .card:hover {
-    box-shadow: 0 24px 48px -28px color-mix(in srgb, var(--card-accent) 55%, transparent);
-  }
-
-  .card:hover::after {
-    opacity: 1;
-  }
-
-  .card:hover .icon {
-    box-shadow: 0 0 24px -4px color-mix(in srgb, var(--card-accent) 70%, transparent);
-  }
-
-  .card:hover .iconSvg {
-    transform: scale(1.08);
-  }
-
-  .card:hover .cardText {
-    color: rgba(255, 255, 255, 0.82);
-  }
-
-  .more:hover {
-    box-shadow: none;
-  }
-
-  .more:hover::after {
-    opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) and (hover: hover) {
-  .card:hover::after {
-    animation: border-run 3.2s linear infinite;
-  }
-}
-
-@keyframes border-run {
-  to {
-    --border-angle: 360deg;
-  }
-}
-
-.cardText {
-  transition: color 0.3s ease;
-}
-
-/* No hover do destaque, o pulso dá lugar ao brilho fixo */
-@media (hover: hover) {
-  .featured:hover .icon {
-    animation: none;
   }
 }

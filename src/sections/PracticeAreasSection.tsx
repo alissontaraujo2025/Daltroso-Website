@@ -1,34 +1,15 @@
 "use client";
 
+import { useRef, useState, type CSSProperties } from "react";
 import { OutlineWord } from "@/components/OutlineWord";
-import {
-  useEffect,
-  useRef,
-  useState,
-  type CSSProperties,
-  type PointerEvent,
-} from "react";
-import {
-  IconArrow,
-  IconDigital,
-  IconDocument,
-  IconHouse,
-  IconInsignia,
-  IconPlus,
-  IconShield,
-} from "@/components/icons/PracticeIcons";
-import { featuredArea, practiceAreas, type PracticeAreaIcon } from "@/data/practiceAreas";
+import { IconArrow } from "@/components/icons/PracticeIcons";
+import { practiceAreas, type PracticeArea } from "@/data/practiceAreas";
 import { whatsappHref } from "@/lib/contact";
+import { useScrollProgress } from "@/lib/useScrollProgress";
 import { noWidow } from "@/lib/typography";
 import styles from "./PracticeAreasSection.module.css";
 
-const ICONS: Record<PracticeAreaIcon, typeof IconShield> = {
-  digital: IconDigital,
-  shield: IconShield,
-  document: IconDocument,
-  house: IconHouse,
-  insignia: IconInsignia,
-};
+const COUNT = practiceAreas.length;
 
 function areaMessage(subject?: string) {
   return subject
@@ -36,145 +17,146 @@ function areaMessage(subject?: string) {
     : "Olá! Gostaria de falar sobre o meu caso.";
 }
 
-function accentStyle(accent: string, index: number): CSSProperties {
-  return { ["--card-accent" as string]: accent, ["--card-index" as string]: index };
+function ctaLabel(area: PracticeArea) {
+  return area.subject ? `Falar sobre ${area.subject}` : "Contar o meu caso";
 }
 
+function AreaDetails({ area }: { area: PracticeArea }) {
+  return (
+    <>
+      <p className={styles.text}>{noWidow(area.text)}</p>
+      {area.tags && (
+        <ul className={styles.tags}>
+          {area.tags.map((tag) => (
+            <li className={styles.tag} key={tag}>
+              {tag}
+            </li>
+          ))}
+        </ul>
+      )}
+      <a
+        className={styles.cta}
+        href={whatsappHref(areaMessage(area.subject))}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {ctaLabel(area)}
+        <IconArrow className={styles.ctaArrow} />
+        <span className="sr-only"> (abre o WhatsApp em nova aba)</span>
+      </a>
+    </>
+  );
+}
+
+/**
+ * Cena 04 — Áreas de atuação como "Hub".
+ * Desktop: cena sticky; o scroll avança uma área por vez (lista à esquerda,
+ * painel à direita). Mobile: sanfona, uma área aberta por vez.
+ * Com movimento reduzido: sem pinning, a área muda pelo clique.
+ */
 export function PracticeAreasSection() {
-  const gridRef = useRef<HTMLDivElement>(null);
-  const [revealed, setRevealed] = useState(false);
+  const pinRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
 
-  useEffect(() => {
-    const el = gridRef.current;
-    if (!el) return;
+  useScrollProgress(pinRef, (progress, el) => {
+    // Liga o pinning (sem isso, o CSS mostra a cena estática)
+    el.dataset.animated = "";
+    const index = Math.min(Math.floor(progress * COUNT), COUNT - 1);
+    setActive((current) => (current === index ? current : index));
+  });
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setRevealed(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  // Luz que acompanha o cursor dentro do card (só faz efeito com mouse; ver CSS)
-  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType !== "mouse") return;
-    const card = (event.target as HTMLElement).closest<HTMLElement>("a");
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    card.style.setProperty("--mx", `${event.clientX - rect.left}px`);
-    card.style.setProperty("--my", `${event.clientY - rect.top}px`);
+  // No modo sticky, o clique rola até o trecho da área; fora dele, só troca o painel
+  const selectArea = (index: number) => {
+    setActive(index);
+    const pin = pinRef.current;
+    if (!pin) return;
+    const scrollRange = pin.offsetHeight - window.innerHeight;
+    if (scrollRange < window.innerHeight * 0.5) return;
+    const pinTop = pin.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top: pinTop + ((index + 0.5) / COUNT) * scrollRange, behavior: "smooth" });
   };
 
-  const FeaturedIcon = ICONS[featuredArea.icon];
+  const area = practiceAreas[active];
 
   return (
-    <section className={styles.scene} id="atuacao" aria-labelledby="atuacao-title">
-      <div className={styles.bridge} aria-hidden="true" />
-      <div className={styles.glow} aria-hidden="true" />
-      <div className={styles.dots} aria-hidden="true" />
-      <OutlineWord word="Defesa" placement="bottom-right" zIndex={-1} />
+    <div
+      ref={pinRef}
+      className={styles.pin}
+      style={{ ["--count" as string]: COUNT } as CSSProperties}
+    >
+      <section className={styles.scene} id="atuacao" aria-labelledby="atuacao-title">
+        <div className={styles.bridge} aria-hidden="true" />
+        <div className={styles.glow} aria-hidden="true" />
+        <div className={styles.dots} aria-hidden="true" />
+        <OutlineWord word="Defesa" placement="bottom-right" zIndex={-1} />
 
-      <div className={styles.inner}>
-        <header className={styles.header}>
-          <h2 id="atuacao-title" className={styles.title} data-reveal="up">
-            Onde o escritório pode <span className="accent">ajudar.</span>
-          </h2>
-          <p
-            className={styles.support}
-            data-reveal="up"
-            style={{ ["--reveal-delay" as string]: "200ms" }}
-          >
-            {noWidow(
-              "Atuamos nas áreas criminal, civil, imobiliária e militar, com atenção especial aos crimes que acontecem na internet."
-            )}
-          </p>
-        </header>
+        <div className={styles.inner}>
+          <header className={styles.header}>
+            <h2 id="atuacao-title" className={styles.title} data-reveal="up">
+              Onde o escritório pode <span className="accent">ajudar.</span>
+            </h2>
+            <p
+              className={styles.support}
+              data-reveal="up"
+              style={{ ["--reveal-delay" as string]: "200ms" }}
+            >
+              {noWidow(
+                "Atuamos nas áreas criminal, civil, imobiliária e militar, com atenção especial aos crimes que acontecem na internet."
+              )}
+            </p>
+          </header>
 
-        <div
-          ref={gridRef}
-          className={`${styles.grid} ${revealed ? styles.gridRevealed : ""}`}
-          onPointerMove={handlePointerMove}
-        >
-          <a
-            className={`${styles.card} ${styles.featured}`}
-            href={whatsappHref(areaMessage("crimes digitais"))}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={accentStyle(featuredArea.accent, 0)}
-          >
-            <span className={styles.icon}>
-              <FeaturedIcon className={styles.iconSvg} />
-            </span>
-            <div className={styles.body}>
-              <span className={styles.badge}>Destaque</span>
-              <h3 className={`${styles.cardTitle} ${styles.featuredTitle}`}>
-                {featuredArea.title}
-              </h3>
-              <span className={styles.cardText}>{noWidow(featuredArea.text)}</span>
-              <span className={styles.tags}>
-                {featuredArea.tags.map((tag) => (
-                  <span className={styles.tag} key={tag}>
-                    {tag}
-                  </span>
-                ))}
-              </span>
+          {/* Desktop: hub */}
+          <div className={styles.hub}>
+            <ol className={styles.list}>
+              {practiceAreas.map((item, index) => (
+                <li key={item.id}>
+                  <button
+                    type="button"
+                    className={styles.item}
+                    aria-current={index === active ? "true" : undefined}
+                    aria-controls="atuacao-painel"
+                    onClick={() => selectArea(index)}
+                  >
+                    <span className={styles.itemLabel}>{item.title}</span>
+                    <span className={styles.link} aria-hidden="true" />
+                  </button>
+                </li>
+              ))}
+            </ol>
+
+            <div id="atuacao-painel" className={styles.panel}>
+              <div key={area.id} className={styles.panelContent}>
+                <p className={styles.index} aria-hidden="true">
+                  {String(active + 1).padStart(2, "0")} / {String(COUNT).padStart(2, "0")}
+                </p>
+                <h3 className={styles.panelTitle}>{area.title}</h3>
+                <AreaDetails area={area} />
+              </div>
             </div>
-            <IconArrow className={styles.arrow} />
-            <span className="sr-only"> (abre o WhatsApp em nova aba)</span>
-          </a>
+          </div>
 
-          {practiceAreas.map((area, index) => {
-            const Icon = ICONS[area.icon];
-            return (
-              <a
-                className={styles.card}
-                key={area.title}
-                href={whatsappHref(areaMessage(area.title))}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={accentStyle(area.accent, index + 1)}
+          {/* Mobile: sanfona (name = só uma aberta por vez) */}
+          <div className={styles.accordion}>
+            {practiceAreas.map((item, index) => (
+              <details
+                key={item.id}
+                className={styles.accItem}
+                name="atuacao-areas"
+                open={index === 0}
               >
-                <span className={styles.icon}>
-                  <Icon className={styles.iconSvg} />
-                </span>
-                <div className={styles.body}>
-                  <h3 className={styles.cardTitle}>{area.title}</h3>
-                  <span className={styles.cardText}>{noWidow(area.text)}</span>
+                <summary className={styles.accSummary}>
+                  <h3 className={styles.accTitle}>{item.title}</h3>
+                  <span className={styles.accIcon} aria-hidden="true" />
+                </summary>
+                <div className={styles.accBody}>
+                  <AreaDetails area={item} />
                 </div>
-                <IconArrow className={styles.arrow} />
-                <span className="sr-only"> (abre o WhatsApp em nova aba)</span>
-              </a>
-            );
-          })}
-
-          <a
-            className={`${styles.card} ${styles.more}`}
-            href={whatsappHref(areaMessage())}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={accentStyle("#ffffff", practiceAreas.length + 1)}
-          >
-            <span className={styles.icon}>
-              <IconPlus className={styles.iconSvg} />
-            </span>
-            <div className={styles.body}>
-              <h3 className={styles.cardTitle}>Não encontrou o seu caso?</h3>
-              <span className={styles.cardText}>
-                {noWidow("Conte o que aconteceu e a equipe orienta você.")}
-              </span>
-            </div>
-            <IconArrow className={styles.arrow} />
-            <span className="sr-only"> (abre o WhatsApp em nova aba)</span>
-          </a>
+              </details>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
