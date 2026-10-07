@@ -1,0 +1,213 @@
+/* Cena 03 — A Virada.
+   Progresso do scroll (ver useScrollProgress) chega como variáveis:
+   --v-intro (0–15%), --v-sweep (15–70%), --v-a-out, --v-b-in, --v-settle (70–100%). */
+
+.pin {
+  position: relative;
+  height: 300vh;
+  background: #0c1826;
+}
+
+.scene {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: #0c1826;
+}
+
+/* ---------- Imagens ---------- */
+
+.stage {
+  position: absolute;
+  inset: 0;
+  transform: scale(calc(1 + var(--v-intro, 0) * 0.04));
+  transform-origin: 70% 60%;
+  will-change: transform;
+}
+
+.digital,
+.warm {
+  position: absolute;
+  inset: 0;
+}
+
+.digital img,
+.warm img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+}
+
+/* A imagem quente é recortada da esquerda para a direita conforme a linha passa */
+.warm {
+  clip-path: inset(0 0 0 calc(var(--v-sweep, 0) * 100%));
+}
+
+/* Linha de luz na borda do recorte */
+.sweep {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--v-sweep, 0) * 100%);
+  width: 1px;
+  background: #f2ddba;
+  box-shadow:
+    0 0 12px 2px rgba(242, 221, 186, 0.55),
+    0 0 48px 8px rgba(240, 214, 168, 0.18);
+  /* Só aparece enquanto está varrendo */
+  opacity: calc(min(var(--v-sweep, 0) * 12, 1) * min((1 - var(--v-sweep, 0)) * 12, 1));
+}
+
+/* Linhas de conexão que escorrem para a próxima cena */
+.lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: rgba(240, 214, 168, 0.45);
+  stroke-width: 1;
+  /* As linhas "escorrem" de cima para baixo: recorte que desce com o assentamento */
+  clip-path: inset(0 0 calc((1 - var(--v-settle, 0)) * 100%) 0);
+}
+
+.lines path {
+  vector-effect: non-scaling-stroke;
+}
+
+/* Escurece à esquerda para a frase ficar legível sobre qualquer imagem */
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(12, 24, 38, 0.82) 0%,
+    rgba(12, 24, 38, 0.55) 38%,
+    rgba(12, 24, 38, 0) 70%
+  );
+}
+
+/* Assentamento: a base escurece até o azul da próxima cena */
+.settle {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(12, 24, 38, 0) 40%, #0c1826 100%);
+  opacity: var(--v-settle, 0);
+}
+
+/* ---------- Frase ---------- */
+
+.text {
+  position: absolute;
+  left: 56px;
+  bottom: 14vh;
+  z-index: 2;
+  display: grid;
+  max-width: min(62vw, 980px);
+}
+
+/* As duas metades ocupam o mesmo lugar e trocam de uma para a outra */
+.phraseA,
+.phraseB {
+  grid-area: 1 / 1;
+  align-self: end;
+  font-family: var(--font-poster), sans-serif;
+  font-size: clamp(3rem, 6vw, 6.6rem);
+  line-height: 0.9;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: #ffffff;
+}
+
+.phraseA {
+  opacity: calc(var(--v-intro, 0) * (1 - var(--v-a-out, 0)));
+  transform: translateY(calc((1 - var(--v-intro, 0)) * 32px - var(--v-a-out, 0) * 24px));
+}
+
+.phraseB {
+  opacity: var(--v-b-in, 0);
+  transform: translateY(calc((1 - var(--v-b-in, 0)) * 32px));
+}
+
+/* ---------- Celular: imagem vertical, linha desce de cima para baixo ---------- */
+
+@media (max-width: 767px) {
+  .pin {
+    height: 200vh;
+  }
+
+  .scene {
+    height: 100svh;
+  }
+
+  .warm {
+    clip-path: inset(calc(var(--v-sweep, 0) * 100%) 0 0 0);
+  }
+
+  .sweep {
+    top: calc(var(--v-sweep, 0) * 100%);
+    bottom: auto;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: 1px;
+  }
+
+  .scrim {
+    background: linear-gradient(
+      to top,
+      rgba(12, 24, 38, 0.88) 0%,
+      rgba(12, 24, 38, 0.5) 40%,
+      rgba(12, 24, 38, 0) 70%
+    );
+  }
+
+  .text {
+    left: 20px;
+    right: 20px;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 10vh);
+    max-width: none;
+  }
+
+  .phraseA,
+  .phraseB {
+    font-size: clamp(2.4rem, 11vw, 3.4rem);
+  }
+}
+
+/* ---------- Movimento reduzido: imagem dividida ao meio, frase inteira ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .pin {
+    height: auto;
+  }
+
+  .scene {
+    position: relative;
+  }
+
+  .stage {
+    transform: none;
+    --v-sweep: 0.5;
+    --v-settle: 1;
+  }
+
+  .sweep {
+    opacity: 1;
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .phraseA,
+  .phraseB {
+    align-self: start;
+    opacity: 1;
+    transform: none;
+  }
+}

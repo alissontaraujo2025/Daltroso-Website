@@ -39,8 +39,9 @@ export function HeroContent() {
           <span className={`${styles.big} ${styles.bigWarm}`}>jurídica.</span>
         </h1>
 
+        {/* PLACEHOLDER: linha de apoio do hero, a validar na etapa de copy (F5). */}
         <p className={styles.support}>
-          Garantir que seus direitos sejam respeitados, na vida real e no mundo digital.
+          Defesa criminal, cível e digital, com cada etapa explicada.
         </p>
       </div>
 

@@ -15,7 +15,6 @@ export function AboutManifesto() {
       />
       <SceneDigitalLines />
       <div className={styles.bridge} aria-hidden="true" />
-      <div className={styles.exitFade} aria-hidden="true" />
 
       <div className={styles.inner}>
         <h2 className={styles.headline} data-reveal="up">
