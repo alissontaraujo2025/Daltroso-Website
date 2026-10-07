@@ -1,7 +1,6 @@
 /**
  * Dados institucionais do escritório (fonte: perfil da empresa no Google,
- * confirmado pelo cliente em 2026-10-07). Campos `null` ainda não foram
- * confirmados e ficam fora do site até serem preenchidos.
+ * confirmado pelo cliente em 2026-10-07).
  */
 export const office = {
   serviceArea:
@@ -13,6 +12,4 @@ export const office = {
     display: "(55) 99202-5742",
     href: "tel:+5555992025742",
   },
-  // PLACEHOLDER: registro da sociedade na OAB/RS (pedir à cliente)
-  oabRegistration: null as string | null,
 };

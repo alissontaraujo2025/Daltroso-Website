@@ -50,8 +50,6 @@ export function SiteFooter() {
             {office.oncall.display}
           </a>
         </p>
-        {/* Só aparece quando a cliente confirmar (ver data/office.ts) */}
-        {office.oabRegistration && <p>{office.oabRegistration}</p>}
         <p>{office.serviceArea}</p>
       </div>
 
