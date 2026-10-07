@@ -2,6 +2,7 @@ import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { OutlineWord } from "@/components/OutlineWord";
 import { IconFacebook, IconInstagram, IconYouTube } from "@/components/icons/SocialIcons";
 import { whatsappHref } from "@/lib/contact";
+import { RevealTitle } from "@/components/RevealTitle";
 import styles from "./ContactSection.module.css";
 
 const CHANNELS = [
@@ -35,9 +36,9 @@ export function ContactSection() {
       <div className={styles.bridge} aria-hidden="true" />
       <OutlineWord word="Direitos" placement="top-left" />
       <div className={styles.inner}>
-        <h2 className={styles.headline} data-reveal="mask">
+        <RevealTitle className={styles.headline}>
           Explique a situação. <span className="accent">Dizemos o que pode ser&nbsp;feito.</span>
-        </h2>
+        </RevealTitle>
 
         <p
           className={styles.support}

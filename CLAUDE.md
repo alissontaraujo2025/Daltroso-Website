@@ -135,5 +135,5 @@ Spec das mudanças: `docs/superpowers/specs/2026-10-07-modernizacao-virada-desig
 ### Próximos passos
 1. ~~Copy~~ revisada e validada em 2026-10-07 (sem "caso" visível; voz "nós" + "você"). Atendimento: Cruz Alta e região; Marcelo também em POA e região metropolitana. Contato não é só com a Bianca (também secretária e Rodrigo).
 2. ~~F3: Áreas como Hub~~ feito (`PracticeAreasSection.tsx`, commit 9cd332b; local, ainda não publicado). Tags só existem em Crimes digitais: pedir as das outras áreas à cliente.
-3. F4: tratamento de cor único nas fotos da Equipe (foto do Rodrigo tem fundo de evento).
+3. F4: ~~cor da Equipe~~ feito (duotone + revelação por linha de luz). Falta: verbos do Método em Bebas, tags em Host Grotesk.
 4. Ajustes menores: brilho do CTA do cabeçalho roda com ele oculto; na Virada mobile a 2ª frase entra cedo; ~6,8 MB de PNGs brutos em `scenes/scene-02-transition/assets/` (avaliar Git LFS).

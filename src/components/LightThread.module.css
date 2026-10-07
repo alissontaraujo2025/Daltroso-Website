@@ -1,0 +1,96 @@
+/* Fio de luz (ver LightThread.tsx).
+   --thread-tip: distância da ponta ao topo, em px. --thread-progress: 0 a 1. */
+
+.thread {
+  position: relative;
+}
+
+/* Trilho na margem esquerda, fora da coluna de conteúdo (1200px + 24px) */
+.rail {
+  --x: max(10px, calc((100vw - 1200px) / 2 - 18px));
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--x);
+  z-index: 40;
+  width: 1px;
+  pointer-events: none;
+  /* Trilho apagado: o caminho que a luz ainda vai percorrer */
+  background: linear-gradient(
+    180deg,
+    transparent 0,
+    rgba(240, 214, 168, 0.07) 160px,
+    rgba(240, 214, 168, 0.07) calc(100% - 160px),
+    transparent 100%
+  );
+}
+
+/* Trecho aceso: escala de cima para baixo até a ponta */
+.fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: top;
+  transform: scaleY(var(--thread-progress, 1));
+  background: linear-gradient(
+    180deg,
+    transparent 0,
+    rgba(240, 214, 168, 0.5) 220px,
+    rgba(240, 214, 168, 0.5) 100%
+  );
+}
+
+/* Ponta luminosa: o mesmo brilho da linha da Virada */
+.tip {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  border-radius: 50%;
+  background: #f2ddba;
+  box-shadow:
+    0 0 10px 2px rgba(242, 221, 186, 0.6),
+    0 0 36px 8px rgba(240, 214, 168, 0.18);
+  transform: translateY(var(--thread-tip, 0));
+  /* Some no começo e no fim do percurso */
+  opacity: calc(
+    min(var(--thread-progress, 0) * 30, 1) * min((1 - var(--thread-progress, 0)) * 30, 1)
+  );
+  display: none;
+}
+
+/* Ponto final: acende quando a luz chega ao fim (passagem para o Contato) */
+.end {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 7px;
+  height: 7px;
+  margin: 0 0 -3.5px -3.5px;
+  border-radius: 50%;
+  border: 1px solid rgba(240, 214, 168, 0.5);
+  background: transparent;
+  transition:
+    background-color 0.6s ease,
+    box-shadow 0.6s ease;
+}
+
+.thread[data-animated] .tip {
+  display: block;
+}
+
+.thread[data-done] .end {
+  background-color: #f2ddba;
+  box-shadow:
+    0 0 10px 2px rgba(242, 221, 186, 0.55),
+    0 0 40px 10px rgba(240, 214, 168, 0.16);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .thread[data-animated] .fill {
+    /* A escala segue o scroll direto; sem transição para não "atrasar" */
+    will-change: transform;
+  }
+}

@@ -1,6 +1,7 @@
 import { team } from "@/data/team";
 import { OutlineWord } from "@/components/OutlineWord";
 import { TeamCarousel } from "./TeamCarousel";
+import { RevealTitle } from "@/components/RevealTitle";
 import styles from "./TeamSection.module.css";
 
 export function TeamSection() {
@@ -14,9 +15,9 @@ export function TeamSection() {
       <OutlineWord word="Justiça" placement="top-right" zIndex={-1} />
 
       <header className={styles.header}>
-        <h2 id="equipe-title" className={styles.title} data-reveal="up">
+        <RevealTitle id="equipe-title" className={styles.title}>
           Com quem você vai <span className="accent">falar.</span>
-        </h2>
+        </RevealTitle>
       </header>
 
       <TeamCarousel members={team} />

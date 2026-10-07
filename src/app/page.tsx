@@ -1,4 +1,5 @@
 import { AboutManifesto } from "@/sections/AboutManifesto";
+import { LightThread } from "@/components/LightThread";
 import { ContactSection } from "@/sections/ContactSection";
 import { Hero } from "@/sections/Hero";
 import { MethodSection } from "@/sections/MethodSection";
@@ -14,9 +15,11 @@ export default function Home() {
         <Hero />
         <AboutManifesto />
         <ViradaScene />
-        <PracticeAreasSection />
-        <MethodSection />
-        <TeamSection />
+        <LightThread>
+          <PracticeAreasSection />
+          <MethodSection />
+          <TeamSection />
+        </LightThread>
         <ContactSection />
       </main>
       <SiteFooter />

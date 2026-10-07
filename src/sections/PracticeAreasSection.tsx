@@ -15,6 +15,7 @@ import { practiceAreas, type PracticeArea, type PracticeAreaIcon } from "@/data/
 import { whatsappHref } from "@/lib/contact";
 import { useScrollProgress } from "@/lib/useScrollProgress";
 import { noWidow } from "@/lib/typography";
+import { RevealTitle } from "@/components/RevealTitle";
 import styles from "./PracticeAreasSection.module.css";
 
 const COUNT = practiceAreas.length;
@@ -128,9 +129,9 @@ export function PracticeAreasSection() {
 
         <div className={styles.inner}>
           <header className={styles.header}>
-            <h2 id="atuacao-title" className={styles.title} data-reveal="up">
+            <RevealTitle id="atuacao-title" className={styles.title}>
               Onde podemos <span className="accent">ajudar.</span>
-            </h2>
+            </RevealTitle>
             <p
               className={styles.support}
               data-reveal="up"

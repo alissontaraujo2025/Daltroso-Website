@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from "react";
 import { noWidow } from "@/lib/typography";
+import { RevealTitle } from "@/components/RevealTitle";
 import styles from "./MethodSection.module.css";
 
 // Palavras do brief da Cena 04. Cada etapa tem a sua foto (public/images/metodo-0N-*.webp).
@@ -105,9 +106,9 @@ export function MethodSection() {
 
       <div className={styles.inner}>
         <header className={styles.header}>
-          <h2 id="metodo-title" className={styles.title} data-reveal="up">
+          <RevealTitle id="metodo-title" className={styles.title}>
             Como <span className="accent">trabalhamos.</span>
-          </h2>
+          </RevealTitle>
           <p
             className={styles.lead}
             data-reveal="up"

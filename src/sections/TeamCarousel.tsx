@@ -183,7 +183,12 @@ export function TeamCarousel({ members }: { members: TeamMember[] }) {
                     style={{ objectPosition: member.focus }}
                     draggable={false}
                   />
-                  <span className={styles.tone} aria-hidden="true" />
+                  {/* Duotone: azul profundo nas sombras, creme nas luzes */}
+                  <span className={styles.duoShadows} aria-hidden="true" />
+                  <span className={styles.duoHighlights} aria-hidden="true" />
+                  {/* Entrada: véu escuro e desfocado que uma linha de luz recolhe */}
+                  <span className={styles.develop} aria-hidden="true" />
+                  <span className={styles.duoLight} aria-hidden="true" />
                   <span className={styles.shade} aria-hidden="true" />
                 </div>
 

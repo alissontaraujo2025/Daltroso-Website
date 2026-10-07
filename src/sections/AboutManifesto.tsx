@@ -1,6 +1,7 @@
 import { VideoBackground } from "@/components/VideoBackground";
 import { AboutManifestoFacets } from "./AboutManifestoFacets";
 import { SceneDigitalLines } from "./SceneDigitalLines";
+import { RevealTitle } from "@/components/RevealTitle";
 import styles from "./AboutManifesto.module.css";
 
 export function AboutManifesto() {
@@ -17,9 +18,9 @@ export function AboutManifesto() {
       <div className={styles.bridge} aria-hidden="true" />
 
       <div className={styles.inner}>
-        <h2 className={styles.headline} data-reveal="up">
+        <RevealTitle className={styles.headline}>
           Advocacia para quem quer <span className="accent">entender</span> o que está&nbsp;acontecendo.
-        </h2>
+        </RevealTitle>
 
         <p
           className={styles.support}
