@@ -7,7 +7,6 @@ import styles from "./LightThread.module.css";
  * Fio de luz: linha dourada bem fina na margem esquerda que se desenha
  * conforme a rolagem, costurando as cenas que envolve. Continua a linha
  * de luz da cena A Virada. A ponta acompanha um ponto fixo da tela.
- * Com movimento reduzido, o fio aparece inteiro e parado.
  */
 export function LightThread({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -15,7 +14,6 @@ export function LightThread({ children }: { children: ReactNode }) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     let frame = 0;
     const update = () => {

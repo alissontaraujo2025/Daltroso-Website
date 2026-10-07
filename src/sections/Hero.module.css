@@ -35,13 +35,3 @@
   transform: scaleY(calc(1 + var(--p-light, 0) * 1.75));
   will-change: transform;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .heroPin {
-    height: auto;
-  }
-
-  .hero {
-    position: relative;
-  }
-}

@@ -80,7 +80,7 @@ function AreaDetails({ area }: { area: PracticeArea }) {
  * Cena 04 — Áreas de atuação como "Hub".
  * Desktop: cena sticky; o scroll avança uma área por vez (lista à esquerda,
  * painel à direita). Mobile: sanfona, uma área aberta por vez.
- * Com movimento reduzido: sem pinning, a área muda pelo clique.
+ * Sem JS: sem pinning, a área muda pelo clique.
  */
 export function PracticeAreasSection() {
   const pinRef = useRef<HTMLDivElement>(null);

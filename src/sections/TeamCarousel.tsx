@@ -90,8 +90,7 @@ export function TeamCarousel({ members }: { members: TeamMember[] }) {
     const card = el?.firstElementChild as HTMLElement | null;
     if (!el || !card) return;
     const gap = parseFloat(getComputedStyle(el).columnGap) || 0;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    el.scrollBy({ left: dir * (card.offsetWidth + gap), behavior: reduce ? "auto" : "smooth" });
+    el.scrollBy({ left: dir * (card.offsetWidth + gap), behavior: "smooth" });
   };
 
   const onPointerDown = (e: React.PointerEvent) => {

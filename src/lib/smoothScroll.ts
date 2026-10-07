@@ -1,6 +1,6 @@
 import type Lenis from "lenis";
 
-/** Instância da rolagem suave (só existe no desktop, com movimento liberado). */
+/** Instância da rolagem suave (só existe no desktop). */
 let instance: Lenis | null = null;
 
 export function setSmoothScroll(lenis: Lenis | null) {
@@ -13,6 +13,5 @@ export function scrollToY(top: number) {
     instance.scrollTo(top, { duration: 1.2 });
     return;
   }
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  window.scrollTo({ top, behavior: reduce ? "auto" : "smooth" });
+  window.scrollTo({ top, behavior: "smooth" });
 }

@@ -5,7 +5,6 @@ import { useEffect } from "react";
 /**
  * Observa todos os elementos com [data-reveal] e marca [data-revealed]
  * quando entram na tela. As animações ficam no globals.css.
- * Com prefers-reduced-motion, o CSS não esconde nada.
  */
 export function RevealObserver() {
   useEffect(() => {

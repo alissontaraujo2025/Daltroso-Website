@@ -8,13 +8,12 @@ import { setSmoothScroll } from "@/lib/smoothScroll";
  * Rolagem com inércia no desktop (mouse e trackpad). O scroll continua
  * nativo por baixo, então sticky, IntersectionObserver e os listeners de
  * scroll do site seguem funcionando. Fica desligada no toque (o celular já
- * tem inércia) e com movimento reduzido.
+ * tem inércia).
  */
 export function SmoothScroll() {
   useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    if (reduce || !fine) return;
+    if (!fine) return;
 
     const lenis = new Lenis({
       lerp: 0.085,

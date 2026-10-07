@@ -184,12 +184,6 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .photoWrap {
-    --develop: 1;
-    transition: none;
-  }
-}
 
 .shade {
   position: absolute;
@@ -476,37 +470,21 @@
 }
 
 /* Entrada da cena */
-@media (prefers-reduced-motion: no-preference) {
-  .carousel .card {
-    opacity: 0;
-    transform: translateY(32px);
-    transition:
-      opacity 900ms var(--ease),
-      transform 900ms var(--ease);
-    transition-delay: calc(var(--i) * 120ms);
-  }
 
-  .carousel.revealed .card {
-    opacity: 1;
-    transform: none;
-  }
+.carousel .card {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 900ms var(--ease),
+    transform 900ms var(--ease);
+  transition-delay: calc(var(--i) * 120ms);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .track {
-    scroll-behavior: auto;
-  }
-
-  .photo,
-  .tone,
-  .panel,
-  .panelHead,
-  .bio,
-  .info,
-  .progressBar {
-    transition-duration: 1ms;
-  }
+.carousel.revealed .card {
+  opacity: 1;
+  transform: none;
 }
+
 
 /* ---------- Tablet / mobile ---------- */
 
@@ -596,10 +574,9 @@
   filter: blur(6px);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .beams {
-    animation: beams-drift 26s ease-in-out infinite alternate;
-  }
+
+.beams {
+  animation: beams-drift 26s ease-in-out infinite alternate;
 }
 
 @keyframes beams-drift {

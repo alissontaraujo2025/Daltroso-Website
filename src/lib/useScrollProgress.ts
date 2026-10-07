@@ -9,7 +9,7 @@ export function remap(progress: number, start: number, end: number): number {
 
 /**
  * Mede quanto de um bloco sticky já foi rolado (0 no início, 1 no fim)
- * e entrega o valor a cada frame de scroll. Com movimento reduzido, não roda.
+ * e entrega o valor a cada frame de scroll.
  */
 export function useScrollProgress(
   ref: RefObject<HTMLElement | null>,
@@ -24,7 +24,6 @@ export function useScrollProgress(
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     let frame = 0;
 

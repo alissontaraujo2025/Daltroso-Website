@@ -92,7 +92,7 @@ Trabalhar uma cena ou componente por vez.
 - evitar dependências desnecessárias
 - priorizar performance
 - respeitar acessibilidade
-- respeitar `prefers-reduced-motion` (desliga pinning e animações de scroll; os loops de vídeo ambiente continuam tocando, por decisão do cliente)
+- animações e transições de cena rodam sempre, mesmo com `prefers-reduced-motion` ativo no sistema (decisão do cliente em 2026-10-07: o movimento é essencial para a sensação de modernidade). Não reintroduzir checagens de movimento reduzido.
 - vídeo nunca deve bloquear carregamento principal
 - prever fallback estático para vídeo
 - mobile não pode depender de hover
@@ -134,6 +134,6 @@ Spec das mudanças: `docs/superpowers/specs/2026-10-07-modernizacao-virada-desig
 
 ### Próximos passos
 1. ~~Copy~~ revisada e validada em 2026-10-07 (sem "caso" visível; voz "nós" + "você"). Atendimento: Cruz Alta e região; Marcelo também em POA e região metropolitana. Contato não é só com a Bianca (também secretária e Rodrigo).
-2. ~~F3: Áreas como Hub~~ feito (`PracticeAreasSection.tsx`, commit 9cd332b; local, ainda não publicado). Tags só existem em Crimes digitais: pedir as das outras áreas à cliente.
+2. ~~F3: Áreas como Hub~~ feito (`PracticeAreasSection.tsx`), com foco contínuo por rolagem. Publicado em 2026-10-07 (commit 3ed4549, junto da rolagem suave Lenis no desktop; push ao GitHub pendente). Tags só existem em Crimes digitais: pedir as das outras áreas à cliente.
 3. F4: ~~cor da Equipe~~ feito (duotone + revelação por linha de luz). Falta: verbos do Método em Bebas, tags em Host Grotesk.
 4. Ajustes menores: brilho do CTA do cabeçalho roda com ele oculto; na Virada mobile a 2ª frase entra cedo; ~6,8 MB de PNGs brutos em `scenes/scene-02-transition/assets/` (avaliar Git LFS).

@@ -1,6 +1,6 @@
 /* Cena 04 — Áreas de atuação como "Hub".
-   Desktop com movimento: cena sticky, uma área por trecho de scroll (ver useScrollProgress).
-   Mobile: sanfona. Movimento reduzido: sem pinning, troca pelo clique. */
+   Desktop: cena sticky, uma área por trecho de scroll (ver useScrollProgress).
+   Mobile: sanfona. Sem JS: sem pinning, troca pelo clique. */
 
 .pin {
   --navy: #0c1826;
@@ -22,9 +22,9 @@
   isolation: isolate;
 }
 
-/* ---------- Pinning (só desktop, só com movimento) ---------- */
+/* ---------- Pinning (só desktop) ---------- */
 
-@media (min-width: 1025px) and (prefers-reduced-motion: no-preference) {
+@media (min-width: 1025px) {
   .pin[data-animated] {
     height: calc(100vh + var(--count) * 55vh);
   }
@@ -221,11 +221,9 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .panelLeaving {
-    display: grid;
-    animation: panel-out 0.45s var(--ease) forwards;
-  }
+.panelLeaving {
+  display: grid;
+  animation: panel-out 0.45s var(--ease) forwards;
 }
 
 @keyframes panel-out {
@@ -276,10 +274,8 @@
   color: #fff;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .panelContent:not(.panelLeaving) {
-    animation: panel-in 0.7s var(--ease) 0.08s both;
-  }
+.panelContent:not(.panelLeaving) {
+  animation: panel-in 0.7s var(--ease) 0.08s both;
 }
 
 /* Entra em foco: blur + fade + máscara + deslocamento curto */
@@ -495,33 +491,31 @@
 
 /* Abrir e fechar com altura, fade e blur (navegadores com ::details-content).
    Nos demais, o conteúdo só entra com a animação de foco, sem saída. */
-@media (prefers-reduced-motion: no-preference) {
-  .accordion {
-    interpolate-size: allow-keywords;
-  }
+.accordion {
+  interpolate-size: allow-keywords;
+}
 
-  .accItem::details-content {
-    block-size: 0;
-    overflow: clip;
-    opacity: 0;
-    filter: blur(8px);
-    transition:
-      block-size 0.55s var(--ease),
-      opacity 0.4s ease,
-      filter 0.5s var(--ease),
-      content-visibility 0.55s allow-discrete;
-  }
+.accItem::details-content {
+  block-size: 0;
+  overflow: clip;
+  opacity: 0;
+  filter: blur(8px);
+  transition:
+    block-size 0.55s var(--ease),
+    opacity 0.4s ease,
+    filter 0.5s var(--ease),
+    content-visibility 0.55s allow-discrete;
+}
 
-  .accItem[open]::details-content {
-    block-size: auto;
-    opacity: 1;
-    filter: blur(0);
-  }
+.accItem[open]::details-content {
+  block-size: auto;
+  opacity: 1;
+  filter: blur(0);
+}
 
-  @supports not selector(::details-content) {
-    .accItem[open] .accBody {
-      animation: panel-in 0.5s var(--ease) both;
-    }
+@supports not selector(::details-content) {
+  .accItem[open] .accBody {
+    animation: panel-in 0.5s var(--ease) both;
   }
 }
 

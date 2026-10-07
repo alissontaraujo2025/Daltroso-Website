@@ -48,23 +48,22 @@
 
 /* Deslize lateral lento enquanto a seção atravessa a tela (sem JS) */
 @supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .word {
-      animation: outline-drift linear both;
-      animation-timeline: view();
-    }
 
-    .top-left,
-    .bottom-left {
-      --drift-from: -4%;
-      --drift-to: 4%;
-    }
+  .word {
+    animation: outline-drift linear both;
+    animation-timeline: view();
+  }
 
-    .top-right,
-    .bottom-right {
-      --drift-from: 4%;
-      --drift-to: -4%;
-    }
+  .top-left,
+  .bottom-left {
+    --drift-from: -4%;
+    --drift-to: 4%;
+  }
+
+  .top-right,
+  .bottom-right {
+    --drift-from: 4%;
+    --drift-to: -4%;
   }
 }
 

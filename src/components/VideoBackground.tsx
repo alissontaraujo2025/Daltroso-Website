@@ -53,8 +53,6 @@ export function VideoBackground({
 
     videoEl.muted = true;
 
-    // The ambient loop is slow and cut-free, so it plays even with
-    // prefers-reduced-motion; scroll-driven motion is disabled elsewhere.
     if (!inView) {
       videoEl.pause();
       return;

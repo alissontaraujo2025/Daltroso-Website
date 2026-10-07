@@ -179,8 +179,8 @@
 }
 
 /* ---------- Versão estática: imagem dividida ao meio, frase inteira ----------
-   Vale até o JS ligar a animação (data-animated): cobre movimento reduzido
-   (o hook não roda) e JS desligado ou com falha. */
+   Vale até o JS ligar a animação (data-animated): cobre JS desligado
+   ou com falha. */
 
 .pin:not([data-animated]) {
   height: auto;

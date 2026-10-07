@@ -88,9 +88,7 @@
     0 0 40px 10px rgba(240, 214, 168, 0.16);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .thread[data-animated] .fill {
-    /* A escala segue o scroll direto; sem transição para não "atrasar" */
-    will-change: transform;
-  }
+.thread[data-animated] .fill {
+  /* A escala segue o scroll direto; sem transição para não "atrasar" */
+  will-change: transform;
 }
