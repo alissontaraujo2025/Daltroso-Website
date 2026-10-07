@@ -1,5 +1,6 @@
 "use client";
 
+import { OutlineWord } from "@/components/OutlineWord";
 import {
   useEffect,
   useRef,
@@ -78,6 +79,7 @@ export function PracticeAreasSection() {
       <div className={styles.bridge} aria-hidden="true" />
       <div className={styles.glow} aria-hidden="true" />
       <div className={styles.dots} aria-hidden="true" />
+      <OutlineWord word="Defesa" placement="bottom-right" zIndex={-1} />
 
       <div className={styles.inner}>
         <header className={styles.header}>

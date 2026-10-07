@@ -1,4 +1,5 @@
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { OutlineWord } from "@/components/OutlineWord";
 import { IconFacebook, IconInstagram, IconYouTube } from "@/components/icons/SocialIcons";
 import { whatsappHref } from "@/lib/contact";
 import styles from "./ContactSection.module.css";
@@ -32,6 +33,7 @@ export function ContactSection() {
       <div className={styles.bgImage} aria-hidden="true" />
       <div className={styles.bgOverlay} aria-hidden="true" />
       <div className={styles.bridge} aria-hidden="true" />
+      <OutlineWord word="Direitos" placement="top-left" />
       <div className={styles.inner}>
         <h2 className={styles.headline} data-reveal="mask">
           Cada situação pede uma <span className="accent">leitura própria.</span>

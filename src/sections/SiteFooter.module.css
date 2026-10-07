@@ -1,6 +1,8 @@
 .footer {
   position: relative;
-  padding: 56px 24px 32px;
+  overflow: hidden;
+  /* Espaço inferior para a assinatura gigante "DALTROSO" */
+  padding: 56px 24px clamp(120px, 15vw, 240px);
   background: #070f19;
   color: rgba(255, 255, 255, 0.7);
 }
@@ -18,6 +20,8 @@
 }
 
 .inner {
+  position: relative;
+  z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -115,6 +119,8 @@
 }
 
 .copy {
+  position: relative;
+  z-index: 1;
   max-width: 1200px;
   margin: 40px auto 0;
   font-size: 0.78rem;

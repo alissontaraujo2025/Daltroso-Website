@@ -1,3 +1,4 @@
+import { OutlineWord } from "@/components/OutlineWord";
 import styles from "./SiteFooter.module.css";
 
 const LINKS = [
@@ -13,6 +14,7 @@ export function SiteFooter() {
 
   return (
     <footer className={styles.footer}>
+      <OutlineWord word="Daltroso" placement="bottom-center" />
       <div className={styles.inner}>
         <p className={styles.logo}>
           Daltroso

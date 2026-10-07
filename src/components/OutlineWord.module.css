@@ -1,0 +1,84 @@
+/* Palavra gigante vazada: contorno dourado sutil, sem preenchimento.
+   Mesmo desenho do número de "Como trabalhamos". */
+.word {
+  position: absolute;
+  z-index: var(--outline-z, 0);
+  font-family: var(--font-poster), sans-serif;
+  font-size: clamp(9rem, 26vw, 30rem);
+  line-height: 0.8;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(240, 214, 168, 0.16);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Dissolve para dentro da seção, sem corte seco na borda */
+.top-left,
+.top-right {
+  top: -4vh;
+  -webkit-mask-image: linear-gradient(to top, transparent 8%, #000 65%);
+  mask-image: linear-gradient(to top, transparent 8%, #000 65%);
+}
+
+.bottom-left,
+.bottom-right,
+.bottom-center {
+  bottom: -6vh;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 8%, #000 65%);
+  mask-image: linear-gradient(to bottom, transparent 8%, #000 65%);
+}
+
+.top-left,
+.bottom-left {
+  left: -1.5vw;
+}
+
+.top-right,
+.bottom-right {
+  right: -1.5vw;
+}
+
+/* Assinatura de largura total (rodapé) */
+.bottom-center {
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+/* Deslize lateral lento enquanto a seção atravessa a tela (sem JS) */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .word {
+      animation: outline-drift linear both;
+      animation-timeline: view();
+    }
+
+    .top-left,
+    .bottom-left {
+      --drift-from: -4%;
+      --drift-to: 4%;
+    }
+
+    .top-right,
+    .bottom-right {
+      --drift-from: 4%;
+      --drift-to: -4%;
+    }
+  }
+}
+
+@keyframes outline-drift {
+  from {
+    transform: translateX(var(--drift-from, 0));
+  }
+  to {
+    transform: translateX(var(--drift-to, 0));
+  }
+}
+
+@media (max-width: 767px) {
+  .word {
+    font-size: 42vw;
+  }
+}
