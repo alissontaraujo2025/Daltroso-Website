@@ -18,9 +18,8 @@ export function AboutManifesto() {
       <div className={styles.exitFade} aria-hidden="true" />
 
       <div className={styles.inner}>
-        <h2 className={styles.headline} data-reveal="mask">
-          Somos uma advocacia pensada para&nbsp;o{" "}
-          <span className="accent">mundo como ele é hoje.</span>
+        <h2 className={styles.headline} data-reveal="up">
+          Somos uma advocacia pensada para&nbsp;o mundo como ele é&nbsp;hoje.
         </h2>
 
         <p

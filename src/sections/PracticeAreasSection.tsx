@@ -83,11 +83,8 @@ export function PracticeAreasSection() {
 
       <div className={styles.inner}>
         <header className={styles.header}>
-          <p className={`${styles.eyebrow} eyebrow-line`} data-reveal="up">
-            Áreas de atuação
-          </p>
-          <h2 id="atuacao-title" className={styles.title} data-reveal="mask">
-            Onde o escritório <span className="accent">pode ajudar.</span>
+          <h2 id="atuacao-title" className={styles.title} data-reveal="up">
+            Onde o escritório pode&nbsp;ajudar.
           </h2>
           <p
             className={styles.support}

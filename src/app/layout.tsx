@@ -61,7 +61,6 @@ export default function RootLayout({
         <a href="#quem-somos" className="skip-link">
           Pular para o conteúdo
         </a>
-        <div className="scroll-progress" aria-hidden="true" />
         {children}
         <RevealObserver />
       </body>

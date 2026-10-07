@@ -12,11 +12,8 @@ export function TeamSection() {
       <div className={styles.beams} aria-hidden="true" />
 
       <header className={styles.header}>
-        <p className={`${styles.eyebrow} eyebrow-line eyebrow-line--center`} data-reveal="up">
-          Equipe
-        </p>
-        <h2 id="equipe-title" className={styles.title} data-reveal="mask">
-          As pessoas que vão <span className="accent">cuidar do seu caso.</span>
+        <h2 id="equipe-title" className={styles.title} data-reveal="up">
+          As pessoas que vão cuidar do seu&nbsp;caso.
         </h2>
       </header>
 

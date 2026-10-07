@@ -89,15 +89,6 @@
   max-width: 760px;
 }
 
-/* Cabeçalho no sistema do site (fio dourado + DM Serif), como as outras cenas */
-.eyebrow {
-  margin: 0 0 18px;
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
 
 .title {
   margin: 0;

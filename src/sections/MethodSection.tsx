@@ -96,11 +96,8 @@ export function MethodSection() {
 
       <div className={styles.inner}>
         <header className={styles.header}>
-          <p className={`${styles.eyebrow} eyebrow-line`} data-reveal="up">
-            Como trabalhamos
-          </p>
-          <h2 id="metodo-title" className={styles.title} data-reveal="mask">
-            Do primeiro contato <span className="accent">à defesa do seu caso.</span>
+          <h2 id="metodo-title" className={styles.title} data-reveal="up">
+            Do primeiro contato à defesa do seu&nbsp;caso.
           </h2>
           <p
             className={styles.lead}

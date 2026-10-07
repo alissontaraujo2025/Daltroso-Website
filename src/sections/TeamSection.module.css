@@ -47,15 +47,6 @@
   text-align: center;
 }
 
-.eyebrow {
-  margin: 0 0 18px;
-  font-family: var(--font-sans), sans-serif;
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--warm);
-}
 
 .title {
   margin: 0;
