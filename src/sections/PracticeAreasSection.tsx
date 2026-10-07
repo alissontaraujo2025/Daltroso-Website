@@ -84,7 +84,7 @@ export function PracticeAreasSection() {
       <div className={styles.inner}>
         <header className={styles.header}>
           <h2 id="atuacao-title" className={styles.title} data-reveal="up">
-            Onde o escritório pode&nbsp;ajudar.
+            Onde o escritório pode <span className="accent">ajudar.</span>
           </h2>
           <p
             className={styles.support}

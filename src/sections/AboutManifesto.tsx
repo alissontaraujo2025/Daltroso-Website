@@ -18,7 +18,7 @@ export function AboutManifesto() {
 
       <div className={styles.inner}>
         <h2 className={styles.headline} data-reveal="up">
-          Somos uma advocacia pensada para&nbsp;o mundo como ele é&nbsp;hoje.
+          Somos uma advocacia pensada para&nbsp;o mundo como ele é <span className="accent">hoje.</span>
         </h2>
 
         <p

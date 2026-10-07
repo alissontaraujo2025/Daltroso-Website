@@ -15,7 +15,7 @@ export function TeamSection() {
 
       <header className={styles.header}>
         <h2 id="equipe-title" className={styles.title} data-reveal="up">
-          As pessoas que vão cuidar do seu&nbsp;caso.
+          As pessoas que vão <span className="accent">cuidar</span> do seu&nbsp;caso.
         </h2>
       </header>
 

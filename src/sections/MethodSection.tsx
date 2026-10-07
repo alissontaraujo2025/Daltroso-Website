@@ -97,7 +97,7 @@ export function MethodSection() {
       <div className={styles.inner}>
         <header className={styles.header}>
           <h2 id="metodo-title" className={styles.title} data-reveal="up">
-            Do primeiro contato à defesa do seu&nbsp;caso.
+            Do primeiro contato <span className="accent">à defesa</span> do seu&nbsp;caso.
           </h2>
           <p
             className={styles.lead}
