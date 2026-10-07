@@ -4,39 +4,35 @@ import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } fr
 import { noWidow } from "@/lib/typography";
 import styles from "./MethodSection.module.css";
 
-const HERO = "/videos/hero-daltroso-desktop-poster.webp";
-const DESK = "/videos/scene-02-daltroso-desktop-poster.webp";
-
-// Palavras do brief da Cena 04. Cada etapa usa um recorte das fotos do próprio site.
-// PLACEHOLDER: textos de cada etapa ainda precisam ser validados pelo escritório.
+// Palavras do brief da Cena 04. Cada etapa tem a sua foto (public/images/metodo-0N-*.webp).
 const STEPS = [
   {
     word: "Ouvir",
     tag: "Escuta / Contexto",
     text: "Primeiro, uma reunião para escutar: o que aconteceu, o que você já tentou e o que mais preocupa você.",
-    image: HERO,
-    focus: "77% 72%",
+    image: "/images/metodo-01-ouvir.webp",
+    focus: "60% 50%",
   },
   {
     word: "Analisar",
     tag: "Documentos / Prazos / Provas",
     text: "Documentos, prazos e provas. Daí saem os caminhos possíveis, com o que cada um exige.",
-    image: DESK,
-    focus: "70% 92%",
+    image: "/images/metodo-02-analisar.webp",
+    focus: "45% 55%",
   },
   {
     word: "Estruturar",
     tag: "Estratégia / Riscos",
     text: "Você recebe um plano: o que fazer, quais são os riscos e quais são os próximos passos.",
-    image: DESK,
-    focus: "6% 76%",
+    image: "/images/metodo-03-estruturar.webp",
+    focus: "50% 40%",
   },
   {
     word: "Atuar",
     tag: "Atuação / Acompanhamento",
     text: "Colocamos o plano em prática e avisamos você sempre que algo muda.",
-    image: HERO,
-    focus: "88% 18%",
+    image: "/images/metodo-04-atuar.webp",
+    focus: "60% 45%",
   },
 ];
 
@@ -53,6 +49,17 @@ export function MethodSection() {
   // Etapa em destaque: hover no desktop, posição de rolagem no celular
   const [active, setActive] = useState<number | null>(null);
   const [hovering, setHovering] = useState(false);
+
+  // Pré-carrega as fotos das etapas depois do carregamento principal,
+  // para a prévia do hover não aparecer vazia na primeira passada
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      STEPS.forEach((step) => {
+        new Image().src = step.image;
+      });
+    }, 2500);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   // Sem mouse (toque), a linha que cruza o centro da tela fica em destaque
   useEffect(() => {
@@ -77,7 +84,9 @@ export function MethodSection() {
   const handlePointerMove = (event: PointerEvent<HTMLOListElement>) => {
     if (event.pointerType !== "mouse" || !previewRef.current) return;
     previewRef.current.style.setProperty("--px", `${event.clientX}px`);
-    previewRef.current.style.setProperty("--py", `${event.clientY}px`);
+    // Centro da prévia (340px de altura) preso dentro da tela, com folga
+    const py = Math.min(Math.max(event.clientY, 190), window.innerHeight - 190);
+    previewRef.current.style.setProperty("--py", `${py}px`);
     const nearRightEdge = event.clientX > window.innerWidth - 340;
     previewRef.current.style.setProperty("--ox", nearRightEdge ? "calc(-100% - 36px)" : "36px");
   };
