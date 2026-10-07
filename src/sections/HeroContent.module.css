@@ -135,12 +135,31 @@
   transform: translateY(calc(var(--p-subtext, 0) * -14px));
 }
 
-/* Segunda frase em destaque: a resposta ao problema */
+/* Segunda frase: a resposta ao problema. Destaque só pela cor, mesmo peso. */
+.supportQuestion,
 .supportKey {
   display: block;
-  margin-top: 0.3em;
-  font-weight: 500;
+}
+
+.supportKey {
+  font-weight: 400;
   color: #ffffff;
+}
+
+/* Desktop: a medida do subtexto é a largura de "INTELIGÊNCIA" (≈ 4,1em do
+   Bebas), então o bloco fecha na mesma borda do pôster. Uma frase por linha:
+   pergunta, depois resposta. O lado direito fica livre para a foto. */
+@media (min-width: 1025px) {
+  .main {
+    max-width: none;
+  }
+
+  .support {
+    max-width: calc(var(--title-bebas) * 4.1);
+    font-size: clamp(1rem, calc(var(--title-bebas) * 0.112), 1.75rem);
+    line-height: 1.45;
+    text-wrap: wrap;
+  }
 }
 
 /* Nav */

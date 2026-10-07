@@ -41,10 +41,12 @@ export function HeroContent() {
 
         {/* PLACEHOLDER: linha de apoio do hero, a validar na etapa de copy (F5). */}
         <p className={styles.support}>
-          Golpe virtual, processo criminal ou conflito na&nbsp;Justiça?{" "}
-          <strong className={styles.supportKey}>
+          <span className={styles.supportQuestion}>
+            Golpe virtual, processo criminal ou conflito na&nbsp;Justiça?
+          </span>{" "}
+          <span className={styles.supportKey}>
             A equipe explica o que dá para fazer e cuida do seu&nbsp;caso.
-          </strong>
+          </span>
         </p>
       </div>
 
