@@ -66,7 +66,7 @@
   font-weight: 500;
   /* Fechamento do site: título em escala de cartaz, ocupando a largura da tela */
   font-size: var(--title-poster);
-  line-height: 1.02;
+  line-height: 1.04;
   letter-spacing: -0.025em;
   color: #ffffff;
   max-width: 100%;
@@ -75,8 +75,8 @@
 
 .support {
   font-family: var(--font-sans), sans-serif;
-  font-size: clamp(1.15rem, 1.45vw, 1.45rem);
-  line-height: 1.6;
+  font-size: var(--text-lead);
+  line-height: 1.55;
   color: rgba(255, 255, 255, 0.82);
   max-width: 52ch;
   margin: 0 0 18px;
@@ -84,7 +84,7 @@
 
 .smallLine {
   font-family: var(--font-sans), sans-serif;
-  font-size: clamp(1.05rem, 1.2vw, 1.2rem);
+  font-size: var(--text-body);
   letter-spacing: 0.02em;
   color: #e8b36d;
   margin: 0 0 44px;
@@ -159,12 +159,7 @@
   }
 
   .headline {
-    font-size: clamp(2.5rem, 11.5vw, 3.4rem);
     max-width: 100%;
-  }
-
-  .support {
-    font-size: 1.05rem;
   }
 
   .smallLine {

@@ -36,7 +36,7 @@ export function ContactSection() {
       <OutlineWord word="Direitos" placement="top-left" />
       <div className={styles.inner}>
         <h2 className={styles.headline} data-reveal="mask">
-          Conte o que <span className="accent">aconteceu.</span>
+          Conte o que aconteceu. <span className="accent">Analisamos o seu&nbsp;caso.</span>
         </h2>
 
         <p

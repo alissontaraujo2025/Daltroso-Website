@@ -95,7 +95,7 @@
   font-family: var(--font-sans), sans-serif;
   font-weight: 500;
   font-size: var(--title-section);
-  line-height: 1.12;
+  line-height: 1.08;
   letter-spacing: -0.025em;
   color: #fff;
 }
@@ -103,8 +103,8 @@
 .lead {
   max-width: 50ch;
   margin: 20px 0 0;
-  font-size: clamp(1.1rem, 1.35vw, 1.3rem);
-  line-height: 1.6;
+  font-size: var(--text-lead);
+  line-height: 1.55;
   color: rgba(243, 239, 229, 0.78);
 }
 
@@ -280,10 +280,6 @@
 
   .inner {
     padding: 0 20px;
-  }
-
-  .lead {
-    font-size: 1.05rem;
   }
 
   .index {

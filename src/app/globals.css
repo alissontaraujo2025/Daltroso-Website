@@ -1,10 +1,13 @@
 /* Duas famílias: Bebas = pôster (hero, Virada, verbos do método); Host Grotesk = todo o resto.
-   Escalas: pôster em Bebas, cartaz (fechamento) e seção (cenas do meio).
-   A Bebas é condensada: precisa de muito corpo para ter presença. */
+   Escala única de tamanhos: cada degrau cresce em proporção ao anterior,
+   para títulos e textos de apoio conversarem em qualquer seção. */
 :root {
   --title-bebas: clamp(4rem, min(14.5vw, 25vh), 16rem);
-  --title-poster: clamp(3rem, 7.4vw, 8rem);
-  --title-section: clamp(2.4rem, 4.6vw, 5rem);
+  --title-poster: clamp(2.75rem, 1.8rem + 4vw, 5.5rem);
+  --title-section: clamp(2.25rem, 1.6rem + 2.6vw, 4rem);
+  --title-card: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  --text-lead: clamp(1.125rem, 1rem + 0.55vw, 1.5rem);
+  --text-body: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
 }
 
 * {

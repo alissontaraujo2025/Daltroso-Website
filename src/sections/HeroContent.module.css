@@ -122,17 +122,25 @@
 
 .support {
   font-family: var(--font-sans), sans-serif;
-  font-size: clamp(1.25rem, min(2.3vw, 3.6vh), 2.4rem);
-  font-weight: 500;
+  font-size: clamp(1.25rem, min(2.1vw, 3.4vh), 2.15rem);
+  font-weight: 400;
   letter-spacing: -0.01em;
   line-height: 1.35;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.78);
   text-shadow: 0 1px 18px rgba(12, 24, 38, 0.55);
   max-width: 31ch;
   text-wrap: balance;
   margin-top: clamp(16px, 3.5vh, 40px);
   opacity: calc(1 - var(--p-subtext, 0));
   transform: translateY(calc(var(--p-subtext, 0) * -14px));
+}
+
+/* Segunda frase em destaque: a resposta ao problema */
+.supportKey {
+  display: block;
+  margin-top: 0.3em;
+  font-weight: 500;
+  color: #ffffff;
 }
 
 /* Nav */
