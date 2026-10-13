@@ -142,9 +142,11 @@ Spec das mudanças: `docs/superpowers/specs/2026-10-07-modernizacao-virada-desig
 ### Fluxo de trabalho
 - Commit e deploy só quando o usuário pedir. O `git push` é bloqueado para o Claude: o usuário roda `!git push origin main` (sem espaço antes do `!`).
 - Imagens brutas de `scenes/*/assets/` ficam fora do git (só no disco); `.vercelignore` deixa material de trabalho fora da publicação.
-- Verificação antes de publicar: `npx tsc --noEmit`, `npm run build`, teste no Playwright em 1440×900 e 390×844. O projeto não tem ESLint configurado.
+- Verificação antes de publicar: `npm run check` (typecheck + build), teste no Playwright em 1440×900 e 390×844. O projeto não tem ESLint configurado.
+- Nome, descrição, URL e links de menu ficam em `src/data/site.ts` (URL sobrescrevível por `NEXT_PUBLIC_SITE_URL`). Vídeos de fundo usam um só componente, `VideoBackground` (`priority` no hero).
+- SEO: `opengraph-image.jpg`, `apple-icon.png`, `robots.ts`, `sitemap.ts` e `not-found.tsx` em `src/app/`; dados estruturados (LegalService) em `src/components/StructuredData.tsx`, só com dados de `office.ts`.
 
 ### Pendências
 1. Pedir à cliente as tags das áreas além de Crimes digitais (`src/data/practiceAreas.ts`).
 2. Usuário vai trocar o nome no Google para "Advocacia e Inteligência Jurídica" (hoje "Consultoria").
-3. Opcional: dois PNGs de pôster sem uso em `public/videos/scene-02-daltroso-*-poster.png` (~4 MB).
+3. Domínio próprio: configurar na Vercel e definir `NEXT_PUBLIC_SITE_URL`.

@@ -2,15 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { NAV_LINKS } from "@/data/site";
 import { whatsappHref } from "@/lib/contact";
 import styles from "./SiteHeader.module.css";
-
-const LINKS = [
-  { label: "quem somos", href: "#quem-somos" },
-  { label: "atuação", href: "#atuacao" },
-  { label: "equipe", href: "#equipe" },
-  { label: "atendimento", href: "#atendimento" },
-];
 
 /**
  * Cabeçalho fino que aparece quando o hero termina.
@@ -49,7 +43,7 @@ export function SiteHeader() {
       </a>
 
       <nav className={styles.nav} aria-label="Navegação fixa">
-        {LINKS.map((link) => (
+        {NAV_LINKS.map((link) => (
           <a key={link.href} href={link.href} className={styles.link}>
             {link.label}
           </a>

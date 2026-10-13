@@ -12,6 +12,11 @@ type VideoBackgroundProps = {
   desktopPoster: string;
   mobilePoster: string;
   className?: string;
+  /**
+   * Vídeo da primeira dobra (hero): pôster com prioridade e download imediato.
+   * Sem isso, o vídeo só começa a baixar uma tela antes de aparecer.
+   */
+  priority?: boolean;
 };
 
 export function VideoBackground({
@@ -20,10 +25,11 @@ export function VideoBackground({
   desktopPoster,
   mobilePoster,
   className,
+  priority = false,
 }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isDesktop, setIsDesktop] = useState<boolean | null>(null);
-  const [inView, setInView] = useState(false);
+  const [inView, setInView] = useState(priority);
 
   useEffect(() => {
     const viewportQuery = window.matchMedia(DESKTOP_BREAKPOINT);
@@ -41,11 +47,11 @@ export function VideoBackground({
     const observer = new IntersectionObserver(
       ([entry]) => setInView(entry.isIntersecting),
       // Start buffering about one screen ahead so playback is ready on arrival.
-      { threshold: 0, rootMargin: "100% 0px" }
+      { threshold: 0, rootMargin: priority ? "0px" : "100% 0px" }
     );
     observer.observe(videoEl);
     return () => observer.disconnect();
-  }, [isDesktop]);
+  }, [isDesktop, priority]);
 
   useEffect(() => {
     const videoEl = videoRef.current;
@@ -80,7 +86,12 @@ export function VideoBackground({
   }, [inView, isDesktop]);
 
   const posterImage = (
-    <VideoPoster className={className} desktopSrc={desktopPoster} mobileSrc={mobilePoster} />
+    <VideoPoster
+      className={className}
+      desktopSrc={desktopPoster}
+      mobileSrc={mobilePoster}
+      priority={priority}
+    />
   );
 
   if (isDesktop === null) return posterImage;
@@ -97,7 +108,7 @@ export function VideoBackground({
         className={className}
         src={src}
         poster={poster}
-        preload="none"
+        preload={priority ? "auto" : "none"}
         autoPlay
         loop
         muted

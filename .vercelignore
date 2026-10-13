@@ -1,5 +1,4 @@
 # A publicação só precisa do código e de public/; o material de trabalho fica de fora
-assets/
 docs/
 output/
 prompts/
@@ -7,4 +6,5 @@ references/
 scenes/
 skills/
 .claude/
+.superpowers/
 .playwright-mcp/

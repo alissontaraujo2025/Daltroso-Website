@@ -1,13 +1,7 @@
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { NAV_LINKS } from "@/data/site";
 import { whatsappHref } from "@/lib/contact";
 import styles from "./HeroContent.module.css";
-
-const NAV_LINKS = [
-  { label: "quem somos", href: "#quem-somos" },
-  { label: "atuação", href: "#atuacao" },
-  { label: "equipe", href: "#equipe" },
-  { label: "atendimento", href: "#atendimento" },
-];
 
 export function HeroContent() {
   return (

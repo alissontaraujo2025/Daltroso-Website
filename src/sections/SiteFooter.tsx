@@ -1,14 +1,7 @@
 import { OutlineWord } from "@/components/OutlineWord";
 import { office } from "@/data/office";
+import { FOOTER_LINKS, SITE_NAME } from "@/data/site";
 import styles from "./SiteFooter.module.css";
-
-const LINKS = [
-  { label: "Quem somos", href: "#quem-somos" },
-  { label: "Áreas de atuação", href: "#atuacao" },
-  { label: "Como trabalhamos", href: "#metodo" },
-  { label: "Equipe", href: "#equipe" },
-  { label: "Atendimento", href: "#atendimento" },
-];
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -24,7 +17,7 @@ export function SiteFooter() {
 
         <nav aria-label="Rodapé">
           <ul className={styles.links}>
-            {LINKS.map((link) => (
+            {FOOTER_LINKS.map((link) => (
               <li key={link.href}>
                 <a href={link.href} className={styles.link}>
                   {link.label}
@@ -54,7 +47,7 @@ export function SiteFooter() {
       </div>
 
       <p className={styles.copy}>
-        © {year} Daltroso Advocacia e Inteligência Jurídica
+        © {year} {SITE_NAME}
       </p>
     </footer>
   );

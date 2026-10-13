@@ -6,10 +6,23 @@ export const office = {
   serviceArea:
     "Presencial em Cruz Alta e região e em Porto Alegre e região metropolitana. Também online.",
   address: "Av. Plácido de Castro, 857, Bonini I, Cruz Alta (RS), CEP 98035-190",
+  // Mesmo endereço em campos separados, para os dados estruturados (Google)
+  postalAddress: {
+    streetAddress: "Av. Plácido de Castro, 857, Bonini I",
+    addressLocality: "Cruz Alta",
+    addressRegion: "RS",
+    postalCode: "98035-190",
+    addressCountry: "BR",
+  },
   hours: "Segunda a sexta, das 9h às 18h",
   // Telefone de plantão: urgências na área criminal
   oncall: {
     display: "(55) 99202-5742",
     href: "tel:+5555992025742",
+  },
+  social: {
+    instagram: "https://www.instagram.com/daltrosoadvocacia/",
+    facebook: "https://www.facebook.com/daltrosoadvocacia",
+    youtube: "https://www.youtube.com/@bdaltrosoadvocacia",
   },
 };

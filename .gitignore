@@ -1,19 +1,29 @@
+# Dependências e build
 node_modules/
 .next/
+out/
+tsconfig.tsbuildinfo
+next-env.d.ts
+
+# Ambiente e deploy
 .env*
 .vercel/
-output/
-tsconfig.tsbuildinfo
 
-.vercel
+# Sistema
+.DS_Store
+Thumbs.db
+*.log
 
-# Configuração pessoal do Claude Code
+# Configuração pessoal do Claude Code e ferramentas locais
 .claude/settings.local.json
+.claude/launch.json
+.superpowers/
+.playwright-mcp/
 
-# Imagens brutas das cenas (as versões otimizadas ficam em public/)
+# Material de trabalho pesado (fica só no disco)
+output/
 scenes/**/assets/*.png
 scenes/**/assets/*.jpg
 scenes/**/assets/*.jpeg
-
-# Capturas do Playwright
-.playwright-mcp/
+references/01_Estrategia_Marca/
+references/site-references/*/

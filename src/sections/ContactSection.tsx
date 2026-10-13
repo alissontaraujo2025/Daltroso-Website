@@ -15,17 +15,17 @@ const CHANNELS = [
   },
   {
     name: "Instagram",
-    href: "https://www.instagram.com/daltrosoadvocacia/",
+    href: office.social.instagram,
     Icon: IconInstagram,
   },
   {
     name: "Facebook",
-    href: "https://www.facebook.com/daltrosoadvocacia",
+    href: office.social.facebook,
     Icon: IconFacebook,
   },
   {
     name: "YouTube",
-    href: "https://www.youtube.com/@bdaltrosoadvocacia",
+    href: office.social.youtube,
     Icon: IconYouTube,
   },
 ];

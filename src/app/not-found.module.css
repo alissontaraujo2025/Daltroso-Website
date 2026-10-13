@@ -1,0 +1,59 @@
+.page {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+  padding: 48px clamp(20px, 8vw, 120px);
+  overflow: hidden;
+  background: radial-gradient(ellipse at 80% 20%, rgba(232, 179, 109, 0.12), transparent 55%), #0c1826;
+}
+
+/* Número vazado ao fundo, na mesma linguagem das palavras gigantes do site */
+.code {
+  position: absolute;
+  right: -0.04em;
+  bottom: -0.18em;
+  font-family: var(--font-poster), sans-serif;
+  font-size: clamp(12rem, 40vw, 34rem);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(240, 214, 168, 0.18);
+  pointer-events: none;
+  user-select: none;
+}
+
+.title {
+  position: relative;
+  max-width: 14ch;
+  font-size: var(--title-section);
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.text {
+  position: relative;
+  max-width: 40ch;
+  font-size: var(--text-lead);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.link {
+  position: relative;
+  margin-top: 12px;
+  padding: 14px 26px;
+  border: 1px solid rgba(240, 214, 168, 0.5);
+  border-radius: 999px;
+  color: #f0d6a8;
+  font-size: var(--text-body);
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.link:hover {
+  background: #f0d6a8;
+  color: #0c1826;
+}

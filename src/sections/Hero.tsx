@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { HeroVideoBackground } from "@/components/HeroVideoBackground";
+import { VideoBackground } from "@/components/VideoBackground";
 import { remap, useScrollProgress } from "@/lib/useScrollProgress";
 import { HeroContent } from "./HeroContent";
 import styles from "./Hero.module.css";
@@ -19,7 +19,14 @@ export function Hero() {
   return (
     <div ref={pinRef} className={styles.heroPin} data-hero-pin>
       <section className={styles.hero}>
-        <HeroVideoBackground />
+        <VideoBackground
+          className="hero-video-background"
+          desktopSrc="/videos/hero-daltroso-desktop.mp4"
+          mobileSrc="/videos/hero-daltroso-mobile.mp4"
+          desktopPoster="/videos/hero-daltroso-desktop-poster.webp"
+          mobilePoster="/videos/hero-daltroso-mobile-poster.webp"
+          priority
+        />
         <div className={styles.videoFade} aria-hidden="true" />
         <HeroContent />
       </section>
