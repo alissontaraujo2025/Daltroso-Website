@@ -3,7 +3,7 @@
  * Com domínio próprio, basta definir NEXT_PUBLIC_SITE_URL na Vercel.
  */
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://daltroso-site-experimental-reviewed.vercel.app"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.daltrosoadvocacia.com.br"
 ).replace(/\/$/, "");
 
 export const SITE_NAME = "Daltroso Advocacia e Inteligência Jurídica";

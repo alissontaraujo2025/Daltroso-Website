@@ -67,4 +67,4 @@ npm run check
 vercel deploy --prod
 ```
 
-Ao ligar um domínio próprio, defina a variável `NEXT_PUBLIC_SITE_URL` na Vercel (ex.: `https://daltroso.adv.br`). Ela alimenta o link canônico, a prévia de compartilhamento, o sitemap e os dados estruturados do Google.
+Ao ligar um domínio próprio, defina a variável `NEXT_PUBLIC_SITE_URL` na Vercel (padrão no código: `https://www.daltrosoadvocacia.com.br`). Ela alimenta o link canônico, a prévia de compartilhamento, o sitemap e os dados estruturados do Google.
