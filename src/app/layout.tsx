@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, Host_Grotesk } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { RevealObserver } from "@/components/RevealObserver";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -70,6 +71,7 @@ export default function RootLayout({
         {children}
         <RevealObserver />
         <SmoothScroll />
+        <Analytics />
       </body>
     </html>
   );
